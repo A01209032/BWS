@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="reportes.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    
+
     <style>
                 * {
           box-sizing: border-box;
@@ -48,6 +48,7 @@
           background-color: #f2f2f2;
           padding: 10px;
         }
+        
 
         /* Create two columns that float next to eachother */
         .column {
@@ -55,6 +56,10 @@
           width: 50%;
           margin-top: 6px;
           padding: 20px;
+        }
+        
+        .titulo {
+          text-align: center;
         }
 
         /* Clear floats after the columns */
@@ -80,7 +85,10 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-bright bg-bright static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Logo </a>
+      <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
+      <div class="ext-center">
+        <h7 class="titulo"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h7>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -107,32 +115,32 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-12 text-center">
-                <h7>Siervas de Maria <br> Ministras de los enfermos</h7>
+
                 <h1 class="mt-5">Registrar voluntarios</h1>
+
                 <ul class="list-unstyled">
 
                     <div class="row">
             <div class="column">
-              <img src="/w3images/map.jpg" style="width:100%">
+              <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
             </div>
             <div class="column">
               <form action="/action_page.php">
 
-                  <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                  <label for="fname">Nombre</label>
+                <input type="text" id="fname" name="firstname" placeholder="Juan">
 
-                  <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                  <label for="lname">Apellido</label>
+                <input type="text" id="lname" name="lastname" placeholder="Lopez">
 
-                <label for="country">Country</label>
-                <select id="country" name="country">
-                  <option value="australia">Australia</option>
-                  <option value="canada">Canada</option>
-                  <option value="usa">USA</option>
+                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo">
+                  <option value="masculino">Masculino</option>
+                  <option value="canada">Femenino</option>
                 </select>
 
 
-                <input type="submit" value="Agregar">
+                  <button type="button" class="btn btn-primary" >Agregar voluntaio</button>
               </form>
             </div>
           </div>
