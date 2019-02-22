@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Reportes</title>
+
+  <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="reportes.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+                * {
+          box-sizing: border-box;
+        }
+
+        /* Style inputs */
+        input[type=date], input[type=text], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+
+        input[type=submit] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+
+
+
+        /* Style the container/contact section */
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 10px;
+        }
+        
+
+        /* Create two columns that float next to eachother */
+        .column {
+          float: left;
+          width: 50%;
+          margin-top: 6px;
+          padding: 20px;
+        }
+        
+        .titulo {
+          text-align: center;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+          .column, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+
+    </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-bright bg-bright static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
+      <div class="ext-center">
+        <h7 class="titulo"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h7>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active ">
+            <a class="nav-link center " href="#">Pagina principal
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Administrador</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+          <!-- Page Content -->
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 text-center">
+
+                <h1 class="mt-5">Registrar voluntarios</h1>
+
+                <ul class="list-unstyled">
+
+                    <div class="row">
+            <div class="column">
+              <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
+            </div>
+            <div class="column">
+              <form action="/action_page.php">
+
+                  <label for="fname">Nombre</label>
+                <input type="text" id="fname" name="firstname" placeholder="Juan">
+
+                  <label for="lname">Apellido</label>
+                <input type="text" id="lname" name="lastname" placeholder="Lopez">
+
+                <label>Fecha de Nacimiento</label>
+                  <br>
+                <input type="date" id="bdate" name="fechanac">
+                  <br>
+                  <br>
+
+                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo">
+                  <option value="masculino">Masculino</option>
+                  <option value="canada">Femenino</option>
+                </select>
+
+
+                  <button type="button" class="btn btn-primary" >Agregar voluntaio</button>
+              </form>
+            </div>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<br>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
