@@ -21,7 +21,7 @@
         }
 
         /* Style inputs */
-        input[type=text], select, textarea {
+        input[type=date], input[type=text], select, textarea {
           width: 100%;
           padding: 12px;
           border: 1px solid #ccc;
@@ -41,6 +41,8 @@
         input[type=submit]:hover {
           background-color: #45a049;
         }
+
+
 
         /* Style the container/contact section */
         .container {
@@ -132,6 +134,12 @@
 
                   <label for="lname">Apellido</label>
                 <input type="text" id="lname" name="lastname" placeholder="Lopez">
+
+                <label>Fecha de Nacimiento</label>
+                  <br>
+                <input type="date" id="bdate" name="fechanac">
+                  <br>
+                  <br>
 
                 <label for="sexo">Sexo</label>
                 <select id="sexo" name="sexo">
