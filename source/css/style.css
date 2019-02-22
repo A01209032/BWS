@@ -1,0 +1,13 @@
+button {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+table,table td{border:1px solid #000;padding:4px 8px}#middle,.mainTitle,h2,h4,img,table td{text-align:center;}table{background-color:#b7d7e8;width:100%}img{width:250px;height:221px;}p{font-family:sans-serif}body{background-color:azure;margin:0 auto;max-width:50em;font-family:Helvetica;line-height:1.5;color:#555;padding:4em 1em}h2,h4{color:#00008b;font-family:sans-serif;margin-top:1em;padding-top:1em}.mainTitle{color:#00bfff;font-size:50px}
