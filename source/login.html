@@ -22,10 +22,11 @@
       
       height: 80%;
       padding: 2.5em 0;
+      right: 20%;
     }
     .padre-node {
-      background-color: #d8b57f;
-      border: 2px solid black;
+      background-color: hsl(36, 53%, 67%);
+      border: 3px solid black;
       border-radius: 50%;
       width: 32px;
       height: 32px;
@@ -33,11 +34,15 @@
       left:   0;
       bottom: 0;
 
-      z-index: 1;
+      z-index: 5;
+
+      box-shadow: 3px 5px 8px -2px rgba(0,0,0,0.75);
     }
     .padre-node:hover {
-      background-color: #724d13;
+      /*background-color: #724d13;*/
+      border: 5px solid black;
       cursor: pointer;
+      box-shadow: 7px 10px 8px -2px rgba(0,0,0,0.75);
     }
 
     .avm-node {
@@ -52,10 +57,17 @@
       left: 0;
       bottom: 0;
 
-      z-index: -1;
+      z-index: 2;
+
+      box-shadow: 3px 5px 8px -2px rgba(0,0,0,0.75);
     }
 
-    .ros-cruz {
+    .avm-node:hover {
+      background-color: #efe1e7;
+      cursor: pointer;
+    }
+
+    #ros-cruz {
       position: absolute;
       left: 50%;
       bottom: 40px;
@@ -141,7 +153,7 @@
       <div class="col-md-7 col-lg-7 mb-7" id="password-sect">
         <!-- <img src="images/rosario_contra.jpg" id="password-img"> -->
         <div id="rosario">
-          <img class="ros-cruz" src="images/ros_cruz.jpg" width=48 height=64>
+          <img id="ros-cruz" src="images/ros_cruz.jpg" width=48 height=64>
         </div>
         <button id="enter-btn">Entrar</button>
       </div>
@@ -153,6 +165,10 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
   <script type="text/javascript" src="js/login.js"></script>
 
