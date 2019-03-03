@@ -16,6 +16,53 @@
 
   <link rel="stylesheet" type="text/css" href="css/login.css">
 
+  <style type="text/css">
+    #rosario {
+      position: relative;
+      
+      height: 80%;
+      padding: 2.5em 0;
+    }
+    .padre-node {
+      background-color: #d8b57f;
+      border: 2px solid black;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      left:   0;
+      bottom: 0;
+
+      z-index: 1;
+    }
+    .padre-node:hover {
+      background-color: #724d13;
+      cursor: pointer;
+    }
+
+    .avm-node {
+      background-color: #603546;
+      border: 2px solid black;
+      border-radius: 50%;
+
+      width: 16px;
+      height: 16px;
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      z-index: -1;
+    }
+
+    .ros-cruz {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      transform: translate(-25%, 0);
+    }
+  </style>
+
 </head>
 
 <body>
@@ -92,7 +139,10 @@
     </div>
       </div>
       <div class="col-md-7 col-lg-7 mb-7" id="password-sect">
-        <img src="images/rosario_contra.jpg" id="password-img">
+        <!-- <img src="images/rosario_contra.jpg" id="password-img"> -->
+        <div id="rosario">
+          <img class="ros-cruz" src="images/ros_cruz.jpg" width=48 height=64>
+        </div>
         <button id="enter-btn">Entrar</button>
       </div>
     </div>
