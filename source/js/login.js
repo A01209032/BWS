@@ -227,19 +227,58 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 			pass += ','
 	}
 
-	alert('User: ' + user + ', Pass: ' + pass);
+	//alert('User: ' + user + ', Pass: ' + pass);
 
-	$.ajax({
-		url: '/login',
-		method: 'POST',
-		data: {
-			user: user,
-			password: pass
-		}
-	})
-	.done(function(res) {
-		console.log(res);
-	});
+	// $.ajax({
+	// 	url: '/login.php',
+	// 	method: 'POST',
+	// 	data: {
+	// 		user: user,
+	// 		password: pass
+	// 	}
+	// })
+	// .done(function(res) {
+	// 	console.log(res);
+	// });
+
+	if (account == 1 && pass != '0,4,1,4') {
+		location.reload();
+		return;
+	}
+	if (account == 2 && pass != '0,3,2,0,0') {
+		location.reload();
+		return;
+	}
+	if (account == 3 && pass != '3,2,1,0,4') {
+		location.reload();
+		return;
+	}
+
+	// if (account == 1 && pass != 'ajk34=d') {
+	// 	location.reload();
+	// 	return;
+	// }
+	// if (account == 2 && pass != 'sas3-da') {
+	// 	location.reload();
+	// 	return;
+	// }
+	// if (account == 3 && pass != 'd0f3fav') {
+	// 	location.reload();
+	// 	return;
+	// }
+
+	var currUrl = window.location.href;
+	var urlParts = currUrl.split('/');
+	var file = urlParts[urlParts.length-1];
+
+	var newUrl = currUrl.substring(0, currUrl.length-file.length);
+	
+	if (account == 1) {
+		newUrl += "admin.html";
+	} else {
+		newUrl += "registro_servicio.html";
+	}
+	window.location.href = newUrl;
 
 });
 
