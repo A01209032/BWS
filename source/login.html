@@ -18,6 +18,7 @@
 
   <style type="text/css">
     #rosario {
+      /*display: none;*/
       position: relative;
       
       height: 80%;
@@ -72,6 +73,12 @@
       left: 50%;
       bottom: 40px;
       transform: translate(-25%, 0);
+    }
+
+    #txt-pass {
+      margin-top: 300px;
+      margin-left: 80px;
+      display: none;
     }
   </style>
 
@@ -154,6 +161,14 @@
         <!-- <img src="images/rosario_contra.jpg" id="password-img"> -->
         <div id="rosario">
           <img id="ros-cruz" src="images/ros_cruz.jpg" width=48 height=64>
+        </div>
+        <div id="txt-pass">
+          <form action="/login.php" method="POST">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <input style="display: hidden" type="text" name="user" id="user" value="2">
+            <button id="submit" name="submit" type="submit">Entrar</button>
+          </form>
         </div>
         <button id="enter-btn">Entrar</button>
       </div>

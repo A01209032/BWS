@@ -234,7 +234,7 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 		method: 'POST',
 		data: {
 			user: user,
-			pass: pass
+			password: pass
 		}
 	})
 	.done(function(res) {
