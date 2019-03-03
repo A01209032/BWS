@@ -1,7 +1,7 @@
 /* ************************************* *
  * Modulo: login.js
  *
- * Autor: Juan Jose Olivera 
+ * Autor: Juan Jose Olivera
  * Matricula: A01702832
  * Instituo: Tec de Monterrey CQ
  *
@@ -71,7 +71,7 @@ document.querySelector('#cuenta-4 a').addEventListener('click', function() {
 // 	var file = urlParts[urlParts.length-1];
 
 // 	var newUrl = currUrl.substring(0, currUrl.length-file.length);
-	
+
 // 	if (account == 1) {
 // 		newUrl += "admin.html";
 // 	} else {
@@ -96,14 +96,14 @@ var primary_nodes = [
 // Crear Nodos Padres
 for (var i = 0; i < primary_nodes.length; i++) {
 	crearNodoPadre(i+1, primary_nodes[i].x, primary_nodes[i].y);
-}	
+}
 
 // Crear Nodos Aves
 var AVES_MARIAS_COUNT = 10;
 for (var i = 0; i < primary_nodes.length; i++) {
 	//console.log('Interpolacion #'+(i+1) + ' y #' + (((i+1)%5)+1));
 	var nStart = primary_nodes[i];
-	var nEnd   = primary_nodes[(i+1) % primary_nodes.length]; // When nStart is End Node+1, nEnd = Node 1 
+	var nEnd   = primary_nodes[(i+1) % primary_nodes.length]; // When nStart is End Node+1, nEnd = Node 1
 
 	// Calcular las 10 posiciones de Interpolacion entre los Nodos start y end
 	var nPositions = nodeInterpolation(nStart, nEnd, AVES_MARIAS_COUNT);
@@ -131,7 +131,7 @@ function nodeInterpolation(start, end, step) {
 	var posistions = [];
 
 	var v = {
-		x: end.x-start.x, 
+		x: end.x-start.x,
 		y: end.y-start.y
 	};
 
@@ -205,7 +205,7 @@ var sequence = [];
 
 function onNodeClick(e) {
 	var nEl = e.target;
-	
+
 	var idParts = nEl.id.split('-');
 	var nId = parseFloat(idParts[idParts.length-1]);
 
@@ -272,15 +272,12 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 	var file = urlParts[urlParts.length-1];
 
 	var newUrl = currUrl.substring(0, currUrl.length-file.length);
-	
+
 	if (account == 1) {
 		newUrl += "admin.html";
 	} else {
-		newUrl += "registro_servicio.html";
+		newUrl += "registro.php";
 	}
 	window.location.href = newUrl;
 
 });
-
-
-
