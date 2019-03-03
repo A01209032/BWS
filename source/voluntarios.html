@@ -15,120 +15,131 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-    <style>
-                * {
-          box-sizing: border-box;
-        }
+  <link href="css/styleTony.css" rel="stylesheet" type="text/css">
 
-        /* Style inputs */
-        input[type=text], select, textarea {
-          width: 100%;
-          padding: 12px;
-          border: 1px solid #ccc;
-          margin-top: 6px;
-          margin-bottom: 16px;
-          resize: vertical;
-        }
-
-        input[type=submit] {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          cursor: pointer;
-        }
-
-        input[type=submit]:hover {
-          background-color: #45a049;
-        }
-
-        /* Style the container/contact section */
-        .container {
-          border-radius: 5px;
-          background-color: #f2f2f2;
-          padding: 10px;
-        }
-
-
-        /* Create two columns that float next to eachother */
-        .column {
-          float: left;
-          width: 50%;
-          margin-top: 6px;
-          padding: 20px;
-        }
-
-        .titulo {
-          text-align: center;
-        }
-
-        /* Clear floats after the columns */
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
-
-        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .column, input[type=submit] {
-            width: 100%;
-            margin-top: 0;
-          }
-        }
-
-    </style>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-bright bg-bright static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
-      <div class="ext-center">
-        <h7 class="titulo"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h7>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active ">
-            <a class="nav-link center " href="#">Pagina principal
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Administrador</a>
-          </li>
+    <!-- Navigation -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light static-top divEnmarcado">
+   <div class="container " id="login-container">
+     <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
+     <div class="text-center">
+       <h3 class="tituloPrincipal"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h3>
+     </div>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cerrar sesión</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarResponsive">
+       <ul class="navbar-nav ml-auto">
+         <li class="nav-item active ">
+           <a class="nav-link center " href="admin.html">Pagina principal
+             <span class="sr-only">(current)</span>
+           </a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">Rol</a>
+         </li>
+
+         <li class="nav-item">
+           <a class="nav-link" href="#">Cerrar sesión</a>
+         </li>
+       </ul>
+     </div>
+   </div>
+ </nav>
 
           <!-- Page Content -->
           <div class="container">
             <div class="row">
               <div class="col-lg-12 text-center">
 
-                <h1 class="mt-5">Voluntarios</h1><br>
+                <h1 class="mt-5">Lista de voluntarios</h1><br>
 
                 <ul class="list-unstyled">
 
 
-          
+
                <br>
-      <h4 class="text-center">Lista de voluntarios</h4>
-      <p class="text-center" ><a href="registros.html">Agregar voluntario</a></p>
+
+      <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar voluntario</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="registrarVoluntario" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                
+                <h4 class="modal-title">Registrar voluntario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <!-- Page Content -->
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-lg-12 text-center">
+                                <h1 class="mt-5">Registrar Voluntario</h1>
+
+                                <ul class="list-unstyled">
+
+                                    <div class="row">
+                            <div class="column">
+                              <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
+                            </div>
+                            <div class="column">
+                              <form action="/action_page.php">
+                                
+                                  <label for="fname">Nombre</label>
+                                  <br>
+                                <input type="text" id="fname" name="firstname" placeholder="Juan">
+                                <br>
+                                  <label for="lname">Apellido</label>
+                                  <br>
+                                <input type="text" id="lname" name="lastname" placeholder="Lopez">
+                                <br>
+                                <label>Fecha de Nacimiento</label>
+                                  <br>
+                                <input type="date" id="bdate" name="fechanac">
+                                  <p></p>
+                                <label for="sexo">Sexo</label>
+                                <select class="form-control form-control-sm" id="sexo" name="sexo">
+                                  <option value="masculino">Masculino</option>
+                                  <option value="femenino">Femenino</option>
+                                </select>
+                                <br>
+                                <label for="puesto">Puesto</label>
+                                <br>
+                                <select class="form-control form-control-sm" id="puesto" name="puesto">
+                                  <option value="director">Director/a</option>
+                                  <option value="asistente">Asistente</option>
+                                </select>
+                                <br>
+                                  <button type="button" class="btn btn-primary" ><a href="registro_servicio.html">Agregar voluntario</a></button>
+                              </form>
+                            </div>
+                          </div>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <section>
        <article>
            <br>
-                <table class="table table-white">
+                <table class="table table-white ">
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -140,22 +151,94 @@
 
                   <tbody>
                     <tr>
-                      <td>Fco Javier Castillo</td> <td>15/07/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                      <td>Fco Javier Castillo</td> <td>15/07/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario">Modificar</button>  <button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>
                     <tr>
-                      <td>Antonio Vazqquez</td> <td>31/01/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                      <td>Antonio Vazqquez</td> <td>31/01/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button>  <button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>
                     <tr>
-                      <td>Fco Javier Castillo</td> <td>15/07/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                      <td>Fco Javier Castillo</td> <td>15/07/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button>  <button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>
                     <tr>
-                      <td>Antonio Vazqquez</td> <td>31/01/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+                      <td>Antonio Vazqquez</td> <td>31/01/2018</td> <td>18 años</td> <td>Catolico</td> <td><button type="button" class="btn btn-primary">Modificar</button>  <button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>
                   </tbody>
 
                 </table>
 
        </article>
+
+       <div class="container">
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="modificarVoluntario" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                
+                <h4 class="modal-title">Registrar voluntario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <!-- Page Content -->
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-lg-12 text-center">
+                                <h1 class="mt-5">Registrar Voluntario</h1>
+
+                                <ul class="list-unstyled">
+
+                                    <div class="row">
+                            <div class="column">
+                              <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
+                            </div>
+                            <div class="column">
+                              <form action="/action_page.php">
+                                
+                                  <label for="fname">Nombre</label>
+                                  <br>
+                                <input type="text" id="fname" name="firstname" placeholder="Fco Javier ">
+                                <br>
+                                  <label for="lname">Apellido</label>
+                                  <br>
+                                <input type="text" id="lname" name="lastname" placeholder="Castillo">
+                                <br>
+                                <label>Fecha de Nacimiento</label>
+                                  <br>
+                                <input type="date" id="bdate" name="fechanac" placeholder="15/07/2018">
+                                  <p></p>
+                                <label for="sexo">Sexo</label>
+                                <select class="form-control form-control-sm" id="sexo" name="sexo">
+                                  <option value="masculino">Masculino</option>
+                                  <option value="femenino">Femenino</option>
+                                </select>
+                                <br>
+                                <label for="puesto">Puesto</label>
+                                <br>
+                                <select class="form-control form-control-sm" id="puesto" name="puesto">
+                                  <option value="director">Director/a</option>
+                                  <option value="asistente">Asistente</option>
+                                </select>
+                                <br>
+                                  <button type="button" class="btn btn-primary" ><a href="registro_servicio.html">Agregar voluntario</a></button>
+                              </form>
+                            </div>
+                          </div>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       </section>
 
        </div>
