@@ -13,22 +13,27 @@
   <!-- Bootstrap core CSS -->
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="css/styleTony.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Logo </a>
+   <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light static-top divEnmarcado">
+    <div class="container " id="login-container">
+      <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
+      <div class="text-center">
+        <h3 class="tituloPrincipal"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h3>
+      </div>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active ">
-            <a class="nav-link center " href="#">Pagina principal
+            <a class="nav-link center " href="admin.html">Pagina principal
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -48,7 +53,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="">Cuentas</h1>
+        <h1 class=""><strong>Cuentas</strong></h1>
         <br>
       </div>
     </div>
@@ -57,15 +62,18 @@
   <div class="container">
 
     <div class="row">
+
       <div class="col-lg-3">
         <div class="card" style="width: 14rem;">
-          <img src="Images/sanjurjo.jpg" class="card-img-top" alt="...">
+          <img src="Images/sanjurjo.jpg" class="card-img-top cortarImagen" alt="Imagen de cuenta de Administrador">
           <div class="card-body">
             <h5 class="card-title">Administrador</h5>
             <p class="card-text">Contraseña:</p>
-             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-             <br>
-            <a href="#" class="btn btn-primary">Cambiar contraseña</a>
+            <form action="cambioContrasena.php">
+              <input type="password" class="form-control" id="contrasenaNuevaDispensario" name="contrasenaNuevaDispensario"placeholder="Ejemplo: 4815">
+              <br>
+              <input type="submit" class="btn btn-primary" value="Cambiar contraseña">
+            </form>
           </div>
         </div>
 
@@ -73,50 +81,50 @@
 
       <div class="col-lg-3">
         <div class="card" style="width: 14rem;">
-          <img src="Images/virgen_de_guadalupe2.jpg" class="card-img-top" alt="...">
+          <img src="Images/virgen_de_guadalupe2.jpg" class="card-img-top cortarImagen" alt="Imagen de cuenta de dispensario">
           <div class="card-body">
             <h5 class="card-title">Dispensario</h5>
             <p class="card-text">Contraseña:</p>
-             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-             <br>
-            <a href="#" class="btn btn-primary">Cambiar contraseña</a>
+            <form action="cambioContrasena.php">
+              <input type="password" class="form-control" id="contrasenaNuevaDispensario" name="contrasenaNuevaDispensario"placeholder="Ejemplo: 4815">
+              <br>
+              <input type="submit" class="btn btn-primary" value="Cambiar contraseña">
+            </form>
           </div>
         </div>
       </div>
 
       <div class="col-lg-3">
         <div class="card" style="width: 14rem;">
-          <img src="Images/sagrado_corazon_cuentas.jpg" class="card-img-top" alt="...">
+          <img src="Images/sagrado_corazon_cuentas.jpg" class="card-img-top cortarImagen" alt="Imagen de cuenta de Porteria">
           <div class="card-body">
             <h5 class="card-title">Porteria</h5>
+
             <p class="card-text">Contraseña:</p>
-             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-             <br>
-            <a href="#" class="btn btn-primary">Cambiar contraseña</a>
+            <form action="cambioContrasena.php">
+              <input type="password" class="form-control" id="contrasenaNuevaPorteria" name="contrasenaNuevaPorteria"placeholder="Ejemplo: 4815">
+              <br>
+              <input type="submit" class="btn btn-primary" value="Cambiar contraseña">
+            </form>
+
+             
           </div>
         </div>
       </div>
 
       <div class="col-lg-3">
         <div class="card" style="width: 14rem;">
-          <img src="Images/cuadro.jpg" class="card-img-top" alt="...">
+          <img src="Images/cuadro.jpg" class="card-img-top cortarImagen" alt="...">
           <div class="card-body">
             <h5 class="card-title">Asistencias</h5>
             <p class="card-text">Contraseña:</p>
-             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-             <br>
-            <a href="#" class="btn btn-primary">Cambiar contraseña</a>
+             <form action="cambioContrasena.php">
+              <input type="password" class="form-control" id="contrasenaNuevaAsistencias" name="contrasenaNuevaAsistencias"placeholder="Ejemplo: 4815">
+              <br>
+              <input type="submit" class="btn btn-primary" value="Cambiar contraseña">
+            </form>
           </div>
         </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-right">
-        <br>
-        <br>
-        <button type="button" class="btn btn-outline-primary">Agregar nueva cuenta</button>
       </div>
     </div>
 

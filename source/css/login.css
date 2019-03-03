@@ -10,6 +10,11 @@
     padding: 4em 0;
   }
 
+.tituloPrincipal{
+  position: relative;
+  
+}
+
 .site-section-heading {
   position: relative;
   font-size: 2.5rem; }
