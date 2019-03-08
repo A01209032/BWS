@@ -8,7 +8,5 @@ function info($mensaje) {
    $mensaje = '<div class="alert alert-primary" role="alert">'.$mensaje.'</div>';
    echo $mensaje;
 }
-
-    
     
 ?>
