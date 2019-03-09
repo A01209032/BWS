@@ -274,7 +274,8 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 	var newUrl = currUrl.substring(0, currUrl.length-file.length);
 
 	if (account == 1) {
-		newUrl += "admin.html";
+		//newUrl += "admin.html";
+		newUrl += "admin.php";
 	} else {
 		newUrl += "registro.php";
 	}
