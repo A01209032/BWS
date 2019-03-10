@@ -6,19 +6,27 @@ if (isset($_POST['user'])) {
 
 	// $conn = conectDb();
 
-	// $query = "SELECT idDepartamento,nombre,constrasenia FROM departamentos WHERE nombre = ".$_POST['user']." AND contrasenia = ".$_POST['pass'];
+	// $query = "SELECT IdDepartamento,NombreDepartamento,contraseña FROM departamento WHERE NombreDepartamento = " . $_POST['user'] . " AND contraseña = ".$_POST['pass'];
 
 	// $res = mysqli_query($conn, $query);
 
 	// if (mysqli_num_rows($res) > 0) {
-		// User Validated!
+		// User Validated
 
 		if ($_POST['user'] == "administrador" &&
 			$_POST['pass'] == "0,4,1,4") {
+
+			session_start();
+			$_SESSION['departamento'] = $_POST['user'];
+
 			header("Location: /admin.php");
 		} else if ($_POST['pass'] == "0,3,2,0,0" ||
 				   $_POST['pass'] == "3,2,1,0,4" ||
 				   $_POST['user'] == "porteria") {
+
+			session_start();
+			$_SESSION['departamento'] = $_POST['user'];
+			
 			header("Location: /registro.php");
 		}
 		else {
