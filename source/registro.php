@@ -1,6 +1,14 @@
 <?php
+
   require_once("util.php");
   header_html();
-  include("registro_servicio.html");
+  require_once("registroAsistencia.php");
+
+
+
+
+
+
+
   include("views/_footer.html");
  ?>
