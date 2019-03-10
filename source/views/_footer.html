@@ -25,6 +25,30 @@
             autoclose: true,
         })
     })
+
+    function eliminar() {
+        var retVal = confirm("¿Esta seguro que desea eliminar el voluntario?");
+               if( retVal == true ) {
+                  //document.write ("User wants to continue!");
+                  return true;
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return false;
+               }
+}
+
+function cambiarContraseña() {
+  var retVal = confirm("¿Esta seguro que desea cambiar la contraseña?");
+               if( retVal == true ) {
+                  //document.write ("User wants to continue!");
+                  return true;
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return false;
+               }
+}
+
+
 </script>
 
 </body>
