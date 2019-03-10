@@ -109,25 +109,7 @@ $month = date('m', strtotime($Fecha));
 
 
 
-?>
-<?php
 
-  function conectDb(){
-
-  	$conexion=mysqli_connect("localhost","root","","bws");
-  	//Validar la conexion
-  	if($conexion==NULL){
-  		die("Error en la conexión");
-  	}
-  	$conexion->set_charset("utf8");
-
-  	return $conexion;
-  }
-
-  //ciErra la base de datos
-  function closeDb ($conexion){
-  	mysqli_close($conexion);
-  }
 
   //Obtiene todos los voluntarios 
   function getVoluntarios(){
