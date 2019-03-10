@@ -40,24 +40,24 @@
                               <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                              <form action="/action_page.php">
+                              <form action="guardar_voluntario.php" method="POST">
 
-                                <label for="fname">Nombre(s) y apellido(s) completos</label>
+                                <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
-                                <input type="text" id="firstname" name="firstname" placeholder="Nombre(s)">
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                                 <label>Fecha de Nacimiento</label>
                                   <br>
-                                <input type="date" id="fechanac" name="fechanac">
+                                <input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento"required>
                                   <p></p>
                                 <label for="sexo">Sexo</label>
-                                <select class="form-control form-control-sm" id="sexo" name="sexo">
+                                <select class="form-control form-control-sm" id="sexo" name="sexo"required>
                                   <option value="masculino">Masculino</option>
                                   <option value="femenino">Femenino</option>
                                 </select>
                                 <br>
                                 <label for="cargo">Cargo</label>
                                 <br>
-                                <select class="form-control form-control-sm" id="cargo" name="cargo">
+                                <select class="form-control form-control-sm" id="cargo" name="cargo" required>
                                   <option value="ninguno">Ninguno</option>
                                   <option value="representante">Representante Legal</option>
                                   <option value="vicepresidente">Vicepresidente</option>
@@ -67,7 +67,7 @@
                                 <br>
                                 <label for="tipo">Tipo</label>
                                 <br>
-                                <select class="form-control form-control-sm" id="tipo" name="tipo">
+                                <select class="form-control form-control-sm" id="tipo" name="tipo" required>
                                   <option value="superiora">Superiora</option>
                                   <option value="enfermera">Enfermera</option>
                                   <option value="medico_familiar">Medico Familiar</option>
@@ -75,7 +75,7 @@
                                   <option value="tesorera">Tesorera</option>
                                 </select>
                                 <br>
-                                  <button type="button" class="btn btn-primary" ><a href="registro_servicio.html">Agregar voluntario</a></button>
+                                  <button type="submit" id="submit" name="submit">Agregar voluntario</button>
                               </form>
                             </div>
                           </div>
@@ -104,7 +104,7 @@
             <div class="modal-content">
               <div class="modal-header">
 
-                <h4 class="modal-title">Registrar voluntario</h4>
+                <h4 class="modal-title">Modificar voluntario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">

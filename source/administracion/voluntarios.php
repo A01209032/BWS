@@ -35,7 +35,7 @@
       echo '<td>'.$row["Sexo"].'</td>';
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
-      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario">Modificar</button>  <button type="button" class="btn btn-danger">Eliminar</button></td>';
+      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario">Modificar</button>  <button type="button" onclick="eliminar()" class="btn btn-danger">Eliminar</button></td>';
       echo '</tr>';
     }
   }
