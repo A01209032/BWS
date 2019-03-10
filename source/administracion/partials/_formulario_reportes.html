@@ -7,10 +7,10 @@
         <h1 class="mt-5">Reporte General mensual</h1>
         <ul class="list-unstyled">
           
-        <form method="post" style="text-align: left">
+        <form method="post"  action="reporte_tabla.php" style="text-align: left">
       <div class="form-group"> <!-- Date input -->
         <label class="control-label"  for="date">Selecciona dia y mes:</label>
-        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+       <input type="date" value="YYYY-MM-DD" name="date" id="date">
       </div>
       <div class="form-group"> <!-- Submit button -->
         <button class="btn btn-outline-dark " name="submit" type="submit">Enviar datos</button>
@@ -21,8 +21,5 @@
     </div>
   </div>
  
-    <br>
-    <div class="footer">
-     <button class="btn btn-outline-success" name="submit" type="submit">Generar Reporte</button>
-    </div>
+    
     
