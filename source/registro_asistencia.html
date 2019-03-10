@@ -11,10 +11,10 @@
                 <img src="Images/jesus_tocando_puerta.jpg" style="width:100%">
               </div>
               <div class="column">
-                <form action="/action_page.php">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
 
-                  <label for="paciente">Buscar paciente</label> <p id="error"><?php echo $pacienteErr;?></p>
+                  <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
                   <br>
                   <input type="text" id="paciente" name="paciente" placeholder="Juan">
                   <br>
@@ -48,17 +48,16 @@
                         </div>
                       </div>
                     </div>
-                  </div>
 
                   <br>
                   <br>
-                  <label for="fname">Asistente</label><p id="error"><?php echo $asistenteErr; ?></p>
+                  <label for="asistente">Asistente <span id="error"><?php echo $asistenteErr; ?></span></label>
                   <input type="text" id="asistente" name="asistente" placeholder="Sor Patricia">
 
-                    <label for="lname">Fecha</label><p id="error"><?php echo $fechaError; ?></p>
+                    <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
                   <input type="date" id="fecha" name="fecha">
 
-                  <label for="tipo">Tipo de Asistencia</label><p id="error"><?php echo $tipoErr; ?></p>
+                  <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?></span></label>
                   <select id="tipo" name="tipo">
 
                     <option value="domiciliaria">Domiciliaria</option>
@@ -70,7 +69,7 @@
                   <label for="tipo">Observaciones</label>
                   <input type="text" id="observaciones" name="observaciones">
 
-                  <button type="submit" class="btn btn-primary" >Registrar servicio</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Registrar servicio</button>
 
                 </form>
               </div>
