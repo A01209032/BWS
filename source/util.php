@@ -9,6 +9,7 @@ function info($mensaje) {
    echo $mensaje;
 }
 
+
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -18,5 +19,17 @@ function test_input($data) {
 
 
 
+
+
+
+function authSession($targetURL) {
+	session_start();
+
+	if (isset($_SESSION['user'])) {
+		return true;
+	}
+
+
+}
 
 ?>
