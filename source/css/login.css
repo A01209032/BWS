@@ -152,6 +152,15 @@ body {
     height: 60px;
   }
 
+  .error-span {
+    background-color: #9b0909;
+    color: #fefefe;
+    font-weight: bold;
+
+    /*padding: 12px;*/
+    border-radius: 10px;
+  }
+
 
 
   #rosario {

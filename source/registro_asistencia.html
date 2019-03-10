@@ -3,7 +3,7 @@
               <div class="row">
                 <div class="col-lg-12 text-center">
 
-                  <h1 class="mt-5">Registrar servicio</h1>
+                  <h1 class="mt-5">Registrar servicio <?php echo $_SESSION['departamento']; ?></h1>
                   <ul class="list-unstyled">
 
                       <div class="row">
@@ -14,9 +14,9 @@
                 <form action="/action_page.php">
 
 
-                  <label for="fname">Buscar paciente</label>
+                  <label for="paciente">Buscar paciente</label> <p id="error"><?php echo $pacienteErr;?></p>
                   <br>
-                  <input type="text" id="fname" name="firstname" placeholder="Juan">
+                  <input type="text" id="paciente" name="paciente" placeholder="Juan">
                   <br>
                   <button type="button" class="btn btn-primary" >¡Buscar!</button>
                   <br>
@@ -52,25 +52,25 @@
 
                   <br>
                   <br>
-                  <label for="fname">Asistente</label>
-                  <input type="text" id="fname" name="firstname" placeholder="Sor Patricia">
+                  <label for="fname">Asistente</label><p id="error"><?php echo $asistenteErr; ?></p>
+                  <input type="text" id="asistente" name="asistente" placeholder="Sor Patricia">
 
-                    <label for="lname">Fecha</label>
-                  <input type="text" id="lname" name="lastname" placeholder="Lopez">
+                    <label for="lname">Fecha</label><p id="error"><?php echo $fechaError; ?></p>
+                  <input type="date" id="fecha" name="fecha">
 
-                  <label for="tipo">Tipo de Asistencia</label>
+                  <label for="tipo">Tipo de Asistencia</label><p id="error"><?php echo $tipoErr; ?></p>
                   <select id="tipo" name="tipo">
 
-                    <option value="domiciliaria">domiciliaria</option>
-                    <option value="nocturna">nocturna</option>
-                    <option value="diurna">diurna</option>
-                    <option value="hospitalaria">hospitalaria</option>
+                    <option value="domiciliaria">Domiciliaria</option>
+                    <option value="nocturna">Nocturna</option>
+                    <option value="diurna">Diurna</option>
+                    <option value="hospitalaria">Hospitalaria</option>
                   </select>
 
                   <label for="tipo">Observaciones</label>
-                  <input type="text" id="observaciones" name="Observaciones">
+                  <input type="text" id="observaciones" name="observaciones">
 
-                  <button type="button" class="btn btn-primary" >Registrar servicio</button>
+                  <button type="submit" class="btn btn-primary" >Registrar servicio</button>
 
                 </form>
               </div>

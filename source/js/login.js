@@ -241,18 +241,18 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 	// 	console.log(res);
 	// });
 
-	if (account == 1 && pass != '0,4,1,4') {
-		location.reload();
-		return;
-	}
-	if (account == 2 && pass != '0,3,2,0,0') {
-		location.reload();
-		return;
-	}
-	if (account == 3 && pass != '3,2,1,0,4') {
-		location.reload();
-		return;
-	}
+	// if (account == 1 && pass != '0,4,1,4') {
+	// 	location.reload();
+	// 	return;
+	// }
+	// if (account == 2 && pass != '0,3,2,0,0') {
+	// 	location.reload();
+	// 	return;
+	// }
+	// if (account == 3 && pass != '3,2,1,0,4') {
+	// 	location.reload();
+	// 	return;
+	// }
 
 	// if (account == 1 && pass != 'ajk34=d') {
 	// 	location.reload();
@@ -273,12 +273,33 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 
 	var newUrl = currUrl.substring(0, currUrl.length-file.length);
 
+	console.log("Going to Mars!");
+
+	// Submit Form
+	var form   = document.getElementById('h-form');
+	var userIn = document.getElementById('user');
+	var passIn = document.getElementById('pass');
+
+	if (account == 1)
+		userIn.value = "administrador";
+	else if (account == 2)
+		userIn.value = "dispensario";
+	else if (account == 3)
+		userIn.value = "asistencias";
+	else if (account == 4)
+		userIn.value = "porteria";
+	else
+		userIn.value = "unknown";
+
+	passIn.value = pass;
+
+	form.submit();
+	/*
 	if (account == 1) {
-		//newUrl += "admin.html";
 		newUrl += "admin.php";
 	} else {
 		newUrl += "registro.php";
 	}
 	window.location.href = newUrl;
-
+	*/
 });
