@@ -114,6 +114,21 @@ CREATE TABLE `voluntarios` (
   `Tipo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+--
+-- Table structure for table `voluntarios`
+--
+
+CREATE TABLE `atienden` (
+  `IdDepartamento` int(25) NOT NULL,
+  `IdPaciente` int(25) NOT NULL,
+  `IdVoluntario` int(25) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Observaciones` varchar(140) NOT NULL,
+  `CuotaRecup` FLOAT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 --
 -- Indexes for dumped tables
 --
@@ -160,6 +175,26 @@ ALTER TABLE `tipodeservicio`
 ALTER TABLE `voluntarios`
   ADD PRIMARY KEY (`IdVoluntario`);
 
+  --
+-- Indexes for table `atienden`
+--
+ALTER TABLE `atienden`
+  ADD PRIMARY KEY (`IdDepartamento`,`IdPaciente`,`IdVoluntario`);
+
+ALTER TABLE `atienden`
+  ADD FOREIGN KEY (`IdDepartamento`);
+  REFERENCES `departamento`(`IdDepartamento`)
+  ON DELETE CASCADE;
+  
+ALTER TABLE `atienden`
+  ADD FOREIGN KEY (`IdPaciente`)
+  REFERENCES `pacientes`(`IdPaciente`)
+  ON DELETE CASCADE;
+
+ALTER TABLE `atienden`
+  ADD FOREIGN KEY (`IdVoluntario`)
+  REFERENCES `voluntarios`(`IdVoluntario`)
+  ON DELETE CASCADE;
 --
 -- AUTO_INCREMENT for dumped tables
 --
