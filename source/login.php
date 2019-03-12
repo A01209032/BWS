@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST['user'])) {
 
@@ -10,7 +10,7 @@ if (isset($_POST['user'])) {
 
 	// $res = mysqli_query($conn, $query);
 
-	// if (mysqli_num_rows($res) > 0) {
+	// if (mysqli_num_rows($res) > 0) {S
 		// User Validated
 
 		if ($_POST['user'] == "administrador" &&
@@ -26,7 +26,7 @@ if (isset($_POST['user'])) {
 
 			session_start();
 			$_SESSION['departamento'] = $_POST['user'];
-			
+
 			header("Location: /registro.php");
 		}
 		else {

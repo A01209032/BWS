@@ -28,3 +28,7 @@ html{
 .btn btn-outline-light{
     color:black;
 }
+
+#error{
+  color: red;
+}

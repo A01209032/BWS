@@ -10,6 +10,18 @@ function info($mensaje) {
 }
 
 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+
+
+
+
+
 function authSession($targetURL) {
 	session_start();
 
@@ -19,5 +31,5 @@ function authSession($targetURL) {
 
 
 }
-    
+
 ?>
