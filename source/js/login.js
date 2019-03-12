@@ -17,6 +17,16 @@
 /********************************
  * For Effect Account Selection */
 
+ /* *********************************
+  * Prevent <a href="#"> behaviour
+ */
+ var aTags = document.querySelectorAll('a.unit-1');
+ for (var i = 0; i < aTags.length; i++) {
+ 	aTags[i].onclick = function(e) { 
+ 		e.preventDefault(); };
+ }
+
+
 let account = -1;
 
 function getCuentaEl(cuentaNum) {

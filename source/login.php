@@ -27,7 +27,14 @@ if (isset($_POST['user'])) {
 			session_start();
 			$_SESSION['departamento'] = $_POST['user'];
 
-			header("Location: /registro.php");
+			$urlParts = explode('/',$_SERVER['PHP_SELF']);
+			$baseUrl = "";
+			for ($i=0; $i < count($urlParts)-1; $i++) {
+				$baseUrl = $baseUrl . $urlParts[$i] . "/";
+			}
+			
+			header("Location: ".$baseUrl."admin.php");
+			header("Location: ".$baseUrl."registro.php");
 		}
 		else {
 			$error = "Contraseña No Correcta!";
