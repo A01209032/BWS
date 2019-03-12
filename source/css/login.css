@@ -1,3 +1,12 @@
+.header{
+    /*color:darkred;
+    border-width: medium;
+    border-color: whitesmoke;
+    background-color:#FA8072	;
+    font-size: 20px;*/
+    font-family: Palatino, URW Palladio L, serif;
+}
+
 body {
   background-color: azure;
 }
@@ -15,7 +24,7 @@ body {
 
 .tituloPrincipal{
   position: relative;
-  
+
 }
 
 .site-section-heading {
@@ -166,7 +175,7 @@ body {
   #rosario {
       /*display: none;*/
       position: relative;
-      
+
       height: 80%;
       padding: 2.5em 0;
       right: 20%;
