@@ -1,21 +1,23 @@
 
 <?php 
-    function conectDb(){
-        $servername="localhost";
-        $username= "root";
-        $password= "";
-        $dbname="servicio_social";
+
+function conectDb(){
+  $servername="localhost";
+  $username= "root";
+  $password= "";
+  $dbname="servicio_social";
         
-        $con = mysqli_connect($servername,$username,$password,$dbname);
+  $con = mysqli_connect($servername,$username,$password,$dbname);
         
-        if(!$con){
-            die("Connection failed: " . mysqli_connect_error());
-        }
-        return $con;
-    
-    }
-    function closeDb($mysql){
-        mysqli_close($mysql);
+  if(!$con){
+    die("Connection failed: " . mysqli_connect_error());
+  }
+  
+  return $con;  
+}
+
+function closeDb($mysql){
+  mysqli_close($mysql);
 }
 
 function getservicios(){
@@ -23,13 +25,13 @@ function getservicios(){
     $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio";
     $result = mysqli_query($con,$sql);
     closeDb($con);
-      return $result;
+
+    return $result;
 }
-//
+
 
 function getServicioByDepartamentoyFecha($Depa,$Fecha){
-    
-    $conn=conectDb();
+  $conn=conectDb();
 
 $year = date('Y', strtotime($Fecha));
 
@@ -69,11 +71,9 @@ $month = date('m', strtotime($Fecha));
 
 function getServicioByFecha($Fecha){
     
-    $conn=conectDb();
-    
-$year = date('Y', strtotime($Fecha));
-
-$month = date('m', strtotime($Fecha));
+  $conn=conectDb();
+  $year = date('Y', strtotime($Fecha));
+  $month = date('m', strtotime($Fecha));
     $date='';
     $date .=$year;
     $date .="-";
@@ -107,10 +107,6 @@ $month = date('m', strtotime($Fecha));
     return $result;
 }
 
-
-
-
-
   //Obtiene todos los voluntarios 
   function getVoluntarios(){
   	$conn=conectDb();
@@ -119,6 +115,36 @@ $month = date('m', strtotime($Fecha));
   	closeDb($conn);
   	return $result;
   }
+
+  //Obtiene todos los departamentos
+  function getDepartamentos(){
+    $conn=conectDb();
+    $sql="SELECT IdDepartamento, NombreDepartamento, contraseña, IdRol FROM departamento";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }
+
+  //Modifica una contraseña
+  function modifyContraseniaById($id,$nuevaContrasena){
+    $conn=conectDb();
+    $sql="UPDATE departamento SET IdDepartamento='$id', contraseña='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
+    $result = mysqli_query($conn, $sql);
+    $id = $conn->real_escape_string($id);
+    $nuevaContrasena = $conn->real_escape_string($nuevaContrasena);
+    closeDb($conn);
+    return $result;
+  }
+
+  //Obtiene la contraaseña del departamento
+  function getContraseniaById($id){
+    $conn=conectDb();
+    $sql="SELECT contraseña, FROM departamento";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }
+
 
   function getEdadVoluntario(){
     $conn=conectDb();
@@ -153,5 +179,28 @@ $month = date('m', strtotime($Fecha));
           } 
 
         closeDb($bd);
+    }
+
+    function deleteVoluntarioById($id){
+      $conn=conectDb();
+      $sql="DELETE FROM voluntarios WHERE IdVoluntario = '".$id."' ";
+      $id = $conn->real_escape_string($id);
+      $result= mysqli_query($conn,$sql);
+      closeDb($conn);
+      return $result;
+    }
+
+    function updateVoluntarioById($IDServicios,$Nombre,$Descripcion,$IDDepartamento){
+      $conn=conectDb();
+      $sql ="UPDATE Servicios SET Nombre='$Nombre', Descripcion='$Descripcion', IDDepartamento='$IDDepartamento' WHERE IDServicios = '".$IDServicios."' ";
+        $result = mysqli_query($conn,$sql);
+         
+        $id = $conn->real_escape_string($IDServicios);
+       $Nombre = $conn->real_escape_string($Nombre);
+         $Descripcion = $conn->real_escape_string($Descripcion);
+       $IDDepartamento = $conn->real_escape_string($IDDepartamento); 
+        closeDb($conn);
+        return $result;
+        
     }
 ?>
