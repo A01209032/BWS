@@ -25,8 +25,9 @@
 
   while($row=mysqli_fetch_assoc($result)){
   	//$row2=mysqli_fetch_assoc($edad);
+      $temp=$row["IdVoluntario"];
       echo '<tr>';
-      echo '<td>'.$row["IdVoluntario"].'</td> ';
+      echo '<td>'.$temp.'</td> ';
       echo '<td>'.$row["Nombre"].'</td>';
       $cumpleanos = new DateTime($row["FechaDeNacimiento"]);
       $hoy = new DateTime();
@@ -35,7 +36,8 @@
       echo '<td>'.$row["Sexo"].'</td>';
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
-      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario">Modificar</button>  <button type="button" onclick="eliminar()" class="btn btn-danger">Eliminar</button></td>';
+      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> <a href="eliminar_voluntario.php" class="btn btn-primary btn-lg active align-middle" role="button" aria-pressed="true" onclick="('.$temp.')"">Eliminar</a><div class="text-center"> ';
+  /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
       echo '</tr>';
     }
   }

@@ -190,15 +190,18 @@ function getServicioByFecha($Fecha){
       return $result;
     }
 
-    function updateVoluntarioById($IDServicios,$Nombre,$Descripcion,$IDDepartamento){
+    function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
       $conn=conectDb();
-      $sql ="UPDATE Servicios SET Nombre='$Nombre', Descripcion='$Descripcion', IDDepartamento='$IDDepartamento' WHERE IDServicios = '".$IDServicios."' ";
+      $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', Cargo='$cargo', Tipo='$tipo' WHERE IdVoluntario= '".$id."' ";
         $result = mysqli_query($conn,$sql);
-         
-        $id = $conn->real_escape_string($IDServicios);
-       $Nombre = $conn->real_escape_string($Nombre);
-         $Descripcion = $conn->real_escape_string($Descripcion);
-       $IDDepartamento = $conn->real_escape_string($IDDepartamento); 
+
+        $id = $conn->real_escape_string($id);
+        $nombre = $conn->real_escape_string($nombre);
+        $fechaNacimiento = $conn->real_escape_string($fechaNacimiento);
+        $genero = $conn->real_escape_string($genero);
+        $cargo = $conn->real_escape_string($cargo);
+        $tipo = $conn->real_escape_string($tipo);
+
         closeDb($conn);
         return $result;
         
