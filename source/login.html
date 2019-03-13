@@ -51,7 +51,7 @@
           <img id="ros-cruz" src="Images/ros_cruz.png" width=48 height=64>
         </div>
         <div id="txt-pass">
-          <form action="/login.php" method="POST">
+          <form action="<?= frombase('login.php') ?>" method="POST">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
             <input style="display: hidden" type="text" name="user" id="user" value="2">

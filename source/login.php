@@ -1,4 +1,14 @@
 <?php
+function frombase($target) {
+	$urlParts = explode('/',$_SERVER['PHP_SELF']);
+	$baseUrl = "";
+	for ($i=0; $i < count($urlParts)-1; $i++) {
+		$baseUrl = $baseUrl . $urlParts[$i] . "/";
+	}
+
+	return $baseUrl.$target;
+}
+
 
 if (isset($_POST['user'])) {
 
@@ -19,7 +29,13 @@ if (isset($_POST['user'])) {
 			session_start();
 			$_SESSION['departamento'] = $_POST['user'];
 
-			header("Location: /admin.php");
+			// $urlParts = explode('/',$_SERVER['PHP_SELF']);
+			// $baseUrl = "";
+			// for ($i=0; $i < count($urlParts)-1; $i++) {
+			// 	$baseUrl = $baseUrl . $urlParts[$i] . "/";
+			// }
+
+			header("Location: ".frombase("admin.php"));
 		} else if ($_POST['pass'] == "0,3,2,0,0" ||
 				   $_POST['pass'] == "3,2,1,0,4" ||
 				   $_POST['user'] == "porteria") {
@@ -27,14 +43,13 @@ if (isset($_POST['user'])) {
 			session_start();
 			$_SESSION['departamento'] = $_POST['user'];
 
-			$urlParts = explode('/',$_SERVER['PHP_SELF']);
-			$baseUrl = "";
-			for ($i=0; $i < count($urlParts)-1; $i++) {
-				$baseUrl = $baseUrl . $urlParts[$i] . "/";
-			}
+			// $urlParts = explode('/',$_SERVER['PHP_SELF']);
+			// $baseUrl = "";
+			// for ($i=0; $i < count($urlParts)-1; $i++) {
+			// 	$baseUrl = $baseUrl . $urlParts[$i] . "/";
+			// }
 			
-			header("Location: ".$baseUrl."admin.php");
-			header("Location: ".$baseUrl."registro.php");
+			header("Location: ".frombase("registro.php"));
 		}
 		else {
 			$error = "Contraseña No Correcta!";
@@ -50,6 +65,7 @@ if (isset($_POST['user'])) {
 	// closeDb($conn);
 
 } else {
+	
 	include("views/_header_login.html");
 	include("login_view.php");
 }

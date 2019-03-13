@@ -1,5 +1,17 @@
 
+<?php 
 
+function frombase($target) {
+  $urlParts = explode('/',$_SERVER['PHP_SELF']);
+  $baseUrl = "";
+  for ($i=0; $i < count($urlParts)-1; $i++) {
+    $baseUrl = $baseUrl . $urlParts[$i] . "/";
+  }
+
+  return $baseUrl.$target;
+}
+
+ ?>
   <!-- Page Content -->
   <div class="container" id="login-container" >
     <div class="row">
@@ -42,7 +54,6 @@
           </div>
         </div>
       </div>
-
     </div>
       </div>
       <div class="col-md-7 col-lg-7 mb-7" id="password-sect">
@@ -52,7 +63,7 @@
           <img id="ros-cruz" src="Images/ros_cruz.png" width=48 height=64>
         </div>
         <div id="txt-pass">
-          <form action="/login.php" method="POST" id="h-form">
+          <form action="<?= frombase('login.php') ?>" method="POST" id="h-form">
             <label for="pass">Password</label>
             <input type="password" name="pass" id="pass">
             <input type="text"     name="user" id="user">
