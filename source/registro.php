@@ -9,7 +9,7 @@
       break;
 
     case 'dispensario':
-      require_once("registroDisepnsario.php");
+      require_once("registroDispensario.php");
       break;
 
     case 'porteria':
