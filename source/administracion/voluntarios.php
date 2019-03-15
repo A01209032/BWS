@@ -32,11 +32,13 @@
       $cumpleanos = new DateTime($row["FechaDeNacimiento"]);
       $hoy = new DateTime();
       $annos = $hoy->diff($cumpleanos);
-      echo '<td>'.$annos->y/*getdate()-date($row["FechaDeNacimiento"])*/.' años</td>';
+      echo '<td>'.$annos->y.' años</td>';
       echo '<td>'.$row["Sexo"].'</td>';
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
-      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> <a href="eliminar_voluntario.php" class="btn btn-primary btn-lg active align-middle" role="button" aria-pressed="true" onclick="('.$temp.')"">Eliminar</a><div class="text-center"> ';
+      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> 
+
+        <form action="eliminar_voluntario.php" method="POST"><input type="hidden" value='.$temp.'    name="id" id="id"><input type="submit" class="btn btn-danger active " role="button" aria-pressed="true" value="Eliminar"></td></form>';
   /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
       echo '</tr>';
     }
