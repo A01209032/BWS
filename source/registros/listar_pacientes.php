@@ -12,7 +12,7 @@
  *  - pattern: String del patron del nombre a buscar entre los pacientes
  *
  * Response:
- *  - String de lista de pacientes con 2 atributos 'id' y 'nombre'.
+ *  - String de lista de pacientes con 2 atributos en orden 'id' y 'nombre'.
  *  - Formato: Cada paciente esta separado por '#'. Cada atributo de cada paciente
  *    esta separado por '|'.
  *
@@ -31,13 +31,17 @@ if (isset($_GET['pattern'])) {
 	$pacientePattern = htmlspecialchars($pacientePattern);
 
 	// Remover Ataque SQL
-	$pacientePattern = mysqli_escape_string($pacientePattern);
+	// $pacientePattern = mysqli_escape_string($pacientePattern);
 
 	$pacientes = listarPacientesCon($pacientePattern);
 
 	$resStr = "";
 	for ($i=0; $i < count($pacientes); $i++) {
-		$resStr .= "$pacientes[$i]['id']|$pacientes[$i]['fname']";
+		$pId = $pacientes[$i]['id'];
+		$pName = $pacientes[$i]['fname'];
+		
+		$resStr .= "$pId|$pName";
+
 		if ($i != count($pacientes)-1) $resStr .= "#";
 	}
 
