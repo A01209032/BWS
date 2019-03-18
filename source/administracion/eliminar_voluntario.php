@@ -9,20 +9,19 @@
     /*CONTROLADOR*/
    //Funcion para eliminar un registro
     if (isset($_POST["id"])) {
+        //header('Location: '.$_SERVER['HTTP_REFERER']);
         deleteVoluntarioById($id);
         echo '<script language="javascript">';
-        echo 'alert("Se borró la fruta")';
+        echo 'alert("Se eliminó correctamente el voluntario")';
         echo '</script>';
-        header('Location: '.$_SERVER['HTTP_REFERER']);
-        
     }else{
+        //header('Location: '.$_SERVER['HTTP_REFERER']);
         echo '<script language="javascript">';
-        echo 'alert("No se puedo eliminar")';
+        echo 'alert("No se pudo eliminar")';
         echo '</script>';
     }
-    include("../views/_footer.html");
+    header("voluntarios.php");
     
   
   
-?>
 ?>

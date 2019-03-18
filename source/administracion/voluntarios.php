@@ -32,13 +32,16 @@
       $cumpleanos = new DateTime($row["FechaDeNacimiento"]);
       $hoy = new DateTime();
       $annos = $hoy->diff($cumpleanos);
-      echo '<td>'.$annos->y.' años</td>';
+      echo "<td>".$annos->y." años</td>";
       echo '<td>'.$row["Sexo"].'</td>';
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
       echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> 
 
-        <form action="eliminar_voluntario.php" method="POST"><input type="hidden" value='.$temp.'    name="id" id="id"><input type="submit" class="btn btn-danger active " role="button" aria-pressed="true" value="Eliminar"></td></form>';
+        <form action="eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
+        <input type="hidden" value='.$temp.'    name="id" id="id">
+        <input type="submit" class="btn btn-danger active " role="button" aria-pressed="true" value="Eliminar"></form></td>';
+       
   /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
       echo '</tr>';
     }
