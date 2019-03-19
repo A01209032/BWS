@@ -51,10 +51,81 @@
 
   mysqli_free_result($result); //Se libera la variable de memoria
     
-  include("../views/_footer.html");
+
 
 ?>
 <script type="text/javascript">
+  $(document).ready(function(){  
 
+      $('#add').click(function(){  
+           $('#insert').val("Insert");  
+           $('#insert_form')[0].reset();  
+      });  
+
+      $(document).on('click', '.edit_data', function(){ 
+             
+           var employee_id = $(this).attr("id");  
+           
+
+           $.ajax({  
+
+                url:"fetch.php",  
+                method:"POST",  
+
+                data: {employee_id: employee_id},  
+                 
+                success:function(data){   
+                  alert(employee_id); 
+                     /*$('#nombre').val(data.Nombre);  
+                     $('#fechaDeNacimiento').val(data.FechaDeNacimiento);  
+                     $('#sexo').val(data.Sexo);  
+                     $('#cargo').val(data.Cargo);  
+                     $('#tipo').val(data.Tipo);  
+                     $('#employee_id').val(data.IdVoluntario);  
+                     $('#insert').val("Update"); */
+                     $('#modificarVoluntario').modal('show');  
+
+                },  
+                dataType:"json" 
+           });  
+      });  
+
+      $('#insert_form').on("submit", function(event){  
+           event.preventDefault();  
+           if($('#nombre').val() == "")  
+           {  
+                alert("Se requiere ingresar el nombre");  
+           }  
+           else if($('#fechaDeNacimiento').val() == '')  
+           {  
+                alert("Se requiere ingresar la fecha de nacimiento");  
+           }  
+           else if($('#sexo').val() == '')  
+           {  
+                alert("Se requiere ingresar el sexo");  
+           }  
+           else if($('#cargo').val() == '')  
+           {  
+                alert("Se requiere ingresar el cargo");  
+           }  
+           else  
+           {  
+                $.ajax({  
+                     url:"editar_voluntario.php",  
+                     method:"POST",  
+                     data:$('#insert_form').serialize(),  
+                     beforeSend:function(){  
+                          $('#insert').val("Inserting");  
+                     },  
+                     success:function(data){  
+                          $('#insert_form')[0].reset();  
+                          $('#modificarVoluntario').modal('hide');  
+                          //$('#employee_table').html(data);  
+                     }  
+                });  
+           }  
+      });  
+      
+ }); 
 </script>
-
+<?php include("../views/_footer.html"); ?>
