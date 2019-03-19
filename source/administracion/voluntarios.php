@@ -5,6 +5,7 @@
   $result=getVoluntarios();
   //$edad=getEdadVoluntario();
 
+
   include("partials/_voluntarios.html");
 
   if(mysqli_num_rows($result)>0){
@@ -37,7 +38,7 @@
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
       /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
-      echo '<td><input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data"/>
+      echo '<td><input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data">
 
         <form action="eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
         <input type="hidden" value='.$temp.'    name="id" id="id">
@@ -50,43 +51,68 @@
   echo '</tbody></table>';
 
   mysqli_free_result($result); //Se libera la variable de memoria
-    
-
-
 ?>
+
+<div class="container mt-3">
+  <h2>Modal Methods</h2>
+  <p>The <strong>toggle</strong> method toggles the modal manually.</p>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-primary" id="myBtn">Toggle Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Methods</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>The toggle method toggles the modal manually.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
   $(document).ready(function(){  
-
+      $("#myBtn").click(function(){
+    $("#myModal").modal("toggle");
+  });
       $('#add').click(function(){  
            $('#insert').val("Insert");  
            $('#insert_form')[0].reset();  
       });  
 
-      $(document).on('click', '.edit_data', function(){ 
-             
-           var employee_id = $(this).attr("id");  
-           
+      $(document).on('click', '.edit_data', function(){
+          var employee_id = $(this).attr("id");
+          $.ajax({
+                url:"fetch.php",
+                method:"POST",
+                data: {employee_id: employee_id}, 
+                dataType:"json",
+                success:function(data){
+                //alert(employee_id);   
+                  alert(data.FechadeNacimiento);
+                  $('#nombreM').val(data.Nombre);
+                  $('#fechaDeNacimientoM').val(data.FechadeNacimiento);
+                  //if(data.Sexo==){
 
-           $.ajax({  
-
-                url:"fetch.php",  
-                method:"POST",  
-
-                data: {employee_id: employee_id},  
-                 
-                success:function(data){   
-                  alert(employee_id); 
-                     /*$('#nombre').val(data.Nombre);  
-                     $('#fechaDeNacimiento').val(data.FechaDeNacimiento);  
-                     $('#sexo').val(data.Sexo);  
-                     $('#cargo').val(data.Cargo);  
-                     $('#tipo').val(data.Tipo);  
-                     $('#employee_id').val(data.IdVoluntario);  
-                     $('#insert').val("Update"); */
-                     $('#modificarVoluntario').modal('show');  
-
-                },  
-                dataType:"json" 
+                  $('#sexoM').val(data.Sexo);
+                  $('#cargoM').val(data.Cargo);
+                  $('#tipoM').val(data.Tipo);
+                  $('#employee_id').val(data.IdVoluntario);
+                  $('#insert').val("Update");
+                  $('#modificarVoluntario').modal('show');
+                }
            });  
       });  
 
