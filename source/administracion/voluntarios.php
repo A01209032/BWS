@@ -36,7 +36,8 @@
       echo '<td>'.$row["Sexo"].'</td>';
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
-      echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> 
+      /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
+      echo '<td><input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data"/>
 
         <form action="eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
         <input type="hidden" value='.$temp.'    name="id" id="id">
@@ -53,3 +54,7 @@
   include("../views/_footer.html");
 
 ?>
+<script type="text/javascript">
+
+</script>
+

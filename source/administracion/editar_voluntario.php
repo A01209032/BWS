@@ -1,46 +1,36 @@
 <?php
     //session_start();
     require_once("util.php");
-    include("partials/_head.html");
+    include("../views/_header_carpetas.html");
         
     //Validación de datos
-    if(isset($_POST["nombre"])){
-        $name=htmlspecialchars($_POST["nombre"]);
-        $units=htmlspecialchars($_POST["unidades"]);
-        $quantity=htmlspecialchars($_POST["cantidad"]);
-        $price=htmlspecialchars($_POST["precio"]);
-        $country=htmlspecialchars($_POST["pais"]);
+    if(isset($_POST["nombre"]) && isset($_POST["nombre"]) != "" &&
+        isset($_POST["fechaDeNacimiento"]) && isset($_POST["fechaDeNacimiento"]) != "" &&
+        isset($_POST["sexo"]) && isset($_POST["sexo"]) != "" &&
+        isset($_POST["cargo"]) && isset($_POST["cargo"]) != "" &&
+        isset($_POST["tipo"]) && isset($_POST["tipo"]) != ""){
+
+        $nombre=htmlspecialchars($_POST["nombre"]);
+        $fechaNacimiento=htmlspecialchars($_POST["fechaDeNacimiento"]);
+        $genero=htmlspecialchars($_POST["sexo"]);
+        $cargo=htmlspecialchars($_POST["cargo"]);
+        $tipo=htmlspecialchars($_POST["tipo"]);
+
       
-        update_by_name($name, $units, $quantity, $price, $country);
+        updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo);
           //Se cargaron los datos
           echo '<script language="javascript">';
-            echo 'alert("Se edito la fruta")';
+            echo 'alert("Se edito el voluntario")';
             echo '</script>';
-            header('Location: '.$_SERVER['HTTP_REFERER']);
+            //header('Location: '.$_SERVER['HTTP_REFERER']);
         }else{
           //Error al cargar las datos
           echo '<script language="javascript">';
-            echo 'alert("No se encontro el registro de la")';
+            echo 'alert("No se encontro el registro de volutario")';
             echo '</script>';
             var_dump($_POST);
     }
-    /*
-    if (isset($_POST["id"])) {
-        if(update_fruit()){
-            echo '<script language="javascript">';
-            echo 'alert("Se borró la fruta")';
-            echo '</script>';
-            header('Location: '.$_SERVER['HTTP_REFERER']);
-        }else{
-            
-        }
-    }else{
-        echo '<script language="javascript">';
-        echo 'alert("Ingresa el nombre de la fruta correctamente")';
-        echo '</script>';
-        var_dump($_POST);
-    }*/
-    include("partials/_footer.html"); 
+    include("../views/_footer.html");
     
   
 ?>

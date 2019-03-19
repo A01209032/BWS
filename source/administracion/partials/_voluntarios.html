@@ -1,17 +1,15 @@
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
 
+      <h1 class="mt-5">Lista de voluntarios</h1><br>
 
-          <!-- Page Content -->
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-
-                <h1 class="mt-5">Lista de voluntarios</h1><br>
-
-                <ul class="list-unstyled">
+      <ul class="list-unstyled">
 
 
 
-               <br>
+     <br>
 
       <div class="container">
         <!-- Trigger the modal with a button -->
@@ -99,46 +97,49 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="modificarVoluntario" role="dialog">
+        <div class="modal fade" id="modificarVoluntario">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-
                 <h4 class="modal-title">Modificar voluntario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                  <!-- Page Content -->
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-lg-12 text-center">
-                                <h1 class="mt-5">Modificar Voluntario</h1>
+                <!-- Page Content -->
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12 text-center">
+                      <h1 class="mt-5">Modificar Voluntario</h1>
 
-                                <ul class="list-unstyled">
+                      <ul class="list-unstyled">
 
-                                    <div class="row">
+                          <div class="row">
                             <div class="column">
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                                
-                              <form action="editar_voluntario.php"  method="POST">
+                        
+                              <form method="POST" id="insert_form" action="editar_voluntario.php"  >
 
                                 <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
-                                <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" class="form-control" required>
+
                                 <label>Fecha de Nacimiento</label>
-                                  <br>
-                                <input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento"required>
-                                  <p></p>
+                                <br>
+                                <input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento" class="form-control" required>
+                                <br>
+                                
                                 <label for="sexo">Sexo</label>
                                 <select class="form-control form-control-sm" id="sexo" name="sexo"required>
                                   <option value="masculino">Masculino</option>
                                   <option value="femenino">Femenino</option>
                                 </select>
+
                                 <br>
                                 <label for="cargo">Cargo</label>
                                 <br>
+
                                 <select class="form-control form-control-sm" id="cargo" name="cargo" required>
                                   <option value="ninguno">Ninguno</option>
                                   <option value="representante">Representante Legal</option>
@@ -147,6 +148,7 @@
                                   <option value="tesorera">Tesorera</option>
                                 </select>
                                 <br>
+
                                 <label for="tipo">Tipo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="tipo" name="tipo" required>
@@ -157,16 +159,19 @@
                                   <option value="tesorera">Tesorera</option>
                                 </select>
                                 <br>
-                                  <button type="submit" id="submit" class="btn btn-primary" name="submit">Modificar voluntario</button>
+
+                                <input type="hidden" name="employee_id" id="employee_id" />
+
+                                  <!--button type="submit" id="submit" class="btn btn-primary" name="submit">Modificar voluntario</button-->
+                                <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" /> 
                                   
                               </form>
                             </div>
                           </div>
-
-                        </ul>
-                      </div>
+                      </ul>
                     </div>
                   </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -189,3 +194,4 @@
     </div>
   </div>
 <br>
+
