@@ -1,13 +1,6 @@
 <?php
-function frombase($target) {
-	$urlParts = explode('/',$_SERVER['PHP_SELF']);
-	$baseUrl = "";
-	for ($i=0; $i < count($urlParts)-1; $i++) {
-		$baseUrl = $baseUrl . $urlParts[$i] . "/";
-	}
 
-	return $baseUrl.$target;
-}
+require_once('utils/server.php');
 
 
 if (isset($_POST['user'])) {
@@ -54,7 +47,7 @@ if (isset($_POST['user'])) {
 		else {
 			$error = "Contraseña No Correcta!";
 			include("views/_header_login.html");
-			include("login_view.php");
+			include("views/login_view.php");
 		}
 
 	// } else {
@@ -67,7 +60,7 @@ if (isset($_POST['user'])) {
 } else {
 	
 	include("views/_header_login.html");
-	include("login_view.php");
+	include("views/login_view.php");
 }
 
 ?>

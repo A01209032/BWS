@@ -1,15 +1,15 @@
 
 <?php 
 
-function frombase($target) {
-  $urlParts = explode('/',$_SERVER['PHP_SELF']);
-  $baseUrl = "";
-  for ($i=0; $i < count($urlParts)-1; $i++) {
-    $baseUrl = $baseUrl . $urlParts[$i] . "/";
-  }
+// function frombase($target) {
+//   $urlParts = explode('/',$_SERVER['PHP_SELF']);
+//   $baseUrl = "";
+//   for ($i=0; $i < count($urlParts)-1; $i++) {
+//     $baseUrl = $baseUrl . $urlParts[$i] . "/";
+//   }
 
-  return $baseUrl.$target;
-}
+//   return $baseUrl.$target;
+// }
 
  ?>
   <!-- Page Content -->
@@ -22,7 +22,7 @@ function frombase($target) {
         <div class="row">
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" id="cuenta-1">
             <a href="#" class="unit-1 text-center">
-              <img src="Images/sanjurjo.jpg" alt="Image" class="img-fluid">
+              <img src="../Images/sanjurjo.jpg" alt="Image" class="img-fluid">
               <div class="unit-1-text">
                 <h3 class="unit-1-heading">Administrador</h3>
               </div>
@@ -30,7 +30,7 @@ function frombase($target) {
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" id="cuenta-2">
             <a href="#" class="unit-1 text-center">
-              <img src="Images/virgen_de_guadalupe1.jpg" alt="Image" class="img-fluid">
+              <img src="../Images/virgen_de_guadalupe1.jpg" alt="Image" class="img-fluid">
               <div class="unit-1-text">
                 <h3 class="unit-1-heading">Dispensario</h3>
               </div>
@@ -38,7 +38,7 @@ function frombase($target) {
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" id="cuenta-3">
             <a href="#" class="unit-1 text-center">
-              <img src="Images/cuadro.jpg" alt="Image" class="img-fluid">
+              <img src="../Images/cuadro.jpg" alt="Image" class="img-fluid">
               <div class="unit-1-text">
                 <h3 class="unit-1-heading">Asistencias</h3>
               </div>
@@ -46,7 +46,7 @@ function frombase($target) {
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" id="cuenta-4">
             <a href="#" class="unit-1 text-center">
-              <img src="Images/sagrado_corazon.jpg" alt="Image" class="img-fluid">
+              <img src="../Images/sagrado_corazon.jpg" alt="Image" class="img-fluid">
               <div class="unit-1-text">
                 <h3 class="unit-1-heading">Portería</h3>
               </div>
@@ -60,7 +60,7 @@ function frombase($target) {
         <!-- <img src="images/rosario_contra.jpg" id="password-img"> -->
         <span class="error-span"><?php if(isset($error)) echo $error; ?></span>
         <div id="rosario">
-          <img id="ros-cruz" src="Images/ros_cruz.png" width=48 height=64>
+          <img id="ros-cruz" src="../Images/ros_cruz.png" width=48 height=64>
         </div>
         <div id="txt-pass">
           <form action="<?= frombase('login.php') ?>" method="POST" id="h-form">
@@ -86,7 +86,7 @@ function frombase($target) {
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
-  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="../js/login.js"></script>
 
 </body>
 
