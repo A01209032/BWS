@@ -41,7 +41,7 @@ if (isset($_POST['user'])) {
 			// 	$baseUrl = $baseUrl . $urlParts[$i] . "/";
 			// }
 			
-			header("Location: /".frombase("registro.php"));
+			header("Location: /".frombase("registros/registro.php"));
 		}
 		else {
 			$error = "Contraseña No Correcta!";
