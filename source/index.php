@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  /*session_start();
 
   if (isset($_SESSION['departamento']) && !empty($_SESSION['departamento']))
   {
@@ -13,7 +13,7 @@
   else
   {
   	header('Location: ');
-  }
+  }*/
   include("views/_header_login.html");
   include("login_view.php");
  ?>
