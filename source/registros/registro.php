@@ -1,7 +1,7 @@
 <?php
   session_start();
-  require_once("util.php");
-  header_html();
+  require_once("../util.php");
+   include("../views/_header.html");
 
   switch ($_SESSION['departamento']) {
     case 'asistencias':
@@ -118,5 +118,5 @@ else include("registro.html");
 
 
 
-  include("views/_footer.html");
+  include("../views/_footer.html");
  ?>

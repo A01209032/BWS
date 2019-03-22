@@ -1,5 +1,5 @@
 <?php
-    require_once("util.php");
+    require_once("../util.php");
 
     if(isset($_POST["submit"])) {
        $_POST["nombre"] = htmlentities($_POST["nombre"]);
@@ -16,12 +16,12 @@
 
             $error = "Los datos tienen errores";
             include("registro_paciente.html");
-            include("views/_footer.html");
+            include("../views/_footer.html");
        }
     } else {
       
         include("registro_paciente.html");
-        include("views/_footer.html");
+        include("../views/_footer.html");
     }
 
 ?>
