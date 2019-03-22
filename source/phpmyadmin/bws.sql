@@ -123,7 +123,7 @@ CREATE TABLE `atienden` (
   `IdDepartamento` int(25) NOT NULL,
   `IdPaciente` int(25) NOT NULL,
   `IdVoluntario` int(25) NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   `Observaciones` varchar(140) NOT NULL,
   `CuotaRecup` FLOAT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

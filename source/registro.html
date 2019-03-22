@@ -1,3 +1,4 @@
+
 <!-- Page Content -->
             <div class="container">
               <div class="row">
@@ -16,45 +17,48 @@
 
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
                   <br>
-                  <input type="text" id="paciente" name="paciente" placeholder="Juan">
+                  <input type="text" id="paciente" name="paciente" placeholder="">
                   <br>
                   <button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>
                   <br>
                   <br>
                   <br>
 
-                  <div class="container">
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar nuevo paciente</button>
+                 <!-- Button to Open the Modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Registrar Paciente</button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="registrarVoluntario" role="dialog">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                    <div class="modal-content">
 
-                            <h4 class="modal-title">Registrar voluntario</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body">
-                              <!-- Page Content -->
-                                      <div class="container">
-                                        <?php require_once("registro_paciente.php"); ?>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                        <!-- Modal Header -->
+                         <div class="modal-header">
+                           <h4 class="modal-title">Modal Heading</h4>
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         </div>
+
+                         <!-- Modal body -->
+                         <div class="modal-body">
+        Modal body..
+                         </div>
+
+      <!-- Modal footer -->
+                         <div class="modal-footer">
+                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                         </div>
+
+                       </div>
+                     </div>
+                   </div>
 
                   <br>
                   <br>
                   <label for="asistente">Asistente <span id="error"><?php echo $asistenteErr; ?></span></label>
-                  <input type="text" id="asistente" name="asistente" placeholder="Sor Patricia">
+                  <input type="text" id="asistente" name="asistente" placeholder="">
 
-                    <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
+                  <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
                   <input type="date" id="fecha" name="fecha">
 
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?></span></label>
