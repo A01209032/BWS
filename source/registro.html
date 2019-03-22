@@ -19,7 +19,7 @@
                   <br>
                   <input type="text" id="paciente" name="paciente" placeholder="">
                   <br>
-                  <button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>
+                  <!--<button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>-->
                   <br>
                   <br>
                   <br>
@@ -30,23 +30,25 @@
 
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
-                      <div class="modal-dialog">
+                      <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
                          <div class="modal-header">
-                           <h4 class="modal-title">Modal Heading</h4>
+                           <h1 class="mt-5">Registrar Paciente</h1>
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                          </div>
 
                          <!-- Modal body -->
                          <div class="modal-body">
-        Modal body..
+                            <?php
+                              include("registro_paciente.php");
+                            ?>
                          </div>
 
       <!-- Modal footer -->
                          <div class="modal-footer">
-                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit" >Agregar paciente</button>
                          </div>
 
                        </div>
@@ -63,11 +65,30 @@
 
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?></span></label>
                   <select id="tipo" name="tipo">
-
-                    <option value="domiciliaria">Domiciliaria</option>
-                    <option value="nocturna">Nocturna</option>
-                    <option value="diurna">Diurna</option>
-                    <option value="hospitalaria">Hospitalaria</option>
+                  <?php
+                  switch ($_SESSION['departamento']) {
+                    case 'asistencias':
+                     echo ' <option value="domiciliaria">Domiciliaria</option>';
+                     echo '<option value="nocturna">Nocturna</option>';
+                     echo '<option value="diurna">Diurna</option>';
+                     echo '<option value="hospitalaria">Hospitalaria</option>';
+                      break;
+                    case 'porteria':
+                     echo ' <option value="domiciliaria">Servicio</option>';
+                     echo '<option value="nocturna">Alimento</option>';
+                      break;
+                    case 'dispensario':
+                      echo ' <option value="domiciliaria">Dispensario</option>';
+                   
+                      break;
+                  
+                  
+                  }
+                  
+                  
+                  
+                  ?>
+                    
                   </select>
 
                   <label for="tipo">Observaciones</label>
