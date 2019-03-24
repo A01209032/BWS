@@ -20,13 +20,12 @@ echo '
           }
         echo  '
         <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-          <form action="guardar_contrasena.php" method="POST">
+          <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
             <input type="password" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
             <input type="hidden" value="1" name="id" id="id">
             <br>
-            <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
-          </form>
-          <button type="button" onclick="cambiarContraseña()" class="btn btn-primary">Cambiar contraseña</button>
+            <!--input onsubmit="return cambiarContraseña();" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
+          <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña"></form></td>
         </div>
       </div>
    </div>';
@@ -43,13 +42,12 @@ echo '    <div class="col-lg-3">
           }
         echo  '
         <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-          <form action="guardar_contrasena.php" method="POST">
+          <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
             <input type="password" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
             <input type="hidden" value="2" name="id" id="id">
             <br>
             <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
-          </form>
-          <button type="button" onclick="cambiarContraseña()" class="btn btn-primary">Cambiar contraseña</button>
+          <button type="button"  class="btn btn-primary">Cambiar contraseña</button>
         </div>
       </div>
     </div>';
@@ -66,13 +64,13 @@ echo '
             }
           echo  '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-            <form action="guardar_contrasena.php" method="POST">
+            <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="password" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
               <input type="hidden" value="3" name="id" id="id">
               <br>
               <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
-            </form>
-            <button type="button" onclick="cambiarContraseña()" class="btn btn-primary">Cambiar contraseña</button>
+
+            <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña"></form></td>
         </div>
       </div>
     </div>';
@@ -89,7 +87,7 @@ echo '
             }
           echo  '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-             <form action="guardar_contrasena.php" method="POST">
+             <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="password" class="form-control" id="contrasenaNueva" name="contrasenaNueva" placeholder="Ejemplo: 4,8,1,5">
               <input type="hidden" value="4" name="id" id="id">
               <br>

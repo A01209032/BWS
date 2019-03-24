@@ -1,6 +1,7 @@
 <?php  
  //fetch.php  
- $connect = mysqli_connect("localhost", "root", "", "servicio_social");  
+require_once("util.php");
+ $connect=conectDb();
  if(isset($_POST["employee_id"]))  
  {  
  	  $id=$_POST["employee_id"];
