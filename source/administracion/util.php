@@ -62,9 +62,9 @@ $month = date('m', strtotime($Fecha));
       echo ' <td>' .$row["NombreServicio"]. '</td> ';
       echo ' <td>' .$row["Descripcion"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
-        echo '<td>'.'<form method="POST" action="prueba.php" onsubmit="return modificarServicio('.$temp.')"><button type="submit"  class="btn btn-primary "   value="Modificar" name="Modificar" id="Modificar">Modificar </button> <input type="hidden" name="id" id="id" value='.$temp.' > </form>'.'</td>';
+        echo '<td>'.'<input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
         //echo $row["NombreServicio"];
-        echo  '<td>'.'<form method="POST" action="prueba.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
+        echo  '<td>'.'<form method="POST" action="eliminar_servicio.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
       echo '</tr>';
     }
   }
@@ -123,9 +123,9 @@ $month2 = date('m', strtotime($Fecha2));
     closeDb($conn);
     return $result;
 }
-function insertnew($NombreServicio,$Descripcion,$idDepartmaneto){
+function insertnew($NombreServicio,$Descripcion,$idDepartmaneto,$Fecha){
     $conn=conectDb();
-    $sql ="INSERT into tipodeservicio(NombreServicio,Descripcion,idDepartmaneto)   VALUES (?,?,?); ";
+    $sql ="INSERT into tipodeservicio(NombreServicio,Descripcion,idDepartmaneto,Fecha)   VALUES (?,?,?,?); ";
      if (!($statement = $conn->prepare($sql))) {
             die("Preparation failed: (" . $conn->errno . ") " . $conn->error);
         }
@@ -133,8 +133,9 @@ function insertnew($NombreServicio,$Descripcion,$idDepartmaneto){
    $NombreServicio = $conn->real_escape_string($NombreServicio);
      $Descripcion = $conn->real_escape_string($Descripcion);
    $idDepartmaneto = $conn->real_escape_string($idDepartmaneto); 
+    $Fecha = $conn->real_escape_string($Fecha); 
 
-   if (!$statement->bind_param("sss", $NombreServicio, $Descripcion, $idDepartmaneto)) {
+   if (!$statement->bind_param("ssss", $NombreServicio, $Descripcion, $idDepartmaneto,$Fecha)) {
             die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error); 
         }
          // Executing the statement
@@ -154,15 +155,15 @@ function delete_by_ID($ID){
     closeDb($conn);
     return $result;
 }
-function update_Servicio($IdServicios,$NombreServicio,$Descripcion,$idDepartmaneto){
+function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartmaneto2){
    $conn=conectDb();
-    $sql ="UPDATE Servicios SET NombreServicio='$NombreServicio', Descripcion='$Descripcion', idDepartmaneto='$idDepartmaneto' WHERE IdServicio = '".$IdServicio."' ";
+    $sql ="UPDATE tipodeservicio SET NombreServicio='$NombreServicio2', Descripcion='$Descripcion2', idDepartmaneto='$idDepartmaneto2' WHERE IdServicio = '".$IdServicios2."' ";
     $result = mysqli_query($conn,$sql);
      
-    $IdServicios = $conn->real_escape_string($IdServicios);
-   $NombreServicio = $conn->real_escape_string($NombreServicio);
-     $Descripcion = $conn->real_escape_string($Descripcion);
-   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto); 
+    $IdServicios2 = $conn->real_escape_string($IdServicios2);
+   $NombreServicio = $conn->real_escape_string($NombreServicio2);
+     $Descripcion2 = $conn->real_escape_string($Descripcion2);
+   $idDepartmaneto2 = $conn->real_escape_string($idDepartmaneto2); 
     closeDb($conn);
     return $result;
     

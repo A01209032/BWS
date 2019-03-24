@@ -20,6 +20,7 @@
       
         updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo);
           //Se cargaron los datos
+         //var_dump($_POST);
           echo '<script language="javascript">';
             echo 'alert("Se edito el voluntario")';
             echo '</script>';

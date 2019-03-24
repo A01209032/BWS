@@ -2,7 +2,7 @@
   session_start();
   include("../views/_header_carpetas.html");
   include ("partials/_formulario_consultas.html");
-
+ include("partials/_consultas.html");
 require_once ("util.php"); /*
 $result=getservicios(); 
   if(mysqli_num_rows($result)>0){
