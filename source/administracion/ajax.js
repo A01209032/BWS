@@ -20,12 +20,7 @@ function sendRequest(){
               ajaxResponse.innerHTML = data;
               ajaxResponse.style.visibility = "visible";
           });
-       $.post( "reporte_tabla.php", { date: document.getElementById('date').value ,date2: document.getElementById('date2').value })
-          .done(function( data ) {
-              var ajaxResponse2 = document.getElementById('ajaxResponse2');
-              ajaxResponse2.innerHTML = data;
-              ajaxResponse2.style.visibility = "visible";
-          });
+      
    } else {
      
        
