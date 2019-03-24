@@ -38,7 +38,7 @@
       echo '<td>'.$row["Cargo"].'</td>';
       echo '<td>'.$row["Tipo"].'</td>';
       /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
-      echo '<td><input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data">
+      echo '<td><input type="button" name="edit" value="Editar" id="'.$temp.'" class="btn btn-primary text-center edit_data">
 
         <form action="eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
         <input type="hidden" value='.$temp.'    name="id" id="id">
@@ -52,34 +52,6 @@
 
   mysqli_free_result($result); //Se libera la variable de memoria
 ?>
-
-<div class="container mt-3">
-  <h2>Modal Methods</h2>
-  <p>The <strong>toggle</strong> method toggles the modal manually.</p>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-primary" id="myBtn">Toggle Modal</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Methods</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>The toggle method toggles the modal manually.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
 
 
 <script type="text/javascript">
@@ -101,7 +73,7 @@
                 dataType:"json",
                 success:function(data){
                 //alert(employee_id);   
-                  alert(data.FechadeNacimiento);
+                  //alert(data.FechadeNacimiento);
                   $('#nombreM').val(data.Nombre);
                   $('#fechaDeNacimientoM').val(data.FechadeNacimiento);
                   //if(data.Sexo==){
@@ -110,7 +82,7 @@
                   $('#cargoM').val(data.Cargo);
                   $('#tipoM').val(data.Tipo);
                   $('#employee_id').val(data.IdVoluntario);
-                  $('#insert').val("Update");
+                  $('#insert').val("Actualizar");
                   $('#modificarVoluntario').modal('show');
                 }
            });  
