@@ -21,7 +21,7 @@
         updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo);
           //Se cargaron los datos
           echo '<script language="javascript">';
-            echo 'alert("Se edito el voluntario")';
+            echo 'alert("Se edito el voluntario");window.location="voluntarios.php";';
             echo '</script>';
             //header('Location: '.$_SERVER['HTTP_REFERER']);
         }else{

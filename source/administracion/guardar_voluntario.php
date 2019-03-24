@@ -19,8 +19,14 @@
         /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo);//){
           //Se cargaron los datos
           //include("voluntarios.php");
-          header('Location: '.$_SERVER['HTTP_REFERER']); //Regresar a donde fue la petición
-        //}else{
+          
+          //header('Location: '.$_SERVER['HTTP_REFERER']); //Regresar a donde fue la petición
+          //header ('Location :administracion/voluntarios.php');
+          //ec("refresh:5;url=index.php"); // really should be a fully qualified URI
+          echo '<script language="javascript">';
+          echo 'alert("Se agrego el voluntario de manera exitosa"); window.location="voluntarios.php";';
+          echo '</script>';
+      //}else{
           //Error al cargar las datos
         //}
     }else{
