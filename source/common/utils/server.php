@@ -10,7 +10,7 @@ function frombase($target) {
 		$baseUrl = $baseUrl . $urlParts[$i] . "/";
 	}
 
-	$baseUrl = "source/";
+	$baseUrl = $_SESSION['sbase'];
 	return $baseUrl.$target;
 }
 ?>

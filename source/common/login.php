@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('utils/server.php');
 
 if (isset($_POST['user'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['user'])) {
 		if ($_POST['user'] == "administrador" &&
 			$_POST['pass'] == "0,4,1,4") {
 
-			session_start();
+			//session_start();
 			$_SESSION['departamento'] = $_POST['user'];
 
 			// $urlParts = explode('/',$_SERVER['PHP_SELF']);
@@ -27,7 +27,7 @@ if (isset($_POST['user'])) {
 			// 	$baseUrl = $baseUrl . $urlParts[$i] . "/";
 			// }
 
-			header("Location: /".frombase("admin.php"));
+			header("Location: ".frombase("admin.php"));
 		} else if ($_POST['pass'] == "0,3,2,0,0" ||
 				   $_POST['pass'] == "3,2,1,0,4" ||
 				   $_POST['user'] == "porteria") {
@@ -41,7 +41,7 @@ if (isset($_POST['user'])) {
 			// 	$baseUrl = $baseUrl . $urlParts[$i] . "/";
 			// }
 			
-			header("Location: /".frombase("registros/registro.php"));
+			header("Location: ".frombase("registros/registro.php"));
 		}
 		else {
 			$error = "Contraseña No Correcta!";
