@@ -2,10 +2,14 @@
 <?php 
 
 function conectDb(){
-  $servername="localhost";
+  /*$servername="localhost";
   $username= "root";
   $password= "";
-  $dbname="servicio_social";
+  $dbname="servicio_social";*/
+  $servername="sql9.freemysqlhosting.net";
+  $username= "sql9284997";
+  $password= "K2kRkpIfJR";
+  $dbname="sql9284997";
         
   $con = mysqli_connect($servername,$username,$password,$dbname);
         
