@@ -43,7 +43,7 @@ function getIdDepartamento($departamento){
 
 function getIdPaciente($paciente){
     $conn=conectDb();
-    $query = "SELECT IdPaciente FROM pacientes WHERE Nombre like '$paciente'";
+    $query = "SELECT IdPaciente FROM pacientes WHERE Nombre like '$paciente%'";
     $res = mysqli_query($conn, $query);
     $resultado;
     if(mysqli_num_rows($res) > 0){//If there are actually results

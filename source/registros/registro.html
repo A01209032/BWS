@@ -120,6 +120,7 @@
     data: {pattern: 'all'},
     type: 'json',
     success: function(data) {
+      console.log("res:" + data);
       data = JSON.parse(data);
       if (data[0] == "Error") {
         alert("There was a critical error on the server!");
