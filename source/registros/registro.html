@@ -1,4 +1,3 @@
-
 <!-- Page Content -->
             <div class="container">
               <div class="row">
@@ -12,12 +11,14 @@
                 <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
               </div>
               <div class="column">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="off">
 
 
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
                   <br>
-                  <input type="text" id="paciente" name="paciente" placeholder="">
+                  <div class="autocomplete">
+                    <input type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                  </div>
                   <br>
                   <!--<button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>-->
                   <br>
@@ -110,3 +111,30 @@
                        </div>
                      </div>
                    </div>
+
+<script type="text/javascript" src="autocomplete.js"></script>
+<script type="text/javascript">
+  $.ajax({
+    url: "listar_pacientes.php",
+    method: 'GET',
+    data: {pattern: 'all'},
+    type: 'json',
+    success: function(data) {
+      console.log("res:" + data);
+      data = JSON.parse(data);
+      if (data[0] == "Error") {
+        alert("There was a critical error on the server!");
+        return;
+      }
+      console.log(data);
+      var nombres = [];
+      for (var i=0; i < data.length; i++) {
+        console.log(data[i])
+        nombres.push(data[i]['fname']);
+      }
+      autocomplete(document.getElementById('paciente'), nombres);
+    }
+  });
+
+  
+</script>

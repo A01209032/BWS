@@ -12,13 +12,14 @@
  *
 */
 
-// include('common/utils/database.php');
+//include('common/utils/database.php');
+require_once('util.php');
 
 function listarPacientesCon($pattern) {
 
 	$pacientes = array();
 
-	// $conn = connectDB();
+	$conn = conectDB();
 
 	// For Table Pacientes con Nombre y Apellido
 	/*$sqlQuery = "SELECT IdPaciente, (nombre + '' + apellido) as 'Full Name'
@@ -26,37 +27,36 @@ function listarPacientesCon($pattern) {
 				 HAVING (nombre + '' + apellido) LIKE ?
 				 ORDER BY 'Full Name'";*/
 	$sqlQuery = "SELECT IdPaciente, Nombre
-				 FROM paciente 
-				 WHERE nombre LIKE '$pattern'
+				 FROM pacientes 
 				 ORDER BY nombre";
 
 
 
-	// $res = mysqli_execute($conn, $sqlQuery);
+	$res = mysqli_query($conn, $sqlQuery);
 
-	// if (mysqli_num_rows($res) > 0) {
-	// 	while ($row = mysqli_fech_assoc($res)) {
-	// 		$id    = $row['IdPaciente'];
-	// 		$fname = $row['Full Name'];
-	// 		array_push($pacientes, array("id"=>$id, "fname"=>$fname));
-	// 	}
-	// }
+	if (mysqli_num_rows($res) > 0) {
+		while ($row = mysqli_fetch_assoc($res)) {
+			$id    = $row['IdPaciente'];
+			$fname = $row['Nombre'];
+			array_push($pacientes, array("id"=>$id, "fname"=>$fname));
+		}
+	}
 
 	// TODO: ESTO ES UNA SIMULACION DE LA FUNCIONALIDAD REALMENTE SERIA CON SQL
-	$todosLosPacientes = array(array("IdPaciente"=>0, "Nombre"=>"Juan Jose Olivera"),
-							   array("IdPaciente"=>1, "Nombre"=>"Domenica Renteria"),
-							   array("IdPaciente"=>2, "Nombre"=>"Juan Carlos Diaz"),
-							   array("IdPaciente"=>3, "Nombre"=>"Agusto Dominguez"),
-							   array("IdPaciente"=>4, "Nombre"=>"Ana Alcantara"),
-							   array("IdPaciente"=>5, "Nombre"=>"Antonio Diaz"));
+	// $todosLosPacientes = array(array("IdPaciente"=>0, "Nombre"=>"Juan Jose Olivera"),
+	// 						   array("IdPaciente"=>1, "Nombre"=>"Domenica Renteria"),
+	// 						   array("IdPaciente"=>2, "Nombre"=>"Juan Carlos Diaz"),
+	// 						   array("IdPaciente"=>3, "Nombre"=>"Agusto Dominguez"),
+	// 						   array("IdPaciente"=>4, "Nombre"=>"Ana Alcantara"),
+	// 						   array("IdPaciente"=>5, "Nombre"=>"Antonio Diaz"));
 
-	for ($i=0; $i < count($todosLosPacientes); $i++) {
-        $pos = stripos(strtolower($todosLosPacientes[$i]['Nombre']), $pattern);
-        if (!($pos === false)) {
-                $paciente = $todosLosPacientes[$i];
-                array_push($pacientes, array('id'=> $paciente['IdPaciente'], 'fname'=>$paciente['Nombre']));
-        }
-	}	
+	// for ($i=0; $i < count($todosLosPacientes); $i++) {
+ //        $pos = stripos(strtolower($todosLosPacientes[$i]['Nombre']), $pattern);
+ //        if (!($pos === false) or strtolower($pattern) == "all") {
+ //                $paciente = $todosLosPacientes[$i];
+ //                array_push($pacientes, array('id'=> $paciente['IdPaciente'], 'fname'=>$paciente['Nombre']));
+ //        }
+	// }	
 
 
 
