@@ -1,35 +1,51 @@
 <?php
   session_start();
   require_once("../util.php");
+  require_once("util.php");
+  require_once("models/registro.php");
    include("../views/_header.html");
 
   switch ($_SESSION['departamento']) {
     case 'asistencias':
-     $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
-$paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
-$error = 1;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
+     $paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
+     $error = 1;
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     if (empty($_POST["paciente"])) {
+     $pacienteErr = "Datos incompletos";
+     $error = 1;
+     } else {
+     $paciente = test_input($_POST["paciente"]);
+     $error=0;
+     }
+     if (empty($_POST["asistente"])) {
+     $asistenteErr = "Datos incompletos";
+     $error = 1;
+     } else {
+     $asistente = test_input($_POST["asistente"]);
+     $error=0;
+
+     }
+     if (empty($_POST["fecha"])) {
+     $fechaErr = "Porfavor elige una fecha";
+     $error = 1;
+     } else {
+       $fecha = test_input($_POST["fecha"]);
+       $error=0;
+
+    }
+    if (empty($_POST["tipo"])) {
+      $tipoErr = "Datos incompletos";
+      $error = 1;
+    } else {
+        $tipo = test_input($_POST["tipo"]);
+        $observaciones = test_input($_POST['observaciones']);
+        $error=0;
+  
+      }
+      }else $error=1;
 
 
-if (empty($_POST["password"])) {
-  $passwordErr = "Incomplete data";
-  $error = 1;
-} else {
-  $password1 = test_input($_POST["password"]);
-  if (empty($_POST["username"])) {
-    $usernameErr = "Username is required";
-    $error = 1;
-  } else {
-    $username = test_input($_POST["username"]);
-    $_SESSION["username"] = "$username";
-    $error=0;
-
-  }
-}
-
-}else $error=1;
-if($error) include("registro.html");
-else include("registro.html");
 
 
       break;
@@ -42,24 +58,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 if (empty($_POST["password"])) {
-  $passwordErr = "Incomplete data";
-  $error = 1;
-} else {
-  $password1 = test_input($_POST["password"]);
-  if (empty($_POST["username"])) {
-    $usernameErr = "Username is required";
-    $error = 1;
-  } else {
-    $username = test_input($_POST["username"]);
-    $_SESSION["username"] = "$username";
-    $error=0;
+   $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
+     $paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
+     $error = 1;
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     if (empty($_POST["paciente"])) {
+     $pacienteErr = "Datos incompletos";
+     $error = 1;
+     } else {
+     $paciente = test_input($_POST["paciente"]);
+     $error=0;
+     }
+     if (empty($_POST["asistente"])) {
+     $asistenteErr = "Datos incompletos";
+     $error = 1;
+     } else {
+     $asistente = test_input($_POST["asistente"]);
+     $error=0;
 
-  }
+     }
+     if (empty($_POST["fecha"])) {
+     $fechaErr = "Porfavor elige una fecha";
+     $error = 1;
+     } else {
+       $fecha = test_input($_POST["fecha"]);
+       $error=0;
+
+    }
+    if (empty($_POST["tipo"])) {
+      $tipoErr = "Datos incompletos";
+      $error = 1;
+    } else {
+        $tipo = test_input($_POST["tipo"]);
+        $observaciones = test_input($_POST['observaciones']);
+        $error=0;
+  
+      }
+      }else $error=1;
+
 }
 
 }else $error=1;
-if($error) include("registro.html");
-else include("registro.html");
+
 
 
       break;
@@ -85,7 +125,7 @@ else include("registro.html");
 
      }
      if (empty($_POST["fecha"])) {
-     $asistenteErr = "Porfavor elige una fecha";
+     $fechaErr = "Porfavor elige una fecha";
      $error = 1;
      } else {
        $fecha = test_input($_POST["fecha"]);
@@ -102,8 +142,6 @@ else include("registro.html");
   
       }
       }else $error=1;
-      if($error) include("registro.html");
-      else include("registro.html");
 
 
       break;
@@ -111,6 +149,19 @@ else include("registro.html");
     default:
       // code...
       break;
+  }
+  
+  if($error) include("registro.html");
+  else {
+   $cuota=test_input($_POST["CuotaRecup"]);
+   $error=registrar($paciente,$asistente,$fecha,$tipo,$observaciones,$cuota);
+   if($error="Error"){
+       echo '<script type="text/javascript">',
+     'alert("Error");',
+     '</script>'
+;
+   }
+   include("registro.html");   
   }
 
 
