@@ -18,17 +18,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>-->
 
 
+
 <script>
 function eliminar() {
   var retVal = confirm("¿Esta seguro que desea eliminar el voluntario?");
   if( retVal == true ) {
   //document.write ("User wants to continue!");
-                  return true;
-               } else {
+  }
+else {
                   //document.write ("User does not want to continue!");
                   return false;
                }
-}
+
 
 function cambiarContraseña() {
   var retVal = confirm("¿Esta seguro que desea cambiar la contraseña?");
@@ -42,11 +43,31 @@ function cambiarContraseña() {
 }
 
 
-
-</script>
-<script>
     //$("[data-toggle='modal']").modal();
+function eliminarServicio(Servicio) {
+        var eliminarser = confirm("¿Esta seguro que desea eliminar el servicio"+" "+Servicio+"?");
+               if( eliminarser == false ) {
+                  //document.write ("User wants to continue!");
+                  //document.write(eliminarser);
+                   return false;
+                   
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return true;
+               }
+}
+    function modificarServicio(Servicio) {
+        var mod = confirm("¿Esta seguro que desea modificar el servicio"+" "+Servicio+"?");
+               if( mod == false ) {
+                  //document.write ("User wants to continue!");
+                  return false;
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return true;
+               }
+}
 </script>
+
 
 </body>
 

@@ -1,12 +1,11 @@
 <?php 
     require_once("util.php");
-    include("../views/_header_carpetas.html");
     $_POST["date"]=htmlspecialchars($_POST["date"]);
+    $_POST["date2"]=htmlspecialchars($_POST["date2"]);
 
-        getServicioByFecha($_POST["date"]);
+        getServicioByFecha($_POST["date"],$_POST["date2"]);
     
             
-     include("../views/_footer.html");
     include("partials/_generar_reporte.html") 
 
 

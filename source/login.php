@@ -50,6 +50,7 @@ if (isset($_POST['user'])) {
 			// }
 			
 			header("Location: ".frombase("registro.php"));
+
 		}
 		else {
 			$error = "Contraseña No Correcta!";
