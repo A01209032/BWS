@@ -5,22 +5,38 @@ $error = 1;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-if (empty($_POST["password"])) {
-  $passwordErr = "Incomplete data";
+if (empty($_POST["paciente"])) {
+  $pacienteErr = "Datos incompletos";
   $error = 1;
 } else {
-  $password1 = test_input($_POST["password"]);
-  if (empty($_POST["username"])) {
-    $usernameErr = "Username is required";
-    $error = 1;
-  } else {
-    $username = test_input($_POST["username"]);
-    $_SESSION["username"] = "$username";
-    $error=0;
-
-  }
+  $paciente = test_input($_POST["paciente"]);
+  $error=0;
 }
+if (empty($_POST["asistente"])) {
+  $asistenteErr = "Datos incompletos";
+  $error = 1;
+} else {
+  $asistente = test_input($_POST["asistente"]);
+  $error=0;
 
+}
+if (empty($_POST["fecha"])) {
+  $asistenteErr = "Porfavor elige una fecha";
+  $error = 1;
+} else {
+  $fecha = test_input($_POST["fecha"]);
+  $error=0;
+
+}
+if (empty($_POST["tipo"])) {
+  $tipoErr = "Datos incompletos";
+  $error = 1;
+} else {
+  $tipo = test_input($_POST["tipo"]);
+  $observaciones = test_input($_POST['observaciones']);
+  $error=0;
+
+}
 }else $error=1;
 if($error) include("registro_asistencia.html");
 else include("registro_asistencia.html");

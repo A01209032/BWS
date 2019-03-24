@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 09, 2019 at 08:26 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-03-2019 a las 17:59:29
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bws`
+-- Base de datos: `servicio_social`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departamento`
+-- Estructura de tabla para la tabla `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -38,7 +38,7 @@ CREATE TABLE `departamento` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enfermedad`
+-- Estructura de tabla para la tabla `enfermedad`
 --
 
 CREATE TABLE `enfermedad` (
@@ -49,7 +49,7 @@ CREATE TABLE `enfermedad` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pacientes`
+-- Estructura de tabla para la tabla `pacientes`
 --
 
 CREATE TABLE `pacientes` (
@@ -67,7 +67,7 @@ CREATE TABLE `pacientes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `permisos`
 --
 
 CREATE TABLE `permisos` (
@@ -78,7 +78,7 @@ CREATE TABLE `permisos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `rol` (
@@ -89,20 +89,32 @@ CREATE TABLE `rol` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipodeservicio`
+-- Estructura de tabla para la tabla `tipodeservicio`
 --
 
 CREATE TABLE `tipodeservicio` (
   `IdServicio` int(25) NOT NULL,
   `idDepartmaneto` int(25) NOT NULL,
   `NombreServicio` varchar(30) NOT NULL,
-  `Descripcion` varchar(50) NOT NULL
+  `Descripcion` varchar(50) NOT NULL,
+  `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipodeservicio`
+--
+
+INSERT INTO `tipodeservicio` (`IdServicio`, `idDepartmaneto`, `NombreServicio`, `Descripcion`, `Fecha`) VALUES
+(1, 1, 'Inyeccion', 'Inyeccion a paciente', '2019-03-05'),
+(2, 2, 'Despensa Familiar', 'Entrega a Despensa familiar', '2019-02-06'),
+(3, 2, 'Comida', 'Entrega de Comida', '2019-01-15'),
+(4, 3, 'Asistencia Diurna', 'Ayuda al paciente', '2019-03-13'),
+(5, 1, 'Entrega de Medicinas', 'Entrega de medicinas', '2019-03-06');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `voluntarios`
+-- Estructura de tabla para la tabla `voluntarios`
 --
 
 CREATE TABLE `voluntarios` (
@@ -114,129 +126,94 @@ CREATE TABLE `voluntarios` (
   `Tipo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 --
--- Table structure for table `voluntarios`
---
-
-CREATE TABLE `atienden` (
-  `IdDepartamento` int(25) NOT NULL,
-  `IdPaciente` int(25) NOT NULL,
-  `IdVoluntario` int(25) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Observaciones` varchar(140) NOT NULL,
-  `CuotaRecup` FLOAT NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
---
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `departamento`
+-- Indices de la tabla `departamento`
 --
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`IdDepartamento`);
 
 --
--- Indexes for table `enfermedad`
+-- Indices de la tabla `enfermedad`
 --
 ALTER TABLE `enfermedad`
   ADD PRIMARY KEY (`IdEnfermedad`);
 
 --
--- Indexes for table `pacientes`
+-- Indices de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`IdPaciente`);
 
 --
--- Indexes for table `permisos`
+-- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD PRIMARY KEY (`IdPermiso`);
 
 --
--- Indexes for table `rol`
+-- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`IdRol`);
 
 --
--- Indexes for table `tipodeservicio`
+-- Indices de la tabla `tipodeservicio`
 --
 ALTER TABLE `tipodeservicio`
   ADD PRIMARY KEY (`IdServicio`);
 
 --
--- Indexes for table `voluntarios`
+-- Indices de la tabla `voluntarios`
 --
 ALTER TABLE `voluntarios`
   ADD PRIMARY KEY (`IdVoluntario`);
 
-  --
--- Indexes for table `atienden`
 --
-ALTER TABLE `atienden`
-  ADD PRIMARY KEY (`IdDepartamento`,`IdPaciente`,`IdVoluntario`);
-
-ALTER TABLE `atienden`
-  ADD FOREIGN KEY (`IdDepartamento`);
-  REFERENCES `departamento`(`IdDepartamento`)
-  ON DELETE CASCADE;
-  
-ALTER TABLE `atienden`
-  ADD FOREIGN KEY (`IdPaciente`)
-  REFERENCES `pacientes`(`IdPaciente`)
-  ON DELETE CASCADE;
-
-ALTER TABLE `atienden`
-  ADD FOREIGN KEY (`IdVoluntario`)
-  REFERENCES `voluntarios`(`IdVoluntario`)
-  ON DELETE CASCADE;
---
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `departamento`
+-- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
   MODIFY `IdDepartamento` int(25) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `enfermedad`
+-- AUTO_INCREMENT de la tabla `enfermedad`
 --
 ALTER TABLE `enfermedad`
   MODIFY `IdEnfermedad` int(25) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pacientes`
+-- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
   MODIFY `IdPaciente` int(25) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `permisos`
+-- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   MODIFY `IdPermiso` int(25) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rol`
+-- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `IdRol` int(25) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipodeservicio`
+-- AUTO_INCREMENT de la tabla `tipodeservicio`
 --
 ALTER TABLE `tipodeservicio`
-  MODIFY `IdServicio` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdServicio` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `voluntarios`
+-- AUTO_INCREMENT de la tabla `voluntarios`
 --
 ALTER TABLE `voluntarios`
   MODIFY `IdVoluntario` int(25) NOT NULL AUTO_INCREMENT;

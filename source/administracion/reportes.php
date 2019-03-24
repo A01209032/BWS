@@ -3,7 +3,7 @@
   include("../views/_header_carpetas.html");
   include ("partials/_formulario_reportes.html");
 require_once ("util.php"); 
-$result=getservicios(); 
+/*$result=getservicios(); 
   if(mysqli_num_rows($result)>0){
     echo '<table align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>IDDepartamento</th><th>Descripcion</th><th>Nombre</th></tr></thead><tbody>';
     //Imprimir cada fila
@@ -18,6 +18,6 @@ $result=getservicios();
     echo '</tbody></table>';
     
     mysqli_free_result($result); //Se libera la variable de memoria
-  
+  */
   include("../views/_footer.html");
 ?>

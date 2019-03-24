@@ -49,14 +49,20 @@ $month = date('m', strtotime($Fecha));
    $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE idDepartmaneto = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
-    echo '<<table align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>Nombre
-    </th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>';
+    echo '<table  cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
+    </th><th>Nombre</th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
+        $temp=$row["IdServicio"];
+        $modif=$row["NombreServicio"];
       echo '<tr>';
-      echo '<td>'.$row["NombreServicio"].'</td>';
-      echo '<td>'.$row["Descripcion"].'</td>';
-      echo '<td>'.$row["Fecha"].'</td>';
+      echo '<td>' .$row["IdServicio"]. '</td> ';
+      echo ' <td>' .$row["NombreServicio"]. '</td> ';
+      echo ' <td>' .$row["Descripcion"]. '</td> ';
+      echo ' <td>' .$row["Fecha"]. '</td>';
+        echo '<td>'.'<form method="POST" action="prueba.php" onsubmit="return modificarServicio('.$temp.')"><button type="submit"  class="btn btn-primary "   value="Modificar" name="Modificar" id="Modificar">Modificar </button> <input type="hidden" name="id" id="id" value='.$temp.' > </form>'.'</td>';
+        //echo $row["NombreServicio"];
+        echo  '<td>'.'<form method="POST" action="prueba.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
       echo '</tr>';
     }
   }
@@ -67,13 +73,16 @@ $month = date('m', strtotime($Fecha));
     return $result;
 }
 
-function getServicioByFecha($Fecha){
+function getServicioByFecha($Fecha,$Fecha2){
     
     $conn=conectDb();
     
 $year = date('Y', strtotime($Fecha));
 
 $month = date('m', strtotime($Fecha));
+$year2 = date('Y', strtotime($Fecha2));
+
+$month2 = date('m', strtotime($Fecha2));
     $date='';
     $date .=$year;
     $date .="-";
@@ -81,9 +90,9 @@ $month = date('m', strtotime($Fecha));
     $date .="-01";
     
     $date2='';
-    $date2 .=$year;
+    $date2 .=$year2;
     $date2 .="-";
-    $date2 .=$month;
+    $date2 .=$month2;
     $date2 .="-31";
     
    $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
@@ -93,10 +102,12 @@ $month = date('m', strtotime($Fecha));
     </th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
+        $i=1;
       echo '<tr>';
       echo '<td>'.$row["NombreServicio"].'</td>';
       echo '<td>'.$row["Descripcion"].'</td>';
       echo '<td>'.$row["Fecha"].'</td>';
+      
       echo '</tr>';
     }
   }
@@ -106,28 +117,53 @@ $month = date('m', strtotime($Fecha));
     closeDb($conn);
     return $result;
 }
+function insertnew($NombreServicio,$Descripcion,$idDepartmaneto){
+    $conn=conectDb();
+    $sql ="INSERT into tipodeservicio(NombreServicio,Descripcion,idDepartmaneto)   VALUES (?,?,?); ";
+     if (!($statement = $conn->prepare($sql))) {
+            die("Preparation failed: (" . $conn->errno . ") " . $conn->error);
+        }
+    
+   $NombreServicio = $conn->real_escape_string($NombreServicio);
+     $Descripcion = $conn->real_escape_string($Descripcion);
+   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto); 
 
+   if (!$statement->bind_param("sss", $NombreServicio, $Descripcion, $idDepartmaneto)) {
+            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error); 
+        }
+         // Executing the statement
+         if (!$statement->execute()) {
+            die("Execution failed: (" . $statement->errno . ") " . $statement->error);
+          } 
+ 
+    closeDb($conn);
+}
 
+function delete_by_ID($ID){
+    $conn=conectDb();
+    $sql="DELETE FROM tipodeservicio WHERE IdServicio = '".$ID."' ";
+       $ID = $conn->real_escape_string($ID);
+        
+    $result= mysqli_query($conn,$sql);
+    closeDb($conn);
+    return $result;
+}
+function update_Servicio($IdServicios,$NombreServicio,$Descripcion,$idDepartmaneto){
+   $conn=conectDb();
+    $sql ="UPDATE Servicios SET NombreServicio='$NombreServicio', Descripcion='$Descripcion', idDepartmaneto='$idDepartmaneto' WHERE IdServicio = '".$IdServicio."' ";
+    $result = mysqli_query($conn,$sql);
+     
+    $IdServicios = $conn->real_escape_string($IdServicios);
+   $NombreServicio = $conn->real_escape_string($NombreServicio);
+     $Descripcion = $conn->real_escape_string($Descripcion);
+   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto); 
+    closeDb($conn);
+    return $result;
+    
+}
 
-?>
-<?php
+//Aqui va lo de tony----------------
 
-  function conectDb(){
-
-  	$conexion=mysqli_connect("localhost","root","","bws");
-  	//Validar la conexion
-  	if($conexion==NULL){
-  		die("Error en la conexión");
-  	}
-  	$conexion->set_charset("utf8");
-
-  	return $conexion;
-  }
-
-  //ciErra la base de datos
-  function closeDb ($conexion){
-  	mysqli_close($conexion);
-  }
 
   //Obtiene todos los voluntarios 
   function getVoluntarios(){
