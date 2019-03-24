@@ -4,17 +4,18 @@
     include("../views/_header_carpetas.html");
         
     //Validación de datos
-    if(isset($_POST["nombre"]) && isset($_POST["nombre"]) != "" &&
-        isset($_POST["fechaDeNacimiento"]) && isset($_POST["fechaDeNacimiento"]) != "" &&
-        isset($_POST["sexo"]) && isset($_POST["sexo"]) != "" &&
-        isset($_POST["cargo"]) && isset($_POST["cargo"]) != "" &&
-        isset($_POST["tipo"]) && isset($_POST["tipo"]) != ""){
+    if(isset($_POST["nombreM"]) && isset($_POST["nombreM"]) != "" &&
+        isset($_POST["fechaDeNacimientoM"]) && isset($_POST["fechaDeNacimientoM"]) != "" &&
+        isset($_POST["sexoM"]) && isset($_POST["sexoM"]) != "" &&
+        isset($_POST["cargoM"]) && isset($_POST["cargoM"]) != "" &&
+        isset($_POST["tipoM"]) && isset($_POST["tipoM"]) != ""){
 
-        $nombre=htmlspecialchars($_POST["nombre"]);
-        $fechaNacimiento=htmlspecialchars($_POST["fechaDeNacimiento"]);
-        $genero=htmlspecialchars($_POST["sexo"]);
-        $cargo=htmlspecialchars($_POST["cargo"]);
-        $tipo=htmlspecialchars($_POST["tipo"]);
+        $id=htmlspecialchars($_POST["employee_id"]);
+        $nombre=htmlspecialchars($_POST["nombreM"]);
+        $fechaNacimiento=htmlspecialchars($_POST["fechaDeNacimientoM"]);
+        $genero=htmlspecialchars($_POST["sexoM"]);
+        $cargo=htmlspecialchars($_POST["cargoM"]);
+        $tipo=htmlspecialchars($_POST["tipoM"]);
 
       
         updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo);

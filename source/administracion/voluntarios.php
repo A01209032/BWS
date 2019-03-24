@@ -115,22 +115,22 @@
                 }
            });  
       });  
-
+/*
       $('#insert_form').on("submit", function(event){  
            event.preventDefault();  
-           if($('#nombre').val() == "")  
+           if($('#nombreM').val() == "")  
            {  
                 alert("Se requiere ingresar el nombre");  
            }  
-           else if($('#fechaDeNacimiento').val() == '')  
+           else if($('#fechaDeNacimientoM').val() == '')  
            {  
                 alert("Se requiere ingresar la fecha de nacimiento");  
            }  
-           else if($('#sexo').val() == '')  
+           else if($('#sexoM').val() == '')  
            {  
                 alert("Se requiere ingresar el sexo");  
            }  
-           else if($('#cargo').val() == '')  
+           else if($('#cargoM').val() == '')  
            {  
                 alert("Se requiere ingresar el cargo");  
            }  
@@ -147,10 +147,11 @@
                           $('#insert_form')[0].reset();  
                           $('#modificarVoluntario').modal('hide');  
                           //$('#employee_table').html(data);  
+                          alert("Se requiere ingresar el sexo");  
                      }  
                 });  
            }  
-      });  
+      });  */
       
  }); 
 </script>
