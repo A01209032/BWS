@@ -197,7 +197,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   //Modifica una contraseña
   function modifyContraseniaById($id,$nuevaContrasena){
     $conn=conectDb();
-    $sql="UPDATE departamento SET IdDepartamento='$id', contraseña='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
+    $sql="UPDATE departamento SET IdDepartamento='$id', contrasena='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
     $result = mysqli_query($conn, $sql);
     $id = $conn->real_escape_string($id);
     $nuevaContrasena = $conn->real_escape_string($nuevaContrasena);
@@ -224,55 +224,55 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   }
 
   function insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo) {
-        $bd = conectDb();
+    $bd = conectDb();
 
-        // insert command specification
-        $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo) VALUES (?,?,?,?,?)';
-        // Preparing the statement
-        if (!($statement = $bd->prepare($query))) {
-            die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
-        }
-
-        $nombre = $bd->real_escape_string($nombre);
-        $fechaNacimiento = $bd->real_escape_string($fechaNacimiento);
-        $genero = $bd->real_escape_string($genero);
-        $cargo = $bd->real_escape_string($cargo);
-        $tipo = $bd->real_escape_string($tipo);
-
-        if (!$statement->bind_param("sssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo)) {
-            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
-        }
-         // Executing the statement
-         if (!$statement->execute()) {
-            die("Execution failed: (" . $statement->errno . ") " . $statement->error);
-          }
-
-        closeDb($bd);
+    // insert command specification
+    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo) VALUES (?,?,?,?,?)';
+    // Preparing the statement
+    if (!($statement = $bd->prepare($query))) {
+      die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
     }
 
-    function deleteVoluntarioById($id){
-      $conn=conectDb();
-      $sql="DELETE FROM voluntarios WHERE IdVoluntario = '".$id."' ";
+    $nombre = $bd->real_escape_string($nombre);
+    $fechaNacimiento = $bd->real_escape_string($fechaNacimiento);
+    $genero = $bd->real_escape_string($genero);
+    $cargo = $bd->real_escape_string($cargo);
+    $tipo = $bd->real_escape_string($tipo);
+
+    if (!$statement->bind_param("sssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo)) {
+      die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
+    }
+    // Executing the statement
+    if (!$statement->execute()) {
+      die("Execution failed: (" . $statement->errno . ") " . $statement->error);
+    }
+
+    closeDb($bd);
+  }
+
+  function deleteVoluntarioById($id){
+    $conn=conectDb();
+    $sql="DELETE FROM voluntarios WHERE IdVoluntario = '".$id."' ";
+    $id = $conn->real_escape_string($id);
+    $result= mysqli_query($conn,$sql);
+    closeDb($conn);
+    return $result;
+  }
+
+  function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
+    $conn=conectDb();
+    $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', Cargo='$cargo', Tipo='$tipo' WHERE IdVoluntario= '".$id."' ";
+      $result = mysqli_query($conn,$sql);
+
       $id = $conn->real_escape_string($id);
-      $result= mysqli_query($conn,$sql);
+      $nombre = $conn->real_escape_string($nombre);
+      $fechaNacimiento = $conn->real_escape_string($fechaNacimiento);
+      $genero = $conn->real_escape_string($genero);
+      $cargo = $conn->real_escape_string($cargo);
+      $tipo = $conn->real_escape_string($tipo);
+
       closeDb($conn);
       return $result;
-    }
 
-    function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
-      $conn=conectDb();
-      $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', Cargo='$cargo', Tipo='$tipo' WHERE IdVoluntario= '".$id."' ";
-        $result = mysqli_query($conn,$sql);
-
-        $id = $conn->real_escape_string($id);
-        $nombre = $conn->real_escape_string($nombre);
-        $fechaNacimiento = $conn->real_escape_string($fechaNacimiento);
-        $genero = $conn->real_escape_string($genero);
-        $cargo = $conn->real_escape_string($cargo);
-        $tipo = $conn->real_escape_string($tipo);
-
-        closeDb($conn);
-        return $result;
-
-    }
+  }
 ?>
