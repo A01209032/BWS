@@ -52,13 +52,6 @@
 
     case 'dispensario':
      $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
-$paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
-$error = 1;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-if (empty($_POST["password"])) {
-   $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
      $paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
      $error = 1;
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -95,10 +88,6 @@ if (empty($_POST["password"])) {
   
       }
       }else $error=1;
-
-}
-
-}else $error=1;
 
 
 
@@ -153,11 +142,14 @@ if (empty($_POST["password"])) {
   
   if($error) include("registro.html");
   else {
+      
    $cuota=test_input($_POST["CuotaRecup"]);
+   //echo '<script type="text/javascript">','alert("'.$_POST["CuotaRecup"].'");','</script>';
+   
    $error=registrar($paciente,$asistente,$fecha,$tipo,$observaciones,$cuota);
-   if($error="Error"){
+   if($error!=100){
        echo '<script type="text/javascript">',
-     'alert("Error");',
+     'alert("'.$error.'");',
      '</script>'
 ;
    }

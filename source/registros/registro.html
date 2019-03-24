@@ -34,7 +34,7 @@
                   <input type="text" id="asistente" name="asistente" placeholder="">
 
                   <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
-                  <input  type="date" value="<?php echo date('Y-m-d')?>" id="fecha">
+                  <input  type="date" value="<?php echo date('Y-m-d')?>" id="fecha" name="fecha">
 
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?></span></label>
                   <select id="tipo" name="tipo">
@@ -47,11 +47,11 @@
                      echo '<option value="hospitalaria">Hospitalaria</option>';
                       break;
                     case 'porteria':
-                     echo ' <option selected value="domiciliaria">Servicio</option>';
-                     echo '<option value="nocturna">Alimento</option>';
+                     echo ' <option selected value="Servicio">Servicio</option>';
+                     echo '<option value="Alimento">Alimento</option>';
                       break;
                     case 'dispensario':
-                      echo ' <option selected value="domiciliaria">Dispensario</option>';
+                      echo ' <option selected value="Dispensario">Dispensario</option>';
                    
                       break;
                   
@@ -68,7 +68,7 @@
                   <input type="text" id="observaciones" name="observaciones">
                   
                   <label for="CuotaRecup">Cuota de Recuperacion</label>
-                  <input class="form-control" type="number" value="0" id="CuotaRecup">
+                  <input class="form-control" type="number" value="0" id="CuotaRecup" name="CuotaRecup">
                   <br>
                   <button type="submit" class="btn btn-primary" name="submit">Registrar servicio</button>
 

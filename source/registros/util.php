@@ -60,7 +60,7 @@ function getIdPaciente($paciente){
 
 function getIdVoluntario($voluntario){
     $conn=conectDb();
-    $query = "SELECT IdVoluntario FROM voluntarios WHERE Nombre like '$paciente'";
+    $query = "SELECT IdVoluntario FROM voluntarios WHERE Nombre like '$voluntario'";
     $res = mysqli_query($conn, $query);
     $resultado;
     if(mysqli_num_rows($res) > 0){//If there are actually results
@@ -95,7 +95,9 @@ function getIdServicio($servicio){
 
 function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
     $con= conectDb();
-    $sql ="INSERT INTO atienden values($departamento,$paciente,$asistente,$fecha,$tipo,'$observaciones',$cuota)";
+    //echo '<script type="text/javascript">','alert("'.$departamento.' '.$paciente.' '.$asistente.' '.$fecha.' '.$tipo.' '.$observaciones.' '.$cuota.'");','</script>';
+
+    $sql ="INSERT INTO atienden values(1,$departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
