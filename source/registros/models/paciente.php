@@ -52,7 +52,7 @@ function listarPacientesCon($pattern) {
 
 	for ($i=0; $i < count($todosLosPacientes); $i++) {
         $pos = stripos(strtolower($todosLosPacientes[$i]['Nombre']), $pattern);
-        if (!($pos === false)) {
+        if (!($pos === false) or strtolower($pattern) == "all") {
                 $paciente = $todosLosPacientes[$i];
                 array_push($pacientes, array('id'=> $paciente['IdPaciente'], 'fname'=>$paciente['Nombre']));
         }
