@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 function conectDb(){
   /*$servername="localhost";
@@ -10,14 +10,14 @@ function conectDb(){
   $username= "sql9284997";
   $password= "K2kRkpIfJR";
   $dbname="sql9284997";
-        
+
   $con = mysqli_connect($servername,$username,$password,$dbname);
-        
+
   if(!$con){
     die("Connection failed: " . mysqli_connect_error());
   }
-  
-  return $con;  
+
+  return $con;
 }
 
 function closeDb($mysql){
@@ -45,13 +45,13 @@ $month = date('m', strtotime($Fecha));
     $date .="-";
     $date .=$month;
     $date .="-01";
-    
+
     $date2='';
     $date2 .=$year;
     $date2 .="-";
     $date2 .=$month;
     $date2 .="-31";
-    
+
    $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE idDepartmaneto = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
@@ -73,20 +73,20 @@ $month = date('m', strtotime($Fecha));
     }
   }
     echo '</tbody></table>';
-    
+
     mysqli_free_result($result);
     closeDb($conn);
     return $result;
 }
 
 function getServicioByFecha($Fecha,$Fecha2){
-    
+
   $conn=conectDb();
   $year = date('Y', strtotime($Fecha));
   $month = date('m', strtotime($Fecha));
 
     $conn=conectDb();
-    
+
 $year = date('Y', strtotime($Fecha));
 
 $month = date('m', strtotime($Fecha));
@@ -98,13 +98,13 @@ $month2 = date('m', strtotime($Fecha2));
     $date .="-";
     $date .=$month;
     $date .="-01";
-    
+
     $date2='';
     $date2 .=$year2;
     $date2 .="-";
     $date2 .=$month2;
     $date2 .="-31";
-    
+
    $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
     $result= mysqli_query($conn,$sql);
       if(mysqli_num_rows($result)>0){
@@ -117,12 +117,12 @@ $month2 = date('m', strtotime($Fecha2));
       echo '<td>'.$row["NombreServicio"].'</td>';
       echo '<td>'.$row["Descripcion"].'</td>';
       echo '<td>'.$row["Fecha"].'</td>';
-      
+
       echo '</tr>';
     }
   }
     echo '</tbody></table>';
-    
+
     mysqli_free_result($result);
     closeDb($conn);
     return $result;
@@ -133,20 +133,20 @@ function insertnew($NombreServicio,$Descripcion,$idDepartmaneto,$Fecha){
      if (!($statement = $conn->prepare($sql))) {
             die("Preparation failed: (" . $conn->errno . ") " . $conn->error);
         }
-    
+
    $NombreServicio = $conn->real_escape_string($NombreServicio);
      $Descripcion = $conn->real_escape_string($Descripcion);
-   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto); 
-    $Fecha = $conn->real_escape_string($Fecha); 
+   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto);
+    $Fecha = $conn->real_escape_string($Fecha);
 
    if (!$statement->bind_param("ssss", $NombreServicio, $Descripcion, $idDepartmaneto,$Fecha)) {
-            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error); 
+            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
         }
          // Executing the statement
          if (!$statement->execute()) {
             die("Execution failed: (" . $statement->errno . ") " . $statement->error);
-          } 
- 
+          }
+
     closeDb($conn);
 }
 
@@ -154,7 +154,7 @@ function delete_by_ID($ID){
     $conn=conectDb();
     $sql="DELETE FROM tipodeservicio WHERE IdServicio = '".$ID."' ";
        $ID = $conn->real_escape_string($ID);
-        
+
     $result= mysqli_query($conn,$sql);
     closeDb($conn);
     return $result;
@@ -163,20 +163,20 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
    $conn=conectDb();
     $sql ="UPDATE tipodeservicio SET NombreServicio='$NombreServicio2', Descripcion='$Descripcion2', idDepartmaneto='$idDepartmaneto2' WHERE IdServicio = '".$IdServicios2."' ";
     $result = mysqli_query($conn,$sql);
-     
+
     $IdServicios2 = $conn->real_escape_string($IdServicios2);
    $NombreServicio = $conn->real_escape_string($NombreServicio2);
      $Descripcion2 = $conn->real_escape_string($Descripcion2);
-   $idDepartmaneto2 = $conn->real_escape_string($idDepartmaneto2); 
+   $idDepartmaneto2 = $conn->real_escape_string($idDepartmaneto2);
     closeDb($conn);
     return $result;
-    
+
 }
 
 //Aqui va lo de tony----------------
 
 
-  //Obtiene todos los voluntarios 
+  //Obtiene todos los voluntarios
   function getVoluntarios(){
   	$conn=conectDb();
   	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios";
@@ -208,7 +208,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   //Obtiene la contraaseña del departamento
   function getContraseniaById($id){
     $conn=conectDb();
-    $sql="SELECT contraseña, FROM departamento";
+    $sql="SELECT contrasena FROM departamento WHERE IdDepartamento = '".$id."' ";
     $result = mysqli_query($conn, $sql);
     closeDb($conn);
     return $result;
@@ -225,27 +225,27 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
 
   function insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo) {
         $bd = conectDb();
-        
-        // insert command specification 
+
+        // insert command specification
         $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo) VALUES (?,?,?,?,?)';
-        // Preparing the statement 
+        // Preparing the statement
         if (!($statement = $bd->prepare($query))) {
             die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
         }
-        
+
         $nombre = $bd->real_escape_string($nombre);
         $fechaNacimiento = $bd->real_escape_string($fechaNacimiento);
         $genero = $bd->real_escape_string($genero);
         $cargo = $bd->real_escape_string($cargo);
         $tipo = $bd->real_escape_string($tipo);
-        
+
         if (!$statement->bind_param("sssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo)) {
-            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error); 
+            die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
         }
          // Executing the statement
          if (!$statement->execute()) {
             die("Execution failed: (" . $statement->errno . ") " . $statement->error);
-          } 
+          }
 
         closeDb($bd);
     }
@@ -273,6 +273,6 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
 
         closeDb($conn);
         return $result;
-        
+
     }
 ?>
