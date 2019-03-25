@@ -150,8 +150,7 @@
    if($error!=100){
        echo '<script type="text/javascript">',
      'alert("'.$error.'");',
-     '</script>'
-;
+     '</script>';
    }
    include("registro.html");   
   }
