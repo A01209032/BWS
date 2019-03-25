@@ -2,7 +2,7 @@
     /*color:darkred;
     border-width: medium;
     border-color: whitesmoke;
-    background-color:#FA8072	;
+    background-color:#FA8072  ;
     font-size: 20px;*/
     font-family: Palatino, URW Palladio L, serif;
 }
@@ -143,6 +143,7 @@ body {
     margin-left: 0;
     padding-right: 0;
     padding-left: 0;
+    margin-top: -25px;
   }
 
   #password-img {
@@ -166,8 +167,10 @@ body {
     color: #fefefe;
     font-weight: bold;
 
-    /*padding: 12px;*/
+    padding: 12px;
     border-radius: 10px;
+    margin-top: 25px;
+    
   }
 
 

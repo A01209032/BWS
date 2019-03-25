@@ -1,20 +1,51 @@
 <?php
 session_start();
 require_once('utils/server.php');
+require_once('models/departamento.php');
 
 if (isset($_POST['user'])) {
 
-	// include('administracion/util.php');
+	//include('administracion/util.php');
 
-	// $conn = conectDb();
+	//$conn = conectDb();
 
-	// $query = "SELECT IdDepartamento,NombreDepartamento,contraseña FROM departamento WHERE NombreDepartamento = " . $_POST['user'] . " AND contraseña = ".$_POST['pass'];
+	/*$query = "SELECT IdDepartamento,NombreDepartamento,contraseña FROM departamento WHERE NombreDepartamento = " . $_POST['user'] . " AND contraseña = ".$_POST['pass'];*/
 
-	// $res = mysqli_query($conn, $query);
+	//$res = mysqli_query($conn, $query);
+
+	$user = findDepartmentByName($_POST['user']);
+
+	if (!$user) {
+		$error = "¡No se seleccionó ningún departamento!";
+		include("views/_header_login.html");
+		include("views/login_view.php");
+
+		exit;
+	}
+
+	//print_r($_POST);
+	//print_r($user);
+	//echo "POST=$_POST['pass']  USER=$user['pass']";
+
+	if ($user['pass'] != $_POST['pass']) {
+		$error = "¡La contraseña no es correcta!";
+		include("views/_header_login.html");
+		include("views/login_view.php");
+
+		exit;
+	}
+
+	$_SESSION['departamento'] = strtolower($user['name']);
+
+	if ($user['name'] == 'administrador') {
+		header("Location: ".frombase("admin.php"));
+	} else {
+		header("Location: ".frombase("registros/registro.php"));
+	}
 
 	// if (mysqli_num_rows($res) > 0) {S
 		// User Validated
-
+/*
 		if ($_POST['user'] == "administrador" &&
 			$_POST['pass'] == "0,4,1,4") {
 
@@ -55,7 +86,7 @@ if (isset($_POST['user'])) {
 	// }
 
 	// closeDb($conn);
-
+*/
 } else {
 	
 	include("views/_header_login.html");

@@ -44,7 +44,9 @@
       </div>
       <div class="col-md-7 col-lg-7 mb-7" id="password-sect">
         <!-- <img src="images/rosario_contra.jpg" id="password-img"> -->
-        <span class="error-span"><?php if(isset($error)) echo $error; ?></span>
+        <?php if(isset($error)): ?>
+          <span class="error-span"><?= $error ?></span>
+        <?php endif; ?>
         <div id="rosario">
           <img id="ros-cruz" src="../Images/ros_cruz.png" width=48 height=64>
         </div>
@@ -57,7 +59,7 @@
             <!-- <button id="submit" name="submit" type="submit">Entrar</button> -->
           </form>
         </div>
-        <button id="enter-btn">Entrar</button>
+        <button id="enter-btn" class="btn btn-primary">Entrar</button>
       </div>
     </div>
 
