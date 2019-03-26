@@ -6,7 +6,7 @@
         getServicioByFecha($_POST["date"],$_POST["date2"]);
     
             
-    include("partials/_generar_reporte.html") 
+   
 
 
 ?>
