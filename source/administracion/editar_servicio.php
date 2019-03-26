@@ -17,19 +17,19 @@
         if(update_Servicio($id,$nombre,$descripcion,$depa)){
           //Se cargaron los datos
           echo '<script language="javascript">';
-            echo 'alert("Se edito el servicio")';
+            echo 'alert("Se edito el servicio correctamente!"); window.location="consultas.php";';
             echo '</script>';
-            echo '<script language="javascript">';
+         /*   echo '<script language="javascript">';
  //echo 'window.location.href="../administracion/consultas.php"';
             echo 'javascript:history.back()';
-                echo '</script>';}
+                echo '</script>';*/
+                }
             //header('Location: '.$_SERVER['HTTP_REFERER']);
         else{
           //Error al cargar las datos
-          echo '<script language="javascript">';
-            echo 'alert("No se encontro el registro del servicio")';
+           echo '<script language="javascript">';
+            echo 'alert("No se edito el servicio"); window.location="consultas.php";';
             echo '</script>';
-            echo '<script language="javascript">';
  //echo 'window.location.href="../administracion/consultas.php"';
             echo 'javascript:history.back()';
                 echo '</script>';

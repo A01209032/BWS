@@ -66,14 +66,19 @@ $month = date('m', strtotime($Fecha));
       echo ' <td>' .$row["NombreServicio"]. '</td> ';
       echo ' <td>' .$row["Descripcion"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
-        echo '<td>'.'<input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
+        echo '<td>'.'<input type="button" name="edit" value="Modificar" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
         //echo $row["NombreServicio"];
         echo  '<td>'.'<form method="POST" action="eliminar_servicio.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
       echo '</tr>';
     }
+   echo '</tbody></table>';
   }
-    echo '</tbody></table>';
 
+     else{
+        echo "No hay registros en esa fecha o el departamento";
+    }
+    
+    
     mysqli_free_result($result);
     closeDb($conn);
     return $result;
@@ -120,9 +125,15 @@ $month2 = date('m', strtotime($Fecha2));
 
       echo '</tr>';
     }
+           echo '</tbody></table>';
+    include("partials/_generar_reporte.html") ; 
   }
-    echo '</tbody></table>';
 
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+   
+    
     mysqli_free_result($result);
     closeDb($conn);
     return $result;
@@ -179,7 +190,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   //Obtiene todos los voluntarios
   function getVoluntarios(){
   	$conn=conectDb();
-  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios";
+  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios WHERE Activo=1";
   	$result = mysqli_query($conn, $sql);
   	closeDb($conn);
   	return $result;
@@ -227,7 +238,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
     $bd = conectDb();
 
     // insert command specification
-    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo) VALUES (?,?,?,?,?)';
+    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo,Activo) VALUES (?,?,?,?,?,?)';
     // Preparing the statement
     if (!($statement = $bd->prepare($query))) {
       die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
@@ -238,8 +249,9 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
     $genero = $bd->real_escape_string($genero);
     $cargo = $bd->real_escape_string($cargo);
     $tipo = $bd->real_escape_string($tipo);
+    $uno=1;
 
-    if (!$statement->bind_param("sssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo)) {
+    if (!$statement->bind_param("ssssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo,$uno)) {
       die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
     }
     // Executing the statement
@@ -251,10 +263,19 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   }
 
   function deleteVoluntarioById($id){
+    /*
     $conn=conectDb();
     $sql="DELETE FROM voluntarios WHERE IdVoluntario = '".$id."' ";
     $id = $conn->real_escape_string($id);
     $result= mysqli_query($conn,$sql);
+    closeDb($conn);
+    return $result;*/
+    $conn=conectDb();
+    $sql ="UPDATE voluntarios SET Activo='0' WHERE IdVoluntario= '".$id."' ";
+    $result = mysqli_query($conn,$sql);
+
+    $id = $conn->real_escape_string($id);
+
     closeDb($conn);
     return $result;
   }

@@ -10,22 +10,14 @@
     if (isset($_POST["id"])) {
         
         if(delete_by_ID($id)){
-        echo '<script language="javascript">';
-        echo 'alert("Se eliminó correctamente el servicio")';
-        echo '</script>';
-            echo '<script language="javascript">';
- //echo 'window.location.href="../administracion/consultas.php"';
-            echo 'javascript:history.back()';
-                echo '</script>';
+         echo '<script language="javascript">';
+            echo 'alert("Se elimino el servicio correctamente"); window.location="consultas.php";';
+            echo '</script>';
             
     }else{
-        echo '<script language="javascript">';
-        echo 'alert("No se pudo eliminar")';
-        echo '</script>';
-             echo '<script language="javascript">';
- //echo 'window.location.href="../administracion/consultas.php"';
-            echo 'javascript:history.back()';
-                echo '</script>';
+         echo '<script language="javascript">';
+            echo 'alert("No se pudo eliminar el ervicio"); window.location="consultas.php";';
+            echo '</script>';
     }
         
        
