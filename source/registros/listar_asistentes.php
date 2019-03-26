@@ -33,7 +33,7 @@ if (isset($_GET['pattern'])) {
 	// Remover Ataque SQL
 	// $asistentesPattern = mysqli_escape_string($asistentesPattern);
 
-	$asistentes = listarAsistentesCon($asistentesPattern);
+	$asistentes = listarVoluntariosCon($asistentesPattern);
 
 	$resStr = "";
 	for ($i=0; $i < count($asistentes); $i++) {
