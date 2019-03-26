@@ -37,7 +37,7 @@ echo '    <div class="col-lg-3">
         <div class="card-body">
           <h5 class="card-title">Dispensario</h5>
           <p class="card-text"><b>Contraseña actual:</b></p>';
-          $result=getContraseniaById(2);
+          $result=getContraseniaById(3);
           while($row=mysqli_fetch_assoc($result)){
               echo ''.$row["contrasena"].'<br><br>';
           }
@@ -59,7 +59,7 @@ echo '
         <div class="card-body">
           <h5 class="card-title">Porteria</h5>
             <p class="card-text"><b>Contraseña actual:</b></p>';
-            $result=getContraseniaById(3);
+            $result=getContraseniaById(4);
             while($row=mysqli_fetch_assoc($result)){
                 echo ''.$row["contrasena"].'<br><br>';
             }
@@ -82,7 +82,7 @@ echo '
           <div class="card-body">
             <h5 class="card-title">Asistencias</h5>
             <p class="card-text"><b>Contraseña actual:</b></p>';
-            $result=getContraseniaById(4);
+            $result=getContraseniaById(2);
             while($row=mysqli_fetch_assoc($result)){
                 echo ''.$row["contrasena"].'<br><br>';
             }
