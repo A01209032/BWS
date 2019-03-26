@@ -32,8 +32,11 @@
                   <br>
                   <br>
                   <label for="asistente">Asistente <span id="error"><?php echo $asistenteErr; ?></span></label>
-                  <input type="text" id="asistente" name="asistente" placeholder="">
-
+                  <br>
+                  <div class="autocomplete">
+                    <input type="text" id="asistente" name="asistente" placeholder="">
+                  </div>
+                  <br>
                   <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
                   <input  type="date" value="<?php echo date('Y-m-d')?>" id="fecha" name="fecha">
 
@@ -118,7 +121,7 @@
       data: {pattern: 'all'},
       type: 'json',
       success: function(data) {
-        console.log("res:" + data);
+        console.log("Pacientes:" + data);
         data = JSON.parse(data);
         if (data[0] == "Error") {
           alert("There was a critical error on the server!");
@@ -132,7 +135,32 @@
         }
         autocomplete(document.getElementById('paciente'), nombres);
       }
-    });  
+    });
+
+
+
+    $.ajax({
+      url: "listar_asistentes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Asistentes:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('asistente'), nombres);
+      }
+    });
+
   });
   
 
