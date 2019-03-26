@@ -15,16 +15,16 @@
 //include('common/utils/database.php');
 require_once('util.php');
 
-function listarPacientesCon($pattern) {
+function listarVoluntariosCon($pattern) {
 
-	$pacientes = array();
+	$voluntarios = array();
 
 	$conn = conectDB();
 
-	// For Table Pacientes con Nombre y Apellido
-	$sqlQuery = "SELECT IdPaciente, Nombre
-				 FROM pacientes 
-				 ORDER BY nombre";
+	// For Table voluntarios con Nombre y Apellido
+	$sqlQuery = "SELECT IdVoluntario, Nombre
+				 FROM voluntarios 
+				 ORDER BY Nombre";
 
 
 
@@ -32,34 +32,15 @@ function listarPacientesCon($pattern) {
 
 	if (mysqli_num_rows($res) > 0) {
 		while ($row = mysqli_fetch_assoc($res)) {
-			$id    = $row['IdPaciente'];
+			$id    = $row['IdVoluntario'];
 			$fname = $row['Nombre'];
-			array_push($pacientes, array("id"=>$id, "fname"=>$fname));
+			array_push($voluntarios, array("id"=>$id, "fname"=>$fname));
 		}
 	}
 
-
-
 	closeDB($conn);
 
-	return $pacientes;
+	return $voluntarios;
 }
 
-
-/*
- * Funcion A Implementar
-*/
-function buscarPacientePorId($id) {
-	$paciente = array();
-
-	$found = false;
-
-	// Conectar, Consultar/Buscar, Cerrar Sesion
-
-	if (!$found)
-		return false;
-
-	return $paciente;
-}
-
- ?>
+?>
