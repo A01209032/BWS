@@ -22,10 +22,6 @@ function listarPacientesCon($pattern) {
 	$conn = conectDB();
 
 	// For Table Pacientes con Nombre y Apellido
-	/*$sqlQuery = "SELECT IdPaciente, (nombre + '' + apellido) as 'Full Name'
-				 FROM paciente 
-				 HAVING (nombre + '' + apellido) LIKE ?
-				 ORDER BY 'Full Name'";*/
 	$sqlQuery = "SELECT IdPaciente, Nombre
 				 FROM pacientes 
 				 ORDER BY nombre";
@@ -42,25 +38,9 @@ function listarPacientesCon($pattern) {
 		}
 	}
 
-	// TODO: ESTO ES UNA SIMULACION DE LA FUNCIONALIDAD REALMENTE SERIA CON SQL
-	// $todosLosPacientes = array(array("IdPaciente"=>0, "Nombre"=>"Juan Jose Olivera"),
-	// 						   array("IdPaciente"=>1, "Nombre"=>"Domenica Renteria"),
-	// 						   array("IdPaciente"=>2, "Nombre"=>"Juan Carlos Diaz"),
-	// 						   array("IdPaciente"=>3, "Nombre"=>"Agusto Dominguez"),
-	// 						   array("IdPaciente"=>4, "Nombre"=>"Ana Alcantara"),
-	// 						   array("IdPaciente"=>5, "Nombre"=>"Antonio Diaz"));
-
-	// for ($i=0; $i < count($todosLosPacientes); $i++) {
- //        $pos = stripos(strtolower($todosLosPacientes[$i]['Nombre']), $pattern);
- //        if (!($pos === false) or strtolower($pattern) == "all") {
- //                $paciente = $todosLosPacientes[$i];
- //                array_push($pacientes, array('id'=> $paciente['IdPaciente'], 'fname'=>$paciente['Nombre']));
- //        }
-	// }	
 
 
-
-	// closeDB($conn);
+	closeDB($conn);
 
 	return $pacientes;
 }
