@@ -12,49 +12,54 @@
               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
             </div>
             <div class="column">
-              <form action="registro_paciente.php" method="POST">
-
+              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                   
-                  <label for="fname">Nombre</label>
+                  <label for="nombre">Nombre <span id="error"><?php echo $nombreErr;?></span></label>
                 <input type="text" id="nombre" name="nombre" placeholder="">
 
-                  <label for="lname">Apellido</label>
+                  <label for="apellido">Apellido <span id="error"><?php echo $apellidoErr;?></span></label>
                 <input type="text" id="apellido" name="apellido" placeholder="">
 
-                <label for="sexo">Enfermedad</label>
-                <select id="religion" name="religion">
+                <label for="enfermedad">Enfermedad <span id="error"><?php echo $enfermedadErr;?></span></label>
+                <select id="enfermedad" name="enfermedad">
                   <option value="diabetes">Diabetes</option>
                   <option value="cancer">Cancer</option>
                 </select>
 
 
-                <label for="lname">Direccion</label>
-                <input type="text" id="apellido" name="apellido" placeholder="">
+                <label for="direccion">Direccion</label>
+                <input type="text" id="direccion" name="direccion" placeholder="">
 
-              <label for="lname">Telefono</label>
-              <input type="text" id="telefono" name="telefono" placeholder="">
-
-              <label for="lname">Celular</label>
-            <input type="text" id="celular" name="celular " placeholder="">
-
-                <label>Fecha de Nacimiento</label>
+              <label for="telefono">Telefono</label> <br>
+              <input class="form-control" type="tel" id="telefono" name="telefono" placeholder="">
+                <br>
+              <label for="celular">Celular</label><br>
+              <input class="form-control" type="tel" id="celular" name="celular" placeholder="">
+                  <br>
+                <label for="fecha_nacimiento">Fecha de Nacimiento <span id="error"><?php echo $fechaNacimientoErr;?></span></label>
                   <br>
                 <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
                   <br>
                   <br>
 
-                <label for="sexo">Sexo</label>
+                <label for="sexo">Sexo <span id="error"><?php echo $sexoErr;?></span></label>
                 <select id="sexo" name="sexo">
-                  <option value="masculino">Masculino</option>
-                  <option value="femenino">Femenino</option>
+                  <option selected value="M">Masculino</option>
+                  <option value="F">Femenino</option>
                 </select>
 
-                <label for="sexo">Religion</label>
+                <label for="religion">Religion <span id="error"><?php echo $religionErr;?></span></label>
                 <select id="religion" name="religion">
-                  <option value="Catolico">Catolico</option>
+                  <option selected value="Catolico">Catolico</option>
                   <option value="Protestante">Protestante</option>
                 </select>
-
+                <label for="nivel">Nivel Economico <span id="error"><?php echo $nivelErr;?></span></label>
+                <select id="nivel" name="nivel">
+                  <option selected value="Medio">Medio</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Bajo">Bajo</option>
+                </select>
+                <button type="submit" class="btn btn-primary" id="submit" name="submit" >Agregar paciente</button>
 
                  
               </form>
@@ -68,3 +73,10 @@
 
 
 <br>
+
+          </div>
+
+      <!-- Modal footer -->
+                         <div class="modal-footer">
+                            
+                         </div>

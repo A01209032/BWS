@@ -96,12 +96,22 @@ function getIdServicio($servicio){
 function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
     $con= conectDb();
     //echo '<script type="text/javascript">','alert("'.$departamento.' '.$paciente.' '.$asistente.' '.$fecha.' '.$tipo.' '.$observaciones.' '.$cuota.'");','</script>';
-
-    $sql ="INSERT INTO atienden values(1,$departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
+    $sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
 }
+
+function addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
+    $con= conectDb();
+    //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
+    $sql ="INSERT INTO `pacientes`(`Nombre`, `FechadeNacimiento`, `Sexo`, `Activo`, `Direccion`, `Telefono`, `Celular`,`Religion`,`NivelEconomico`) values('$nombre','$fechaNacimiento','$sexo',1,'$direccion',$telefono,$celular,'$religion','$nivel')";
+    $result = mysqli_query($con,$sql);
+    closeDb($con);
+    return $result;
+}
+
+
 
 
 

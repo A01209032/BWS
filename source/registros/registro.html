@@ -17,7 +17,7 @@
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
                   <br>
                   <div class="autocomplete">
-                    <input type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                    <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
                   </div>
                   <br>
                   <!--<button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>-->
@@ -50,6 +50,8 @@
                     case 'porteria':
                      echo ' <option selected value="Servicio">Servicio</option>';
                      echo '<option value="Alimento">Alimento</option>';
+                     echo '<option value="Despensa">Despensa</option>';
+                     echo '<option value="Ropa">Ropa</option>';
                       break;
                     case 'dispensario':
                       echo ' <option selected value="Dispensario">Dispensario</option>';
@@ -65,7 +67,7 @@
                     
                   </select>
 
-                  <label for="tipo">Observaciones</label>
+                  <label for="observaciones">Observaciones</label>
                   <input type="text" id="observaciones" name="observaciones">
                   
                   <label for="CuotaRecup">Cuota de Recuperacion</label>
@@ -101,12 +103,7 @@
                             <?php
                               include("registro_paciente.php");
                             ?>
-                         </div>
-
-      <!-- Modal footer -->
-                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit" >Agregar paciente</button>
-                         </div>
+               
 
                        </div>
                      </div>
@@ -114,27 +111,30 @@
 
 <script type="text/javascript" src="autocomplete.js"></script>
 <script type="text/javascript">
-  $.ajax({
-    url: "listar_pacientes.php",
-    method: 'GET',
-    data: {pattern: 'all'},
-    type: 'json',
-    success: function(data) {
-      console.log("res:" + data);
-      data = JSON.parse(data);
-      if (data[0] == "Error") {
-        alert("There was a critical error on the server!");
-        return;
+  window.addEventListener("load", function() {
+    $.ajax({
+      url: "listar_pacientes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("res:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('paciente'), nombres);
       }
-      console.log(data);
-      var nombres = [];
-      for (var i=0; i < data.length; i++) {
-        console.log(data[i])
-        nombres.push(data[i]['fname']);
-      }
-      autocomplete(document.getElementById('paciente'), nombres);
-    }
+    });  
   });
+  
 
   
 </script>

@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include("../views/_header_carpetas.html");
   require_once ("util.php");
 
