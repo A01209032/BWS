@@ -179,7 +179,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   //Obtiene todos los voluntarios
   function getVoluntarios(){
   	$conn=conectDb();
-  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios";
+  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios WHERE Activo=1";
   	$result = mysqli_query($conn, $sql);
   	closeDb($conn);
   	return $result;
@@ -227,7 +227,7 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
     $bd = conectDb();
 
     // insert command specification
-    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo) VALUES (?,?,?,?,?)';
+    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo,Activo) VALUES (?,?,?,?,?,?)';
     // Preparing the statement
     if (!($statement = $bd->prepare($query))) {
       die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
@@ -238,8 +238,9 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
     $genero = $bd->real_escape_string($genero);
     $cargo = $bd->real_escape_string($cargo);
     $tipo = $bd->real_escape_string($tipo);
+    $uno=1;
 
-    if (!$statement->bind_param("sssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo)) {
+    if (!$statement->bind_param("ssssss", $nombre,$fechaNacimiento,$genero,$cargo,$tipo,$uno)) {
       die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
     }
     // Executing the statement
@@ -251,10 +252,19 @@ function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartm
   }
 
   function deleteVoluntarioById($id){
+    /*
     $conn=conectDb();
     $sql="DELETE FROM voluntarios WHERE IdVoluntario = '".$id."' ";
     $id = $conn->real_escape_string($id);
     $result= mysqli_query($conn,$sql);
+    closeDb($conn);
+    return $result;*/
+    $conn=conectDb();
+    $sql ="UPDATE voluntarios SET Activo='0' WHERE IdVoluntario= '".$id."' ";
+    $result = mysqli_query($conn,$sql);
+
+    $id = $conn->real_escape_string($id);
+
     closeDb($conn);
     return $result;
   }

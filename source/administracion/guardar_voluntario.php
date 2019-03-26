@@ -16,7 +16,7 @@
         $cargo=htmlspecialchars($_POST["cargo"]);
         $tipo=htmlspecialchars($_POST["tipo"]);
 
-        /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo);//){
+        /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo,1);//){
           //Se cargaron los datos
           //include("voluntarios.php");
           
