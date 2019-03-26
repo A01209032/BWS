@@ -8,7 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Reportes</title>
+  <!--title>Reportes</title-->
+  <title><?php echo $_SESSION['departamento']; ?></title>
 
   <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,8 +26,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 
-<link rel="stylesheet" href="css/reportes.css">
-<link href="css/styleTony.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../css/reportes.css">
+<link href="../css/styleTony.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -36,10 +37,11 @@
    <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light static-top divEnmarcado header">
     <div class="container " id="login-container">
-      <a class="navbar-brand" href="#" > <img src="Images/logo_oficial_enfermera.png" style="width:30%"></a>
+      <a class="navbar-brand" href="#" > <img src="../Images/logo_oficial_enfermera.png" style="width:30%"></a>
       <div class="text-center">
         <h3 class="tituloPrincipal"><strong>Siervas de Maria <br> Ministras de los enfermos</strong></h3>
-        <h5>Rol<h5>
+        <!--h5>Rol<h5-->
+          <h5><?php echo $_SESSION['departamento']; ?><h5>
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

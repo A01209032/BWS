@@ -38,7 +38,7 @@ if (isset($_POST['user'])) {
 	$_SESSION['departamento'] = strtolower($user['name']);
 
 	if ($user['name'] == 'administrador') {
-		header("Location: ".frombase("admin.php"));
+		header("Location: ".frombase("administracion/admin.php"));
 	} else {
 		header("Location: ".frombase("registros/registro.php"));
 	}
