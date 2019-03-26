@@ -62,13 +62,17 @@ $month = date('m', strtotime($Fecha));
       echo ' <td>' .$row["NombreServicio"]. '</td> ';
       echo ' <td>' .$row["Descripcion"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
-        echo '<td>'.'<input type="button" name="edit" value="Edit" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
+        echo '<td>'.'<input type="button" name="edit" value="Modificar" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
         //echo $row["NombreServicio"];
         echo  '<td>'.'<form method="POST" action="eliminar_servicio.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
       echo '</tr>';
     }
+   echo '</tbody></table>';
   }
-    echo '</tbody></table>';
+     else{
+        echo "No hay registros en esa fecha o el departamento";
+    }
+    
     
     mysqli_free_result($result);
     closeDb($conn);
@@ -116,8 +120,13 @@ $month2 = date('m', strtotime($Fecha2));
       
       echo '</tr>';
     }
+           echo '</tbody></table>';
+    include("partials/_generar_reporte.html") ; 
   }
-    echo '</tbody></table>';
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+   
     
     mysqli_free_result($result);
     closeDb($conn);
