@@ -82,19 +82,32 @@
       
   
       }
-      }else $error=1;
       
-  if($error) include("registro_paciente.html");
-  else {
-   //echo '<script type="text/javascript">','alert("'.$nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel.'");','</script>';
-   $error=registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
-   if($error!=100){
-       echo '<script type="text/javascript">',
-     'alert("'.$error.'");',
-     '</script>';
-   }
-   include("registro_paciente.html");   
-  }
+
+      if($error) echo "Error: En los campos!";
+      else {
+       //echo '<script type="text/javascript">','alert("'.$nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel.'");','</script>';
+       $error=registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
+
+
+       if($error!=100)
+         echo "Error: En insercion de base de datos!";
+       else 
+          echo "Success: Al ingresar datos";
+      }
+
+
+      }else {
+
+
+          // Por El Momento Nada
+
+
+      }
+  
+
+
+  
 
 
 

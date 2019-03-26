@@ -12,7 +12,7 @@
               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
             </div>
             <div class="column">
-              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" id="form_pacientes">
                   
                   <label for="nombre">Nombre <span id="error"><?php echo $nombreErr;?></span></label>
                 <input type="text" id="nombre" name="nombre" placeholder="">

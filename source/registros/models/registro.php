@@ -1,5 +1,6 @@
 <?php 
     
+    require_once('util.php');
     
     
     function registrar($paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
