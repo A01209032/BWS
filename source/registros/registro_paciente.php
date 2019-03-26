@@ -66,6 +66,9 @@
      'alert("'.$error.'");',
      '</script>';
    }
+   else  echo '<script type="text/javascript">',
+     'alert("'.'Registro exitoso'.'");',
+     '</script>';
    include("registro_paciente.html");   
   }
 
