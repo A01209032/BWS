@@ -11,7 +11,7 @@
                 <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
               </div>
               <div class="column">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="off">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="off" id="form_registros">
 
 
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
@@ -104,10 +104,8 @@
                          <!-- Modal body -->
                          <div class="modal-body">
                             <?php
-                              include("registro_paciente.php");
+                              include("registro_paciente.html");
                             ?>
-               
-
                        </div>
                      </div>
                    </div>
@@ -115,6 +113,81 @@
 <script type="text/javascript" src="autocomplete.js"></script>
 <script type="text/javascript">
   window.addEventListener("load", function() {
+
+    // Habilitar Ajax a los forms para que todo sea con js
+    $('#form_pacientes').on('submit', function(ev) {
+      ev.preventDefault();
+
+
+
+      $.ajax({
+        url: 'registro_paciente.php',
+        method: 'POST',
+        data: {
+          nombre: $('#nombre').val(),
+          apellido: $('#apellido').val(),
+          enfermedad: $('#enfermedad').val(),
+          direccion: $('#direccion').val(),
+          telefono: $('#telefono').val(),
+          celular: $('#celular').val(),
+          fecha_nacimiento: $('#fecha_nacimiento').val(),
+          sexo: $('#sexo').val(),
+          religion: $('#religion').val(),
+          nivel: $('#nivel').val()
+        },
+        success: function(data) {
+          if (data.split(':')[0] == "Error") {
+            alert(data);
+          } else {
+            $('#myModal').modal('hide');
+          }
+        },
+        dataType: 'text'
+      });
+
+      
+    });
+
+    // Registro Servicio AJAX
+    $('#form_registros').on('submit', function(ev) {
+      ev.preventDefault();
+
+
+
+      $.ajax({
+        url: 'nuevo_registro.php',
+        method: 'POST',
+        data: {
+          paciente: $('#paciente').val(),
+          asistente: $('#asistente').val(),
+          fecha: $('#fecha').val(),
+          tipo: $('#tipo').val(),
+          observaciones: $('#observaciones').val(),
+          CuotaRecup: $('#CuotaRecup').val(),
+          submit: ''
+        },
+        success: function(data) {
+          var status = data.split(':')[0];
+          var msg = data.split(':')[1];
+          if (status == "Error") {
+            alert(data);
+          } else {
+            $('#paciente').val('');
+            $('#asistente').val('');
+            $('#fecha').val('');
+            $('#tipo').val('');
+            $('#observaciones').val('');
+            $('#CuotaRecup').val('');
+          }
+        },
+        dataType: 'text'
+      });
+
+      
+    });
+
+
+    // Cargar Lista de Pacientes
     $.ajax({
       url: "listar_pacientes.php",
       method: 'GET',
@@ -138,7 +211,7 @@
     });
 
 
-
+    // Cargar Lista de Voluntarios/Asistentes
     $.ajax({
       url: "listar_asistentes.php",
       method: 'GET',

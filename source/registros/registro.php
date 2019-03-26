@@ -1,15 +1,17 @@
 <?php
   session_start();
+  /*
   require_once("../util.php");
   require_once("util.php");
   require_once("models/registro.php");
-   include("../views/_header.html");
+  include("../views/_header.html");
 
   switch ($_SESSION['departamento']) {
     case 'asistencias':
       $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
      $paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
      $error = 1;
+     
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if (empty($_POST["paciente"])) {
      $pacienteErr = "Datos incompletos";
@@ -155,10 +157,10 @@
    include("registro.html");   
   }
 
+*/
 
-
-
-
-
+  session_start();
+  include("../views/_header.html");
+  include("registro.html"); 
   include("../views/_footer.html");
  ?>
