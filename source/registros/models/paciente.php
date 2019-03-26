@@ -63,7 +63,7 @@ function buscarPacientePorId($id) {
 }
 function registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
       $nombre = $nombre.' '.$apellido;
-      //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.'");','</script>';
+      //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.'");','</script>';
       $res=addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
       if($res){
       	return 100;    
