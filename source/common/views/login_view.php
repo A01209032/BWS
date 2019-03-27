@@ -59,7 +59,7 @@
             <!-- <button id="submit" name="submit" type="submit">Entrar</button> -->
           </form>
         </div>
-        <button id="enter-btn" class="btn btn-primary">Entrar</button>
+        <button id="enter-btn" class="btn btn-primary">Amén</button>
       </div>
     </div>
 
