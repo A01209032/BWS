@@ -4,17 +4,20 @@
     include("../views/_header_carpetas.html");
         
     //Validación de datos
-    if(isset($_POST["nombre2"]) && isset($_POST["nombre2"]) != "" &&
-        isset($_POST["descripcion2"]) && isset($_POST["descripcion2"]) != "" &&
-        isset($_POST["depa2"]) && isset($_POST["depa2"]) != "" ){
+    if(isset($_POST["depa2"]) && isset($_POST["depa2"]) != ""  &&
+        isset($_POST["paciente2"]) && isset($_POST["paciente2"]) != "" && isset($_POST["asistente2"]) && isset($_POST["asistente2"]) != ""  ){
         
+        $IdDepartamento=htmlspecialchars($_POST["depa2"]);
+        $IdPaciente=htmlspecialchars($_POST["paciente2"]);
+        $IdVoluntario=htmlspecialchars($_POST["asistente2"]);
+        $Fecha=htmlspecialchars($_POST["date2"]);
+        $IdServicio=htmlspecialchars($_POST["servicio2"]);
+$Observaciones=htmlspecialchars($_POST["Observaciones2"]);
+     $CuotaRecup=htmlspecialchars($_POST["cuota2"]);
         $temp=htmlspecialchars($_POST["employee_id"]);
-        $nombre=htmlspecialchars($_POST["nombre2"]);
-        $descripcion=htmlspecialchars($_POST["descripcion2"]);
-        $depa=htmlspecialchars($_POST["depa2"]);
         $id=intval($temp,10);
       
-        if(update_Servicio($id,$nombre,$descripcion,$depa)){
+        if(update_Servicio($id,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup)){
           //Se cargaron los datos
           echo '<script language="javascript">';
             echo 'alert("Se edito el servicio correctamente!"); window.location="consultas.php";';
@@ -35,6 +38,9 @@
                 echo '</script>';
             //var_dump($_POST);
     }
+}
+else{
+    echo "fallo";
 }
     include("../views/_footer.html");
     

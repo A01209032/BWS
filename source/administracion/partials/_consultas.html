@@ -39,26 +39,42 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                              <form action="guardar_servicio.php" method="POST">
-
-                                <label for="nombre">Nombre del servicio</label>
-                                <br>
-                                <input type="text" id="nombre" name="nombre" required>
-                                <label>Descripcion</label>
-                                  <br>
-                                <input type="text" id="descripcion" name="descripcion" required>
-                                  <p></p>
+                              <form action="guardar_servicio.php" method="POST" autocomplete="off">
+                                     <p></p>
                                 <label for="dep" style="border-left:  "> Departamento  </label>    
                                 <select name="depa" id="depa">
-                                    <option value="2">Dispensario</option>
-                                    <option value="1">Porteria</option>
-                                    <option value="3">Asistencia</option>
+                                     <option value="3">Dispensario</option>
+                                    <option value="4">Porteria</option>
+                                    <option value="2">Asistencia</option>
                                 </select>
                                 <br>
+                                <label for="paciente">Buscar paciente <span id="error"></span></label>
+                              <br>
+                              <div class="autocomplete">
+                                <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                              </div>
+                                <br>
+                              <label for="asistente"> Buscar Asistente <span id="error"></span></label>
+                              <br>
+                              <div class="autocomplete">
+                                <input type="text" id="asistente" name="asistente" placeholder="">
+                              </div>
+
+                               
                                 <div class="form-group"> <!-- Date input -->
                                 <label class="control-label"  for="date">Selecciona dia y mes:</label>
                                     <input type="date" value="YYYY-MM-DD" name="date" id="date">
                                 </div>
+                                  <label>Servicio</label>
+                                  <br>
+                                <input type="number" id="servicio" name="servicio" >
+                                  <label>Observaciones</label>
+                                  <br>
+                                <input type="text" id="Observaciones" name="Observaciones" >
+                                <br>
+                                  <label>Cuota de Recuperacion</label>
+                                  <br>
+                                <input type="number" id="cuota" name="cuota" >
                                 <br>
                                   <button type="submit" id="submit" name="submit">Agregar servicio</button>
                               </form>
@@ -107,22 +123,40 @@
                             </div>
                             <div class="column">
                                 <form action="editar_servicio.php" method="POST">
-
-                                <label for="nombre">Nombre del servicio</label>
-                                <br>
-                                <input type="text" id="nombre2" name="nombre2" required>
-                                <label>Descripcion</label>
-                                  <br>
-                                <input type="text" id="descripcion2" name="descripcion2" required>
-                                  <p></p>
                                 <label for="dep" style="border-left:  "> Departamento  </label>    
                                 <select name="depa2" id="depa2">
-                                    <option value="2">Dispensario</option>
-                                    <option value="1">Porteria</option>
-                                    <option value="3">Asistencia</option>
+                                     <option value="3">Dispensario</option>
+                                    <option value="4">Porteria</option>
+                                    <option value="2">Asistencia</option>
                                 </select>
                                 <br>
-                                
+                                <label for="paciente">Buscar paciente <span id="error"></span></label>
+                              <br>
+                              <div class="autocomplete">
+                                <input class="form-control" type="text" id="paciente2" name="paciente2" placeholder="" type="" autocomplete="off">
+                              </div>
+                                <br>
+                              <label for="asistente2"> Buscar Asistente <span id="error"></span></label>
+                              <br>
+                              <div class="autocomplete">
+                                <input type="text" id="asistente2" name="asistente2" placeholder="">
+                              </div>
+
+                               
+                                <div class="form-group"> <!-- Date input -->
+                                <label class="control-label"  for="date2">Selecciona dia y mes:</label>
+                                    <input type="date" value="YYYY-MM-DD" name="date2" id="date2">
+                                </div>
+                                  <label>Servicio</label>
+                                  <br>
+                                <input type="number" id="servicio2" name="servicio2" >
+                                  <label>Observaciones</label>
+                                  <br>
+                                <input type="text" id="Observaciones2" name="Observaciones2" >
+                                <br>
+                                  <label>Cuota de Recuperacion</label>
+                                  <br>
+                                <input type="number" id="cuota2" name="cuota2" >
                                 <br>
                                      <input type="hidden" name="employee_id" id="employee_id" >
                                   <input type="submit" id="insert" name="insert" value="Insert" class="btn btn-success" >
@@ -159,3 +193,94 @@
 
 
 <script type="text/javascript" src="edicionS.js" ></script>
+<script type="text/javascript" src="autocomplete.js"></script>
+<script type="text/javascript">
+  window.addEventListener("load", function() {
+    $.ajax({
+      url: "listar_pacientes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Pacientes:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('paciente'), nombres);
+      }
+    });
+        $.ajax({
+      url: "listar_asistentes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Asistentes:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('asistente'), nombres);
+      }
+    });
+      
+          $.ajax({
+      url: "listar_pacientes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Pacientes:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('paciente2'), nombres);
+      }
+    });
+        $.ajax({
+      url: "listar_asistentes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Asistentes:" + data);
+        data = JSON.parse(data);
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          console.log(data[i])
+          nombres.push(data[i]['fname']);
+        }
+        autocomplete(document.getElementById('asistente2'), nombres);
+      }
+    });
+
+  });
+</script>
