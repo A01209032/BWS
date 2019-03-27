@@ -25,8 +25,8 @@ echo '
             <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
             <input type="hidden" value="1" name="id" id="id">
             <br>
-            <!--input onsubmit="return cambiarContraseña();" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
-          <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña"></form></td>
+          <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña">
+          </form></td>
         </div>
       </div>
    </div>';
@@ -45,7 +45,7 @@ echo '    <div class="col-lg-3">
         <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
           <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
             <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
-            <input type="hidden" value="2" name="id" id="id">
+            <input type="hidden" value="3" name="id" id="id">
             <br>
             <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
           <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña"></form></td>
@@ -67,7 +67,7 @@ echo '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
             <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
-              <input type="hidden" value="3" name="id" id="id">
+              <input type="hidden" value="4" name="id" id="id">
               <br>
               <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
 
@@ -90,7 +90,7 @@ echo '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
              <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva" placeholder="Ejemplo: 4,8,1,5">
-              <input type="hidden" value="4" name="id" id="id">
+              <input type="hidden" value="2" name="id" id="id">
               <br>
               <!--input onclick="cambioContrasena()" type="submit" class="btn btn-primary" value="Cambiar contraseña"-->
             <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña"></form></td>
