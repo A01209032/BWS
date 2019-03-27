@@ -3,7 +3,7 @@
   require_once("models/registro.php");
   require_once("../util.php");
 
-   $pacienteErr = $asistenteErr = $fechaError = $tipoErr = "*";
+   $pacienteErr = $asistenteErr = $fechaErr = $tipoErr = "";
    $paciente    = $asistente  = $fecha = $tipo = $observaciones ="";
 
    $error = 0;
@@ -40,19 +40,23 @@
   
   } else 
     $error=1;
+    
+            $array= array($pacienteErr,$asistenteErr,$fechaErr,$tipoErr);
 
 
     if ($error == 1) {
-      echo "Error: En los campos!";
+     echo json_encode($array);
     } else {
       $error=registrar($paciente,$asistente,$fecha,$tipo,$observaciones,$cuota);
       if($error != 100) {
-       echo 'Error: Al insertar a la base de datos!';
+                echo json_encode(array("Error: En insercion de base de datos!"));
+
         
       }
       else 
-        echo "Success: Registro hecho correctamente!";
-   }
+        echo json_encode(array("Success: Al ingresar datos"));   
+        
+    }
 
    
 

@@ -2,7 +2,7 @@
     require_once("../util.php");
     require_once("models/paciente.php");
     $nombre = $nivel = $apellido = $enfermedad = $direccion = $telefono = $celular = $fechaNacimiento = $sexo = $religion = ' ';
-    $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '*';
+    $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '';
     $error = 0;
     $telefono =0;
     $celular = 0;
@@ -83,17 +83,18 @@
   
       }
       
+        $array= array($nombreErr,$nivelErr,$apellidoErr,$fechaNacimientoErr,$enfermedadErr,$sexoErr,$religionErr);
 
-      if($error) echo "Error: En los campos!";
+      if($error) echo json_encode($array);
       else {
        //echo '<script type="text/javascript">','alert("'.$nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel.'");','</script>';
        $error=registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
 
 
        if($error!=100)
-         echo "Error: En insercion de base de datos!";
+          echo json_encode(array("Error: En insercion de base de datos!"));
        else 
-          echo "Success: Al ingresar datos";
+          echo json_encode(array("Success: Al ingresar datos"));
       }
 
 

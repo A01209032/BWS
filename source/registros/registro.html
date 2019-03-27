@@ -13,8 +13,14 @@
               <div class="column">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="off" id="form_registros">
 
-
-                  <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?></span></label>
+                  <br>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Registrar Paciente</button>
+                        
+                  <br>
+                  <br>                  
+                  <p id="error">* Datos obligatorios</p>
+                  <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?><span id="pacienteErr"></span></span></label>
                   <br>
                   <div class="autocomplete">
                     <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
@@ -24,23 +30,20 @@
                   <br>
 
                  <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        Registrar Paciente</button>
+                    
 
                     
 
-                  <br>
-                  <br>
-                  <label for="asistente">Asistente <span id="error"><?php echo $asistenteErr; ?></span></label>
+                  <label for="asistente">Asistente <span id="error"><?php echo $asistenteErr; ?><span id="asistenteErr"></span></span></label>
                   <br>
                   <div class="autocomplete">
                     <input type="text" id="asistente" name="asistente" placeholder="">
                   </div>
                   <br>
-                  <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?></span></label>
+                  <label for="fecha">Fecha <span id="error"><?php echo $fechaError; ?><span id="fechaErr"></span></span></label>
                   <input  type="date" value="<?php echo date('Y-m-d')?>" id="fecha" name="fecha">
 
-                  <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?></span></label>
+                  <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?><span id="tipoErr"></span></span></label>
                   <select id="tipo" name="tipo">
                   <?php
                   switch ($_SESSION['departamento']) {
@@ -136,10 +139,29 @@
           nivel: $('#nivel').val()
         },
         success: function(data) {
-          if (data.split(':')[0] == "Error") {
-            alert(data);
-          } else {
-            $('#myModal').modal('hide');
+          data = JSON.parse(data);
+          if(data[0]=="Error: En insercion de base de datos!"){
+            alert(data[0]);
+          }
+          else if(data[0]=="Success: Al ingresar datos"){
+            alert('Se registro exitosamente el paciente');
+            $('#nombre').val('');
+            $('#nivel').val('');
+            $('#fecha_nacimiento').val('');
+            $('#apellido').val('');
+            $('#direccion').val('');
+            $('#telefono').val('');
+            $('#celular').modal('hide');
+          }
+          else{
+            $('#nombreErr').html(data[0]);
+            $('#nivelErr').html(data[1]);
+            $('#apellidoErr').html(data[2]);
+            $('#fechaNacimientoErr').html(data[3]);
+            $('#enfermedadErr').html(data[4]);
+            $('#sexoErr').html(data[5]);
+            $('#religionErr').html(data[6]);
+            
           }
         },
         dataType: 'text'
@@ -167,17 +189,25 @@
           submit: ''
         },
         success: function(data) {
-          var status = data.split(':')[0];
-          var msg = data.split(':')[1];
-          if (status == "Error") {
-            alert(data);
-          } else {
+          data = JSON.parse(data);
+          if(data[0]=="Error: En insercion de base de datos!"){
+            alert(data[0]);
+          }
+          else if(data[0]=="Success: Al ingresar datos"){
+            alert('Se ingresaron los datos');
             $('#paciente').val('');
             $('#asistente').val('');
             $('#fecha').val('');
             $('#tipo').val('');
             $('#observaciones').val('');
             $('#CuotaRecup').val('');
+          }
+          else{
+            $('#pacienteErr').html(data[0]);
+            $('#asistenteErr').html(data[1]);
+            $('#fechaErr').html(data[2]);
+            $('#tipoErr').html(data[3]);
+            
           }
         },
         dataType: 'text'

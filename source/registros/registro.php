@@ -1,5 +1,7 @@
 <?php
   session_start();
+   $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
+   $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '*';
   /*
   require_once("../util.php");
   require_once("util.php");
@@ -8,7 +10,7 @@
 
   switch ($_SESSION['departamento']) {
     case 'asistencias':
-      $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
+     
      $paciente  = $asistente  = $fecha = $tipo = $observaciones ="";
      $error = 1;
      
