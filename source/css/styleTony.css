@@ -39,6 +39,11 @@ h1{
     text-decoration: none; /* no underline */
 }
 
+.clsButton{
+    width: 200 px;
+}
+
+
 
 
 /* Create two columns that float next to eachother */
