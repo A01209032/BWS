@@ -44,6 +44,7 @@ document.querySelector('#cuenta-1 a').addEventListener('click', function() {
 		getCuentaEl(4).classList.add('deactivate');
 
 		account = 1;
+		activateRosario();
 	});
 
 document.querySelector('#cuenta-2 a').addEventListener('click', function() {
@@ -53,6 +54,7 @@ document.querySelector('#cuenta-2 a').addEventListener('click', function() {
 		getCuentaEl(1).classList.add('deactivate');
 
 		account = 2;
+		activateRosario();
 	});
 
 document.querySelector('#cuenta-3 a').addEventListener('click', function() {
@@ -62,6 +64,7 @@ document.querySelector('#cuenta-3 a').addEventListener('click', function() {
 		getCuentaEl(2).classList.add('deactivate');
 
 		account = 3;
+		activateRosario();
 	});
 
 document.querySelector('#cuenta-4 a').addEventListener('click', function() {
@@ -71,7 +74,12 @@ document.querySelector('#cuenta-4 a').addEventListener('click', function() {
 		getCuentaEl(3).classList.add('deactivate');
 
 		account = 4;
+		activateRosario();
 	});
+
+function activateRosario() {
+	document.getElementById('rosario').classList.add('active');
+}
 
 
 
@@ -214,6 +222,10 @@ padNodeCode[4] = ['=', '-', ' ', '!'];
 var sequence = [];
 
 function onNodeClick(e) {
+
+	if (account == -1 )
+		return;
+
 	var nEl = e.target;
 
 	var idParts = nEl.id.split('-');
