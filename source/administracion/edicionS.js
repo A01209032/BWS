@@ -16,10 +16,14 @@ $(document).ready(function(){
                 data:{employee_id:employee_id},  
                  
                 success:function(data){    
-                     $('#nombre2').val(data.NombreServicio);  
-                     parseInt($('#employee_id').val(data.IdServicio),10);  
-                     $('#descripcion2').val(data.Descripcion);  
-                     $('#depa2').val(data.idDepartmaneto);  
+                     $('#depa2').val(data.IdDepartamento);  
+                     parseInt($('#employee_id').val(data.idAtienden),10);  
+                     $('#paciente2').val(data.IdPaciente);  
+                     $('#asistente2').val(data.IdVoluntario);  
+                     $('#date2').val(data.Fecha);  
+                     $('#servicio2').val(data.IdServicio);  
+                $('#Observaciones2').val(data.Observaciones);  
+                     $('#cuota2').val(data.CuotaRecup);  
                      $('#insert').val("Update"); 
                      $('#modificarServicio').modal('show');  
                 },  

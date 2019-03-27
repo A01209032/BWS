@@ -4,24 +4,32 @@
     
     
     //Validación de datos
-    if(isset($_POST["nombre"]) && isset($_POST["nombre"]) != ""  &&
-        isset($_POST["descripcion"]) && isset($_POST["descripcion"]) != "" &&
-        isset($_POST["depa"]) && isset($_POST["depa"]) != "" ){
-
-        $nombre=htmlspecialchars($_POST["nombre"]);
-        $descripcion=htmlspecialchars($_POST["descripcion"]);
-        $depa=htmlspecialchars($_POST["depa"]);
-        $date=htmlspecialchars($_POST["date"]);
-
-        insertnew($nombre,$descripcion,$depa,$date);//){
+    if(isset($_POST["depa"]) && isset($_POST["depa"]) != ""  &&
+        isset($_POST["paciente"]) && isset($_POST["paciente"]) != "" && isset($_POST["asistente"]) && isset($_POST["asistente"]) != ""  ){
+        
+        $IdDepartamento=htmlspecialchars($_POST["depa"]);
+        $IdPaciente=htmlspecialchars($_POST["paciente"]);
+        $IdVoluntario=htmlspecialchars($_POST["asistente"]);
+        $Fecha=htmlspecialchars($_POST["date"]);
+        $IdServicio=htmlspecialchars($_POST["servicio"]);
+$Observaciones=htmlspecialchars($_POST["Observaciones"]);
+     $CuotaRecup=htmlspecialchars($_POST["cuota"]);
+       
+        
+//$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup
+        insertnew($IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup);//){
+        var_dump($_POST);
          echo '<script language="javascript">';
-            echo 'alert("Se creo el servicio de manrea exitosa!"); window.location="consultas.php";';
+          /*  echo 'alert("Se creo el servicio de manerea exitosa!"); window.location="consultas.php";';*/
             echo '</script>';
        
-    }else{
+    }
+else{
       //error "Falta llenar todos los campos"
+        var_dump($_POST);
         echo '<script language="javascript">';
-            echo 'alert("Se edito el servicio"); window.location="consultas.php";';
+            echo 'alert("Algun dato es incorrecto"); window.location="consultas.php";';
+        
             echo '</script>';
     }
 ?>

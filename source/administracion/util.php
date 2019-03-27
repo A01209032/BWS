@@ -26,7 +26,7 @@ function closeDb($mysql){
 
 function getservicios(){
     $con= conectDb();
-    $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio";
+    $sql ="SELECT idAtienden,IdDepartamento,IdPaciente,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden";
     $result = mysqli_query($con,$sql);
     closeDb($con);
 
@@ -51,21 +51,22 @@ $month = date('m', strtotime($Fecha));
     $date2 .="-";
     $date2 .=$month;
     $date2 .="-31";
-
-   $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE idDepartmaneto = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
+//INNER JOIN departamento as d ON d.IdDepartamento=a.IdDepartamento
+   $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento WHERE a.IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ";
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
     echo '<table  cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
-    </th><th>Nombre</th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>';
+    </th><th>Nombre</th><th>Departamento</th><th>Fecha</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
-        $temp=$row["IdServicio"];
-        $modif=$row["NombreServicio"];
+        $temp=$row["idAtienden"];
+        //echo temp2;
       echo '<tr>';
-      echo '<td>' .$row["IdServicio"]. '</td> ';
-      echo ' <td>' .$row["NombreServicio"]. '</td> ';
-      echo ' <td>' .$row["Descripcion"]. '</td> ';
+      echo '<td>' .$row["idAtienden"]. '</td> ';
+      echo ' <td>' .$row["Nombre"]. '</td> ';
+     echo ' <td>' .$row["NombreDepartamento"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
+        
         echo '<td>'.'<input type="button" name="edit" value="Modificar" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
         //echo $row["NombreServicio"];
         echo  '<td>'.'<form method="POST" action="eliminar_servicio.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
@@ -110,17 +111,17 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .=$month2;
     $date2 .="-31";
 
-   $sql ="SELECT IdServicio,idDepartmaneto,NombreServicio,Descripcion,Fecha FROM tipodeservicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
+   $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente";
     $result= mysqli_query($conn,$sql);
       if(mysqli_num_rows($result)>0){
     echo '<table align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>Nombre
-    </th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>';
+    </th><th>Departamento</th><th>Fecha</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
         $i=1;
       echo '<tr>';
-      echo '<td>'.$row["NombreServicio"].'</td>';
-      echo '<td>'.$row["Descripcion"].'</td>';
+      echo '<td>'.$row["Nombre"].'</td>';
+      echo '<td>'.$row["NombreDepartamento"].'</td>';
       echo '<td>'.$row["Fecha"].'</td>';
 
       echo '</tr>';
@@ -138,19 +139,30 @@ $month2 = date('m', strtotime($Fecha2));
     closeDb($conn);
     return $result;
 }
-function insertnew($NombreServicio,$Descripcion,$idDepartmaneto,$Fecha){
+function insertnew($departamento,$paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
+    $con= conectDb();
+    $sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
+    $result = mysqli_query($con,$sql);
+    closeDb($con);
+    return $result;
+
+    /*($IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup){
     $conn=conectDb();
-    $sql ="INSERT into tipodeservicio(NombreServicio,Descripcion,idDepartmaneto,Fecha)   VALUES (?,?,?,?); ";
+    $sql ="INSERT INTO atienden(IdDepartamento,IdPaciente,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup)   VALUES (?,?,?,?,?,?,?); ";
      if (!($statement = $conn->prepare($sql))) {
             die("Preparation failed: (" . $conn->errno . ") " . $conn->error);
         }
 
-   $NombreServicio = $conn->real_escape_string($NombreServicio);
-     $Descripcion = $conn->real_escape_string($Descripcion);
-   $idDepartmaneto = $conn->real_escape_string($idDepartmaneto);
+   
+$IdDepartamento = $conn->real_escape_string($IdDepartamento);
+     $IdVoluntario = $conn->real_escape_string($IdVoluntario);
+    $IdPaciente = $conn->real_escape_string($IdPaciente);
+     $IdServicio = $conn->real_escape_string($IdServicio);
     $Fecha = $conn->real_escape_string($Fecha);
+ $Observaciones = $conn->real_escape_string($Observaciones);
+    $CuotaRecup = $conn->real_escape_string($CuotaRecup);
 
-   if (!$statement->bind_param("ssss", $NombreServicio, $Descripcion, $idDepartmaneto,$Fecha)) {
+   if (!$statement->bind_param("sssssss", $IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup)) {
             die("Parameter vinculation failed: (" . $statement->errno . ") " . $statement->error);
         }
          // Executing the statement
@@ -158,27 +170,33 @@ function insertnew($NombreServicio,$Descripcion,$idDepartmaneto,$Fecha){
             die("Execution failed: (" . $statement->errno . ") " . $statement->error);
           }
 
-    closeDb($conn);
+    closeDb($conn);*/
 }
 
 function delete_by_ID($ID){
     $conn=conectDb();
-    $sql="DELETE FROM tipodeservicio WHERE IdServicio = '".$ID."' ";
+    $sql="DELETE FROM atienden WHERE idAtienden = '".$ID."' ";
        $ID = $conn->real_escape_string($ID);
 
     $result= mysqli_query($conn,$sql);
     closeDb($conn);
     return $result;
 }
-function update_Servicio($IdServicios2,$NombreServicio2,$Descripcion2,$idDepartmaneto2){
+function update_Servicio($idAtienden,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup){
    $conn=conectDb();
-    $sql ="UPDATE tipodeservicio SET NombreServicio='$NombreServicio2', Descripcion='$Descripcion2', idDepartmaneto='$idDepartmaneto2' WHERE IdServicio = '".$IdServicios2."' ";
-    $result = mysqli_query($conn,$sql);
+    $sql ="UPDATE atienden SET IdDepartamento='$IdDepartamento', IdPaciente='$IdPaciente', IdVoluntario='$IdVoluntario',Fecha='$Fecha', IdServicio='$IdServicio', Observaciones='$Observaciones', CuotaRecup='$CuotaRecup' WHERE idAtienden = '".$idAtienden."' ";
+   
 
-    $IdServicios2 = $conn->real_escape_string($IdServicios2);
-   $NombreServicio = $conn->real_escape_string($NombreServicio2);
-     $Descripcion2 = $conn->real_escape_string($Descripcion2);
-   $idDepartmaneto2 = $conn->real_escape_string($idDepartmaneto2);
+    $idAtienden = $conn->real_escape_string($idAtienden);
+$IdDepartamento = $conn->real_escape_string($IdDepartamento);
+     $IdVoluntario = $conn->real_escape_string($IdVoluntario);
+    $IdPaciente = $conn->real_escape_string($IdPaciente);
+     $IdServicio = $conn->real_escape_string($IdServicio);
+    $Fecha = $conn->real_escape_string($Fecha);
+ $Observaciones = $conn->real_escape_string($Observaciones);
+    $CuotaRecup = $conn->real_escape_string($CuotaRecup);
+    
+     $result = mysqli_query($conn,$sql);
     closeDb($conn);
     return $result;
 
