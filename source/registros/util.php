@@ -2,10 +2,10 @@
 <?php 
 
 function conectDb(){
-  $servername="sql9.freemysqlhosting.net";
-  $username= "sql9284997";
-  $password= "K2kRkpIfJR";
-  $dbname="sql9284997";
+  $servername="remotemysql.com";
+  $username= "thdR7Lb9W9";
+  $password= "e52rzReZ8d";
+  $dbname="thdR7Lb9W9";
         
   $con = mysqli_connect($servername,$username,$password,$dbname);
         
