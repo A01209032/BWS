@@ -17,16 +17,17 @@ $Observaciones=htmlspecialchars($_POST["Observaciones"]);
        
         
 //$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup
-        insertnew($IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup);//){
-        var_dump($_POST);
+         var_dump($_POST); insertnew($IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup);//){
+     
+    /*
          echo '<script language="javascript">';
-          /*  echo 'alert("Se creo el servicio de manerea exitosa!"); window.location="consultas.php";';*/
-            echo '</script>';
+            echo 'alert("Se creo el servicio de manerea exitosa!"); window.location="consultas.php";';
+            echo '</script>';*/
        
     }
 else{
       //error "Falta llenar todos los campos"
-        var_dump($_POST);
+       // var_dump($_POST);
         echo '<script language="javascript">';
             echo 'alert("Algun dato es incorrecto"); window.location="consultas.php";';
         
