@@ -6,7 +6,7 @@ function findDepartmentByName($name) {
 
 	$conn = connectDB();
 
-	$sql = "SELECT IdDepartamento,NombreDepartamento,contrasena FROM departamento WHERE NombreDepartamento LIKE '$name'";
+	$sql = "SELECT IdDepartamento,NombreDepartamento,contraseña FROM departamento WHERE NombreDepartamento LIKE '$name'";
 
 	$res = mysqli_query($conn, $sql);
 
@@ -17,7 +17,7 @@ function findDepartmentByName($name) {
 
 		$user = array('id'  => $row['IdDepartamento'],
 					 'name'=> $row['NombreDepartamento'],
-					 'pass'=> $row['contrasena']);
+					 'pass'=> $row['contraseña']);
 	}
 
 	return $user;
