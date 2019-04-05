@@ -14,8 +14,8 @@
         $IdServicio=htmlspecialchars($_POST["servicio2"]);
 $Observaciones=htmlspecialchars($_POST["Observaciones2"]);
      $CuotaRecup=htmlspecialchars($_POST["cuota2"]);
-        $temp=htmlspecialchars($_POST["employee_id"]);
-        $id=intval($temp,10);
+        $id=htmlspecialchars($_POST["employee_id"]);
+        
       
         if(update_Servicio($id,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup)){
           //Se cargaron los datos
@@ -30,17 +30,16 @@ $Observaciones=htmlspecialchars($_POST["Observaciones2"]);
             //header('Location: '.$_SERVER['HTTP_REFERER']);
         else{
           //Error al cargar las datos
+            
            echo '<script language="javascript">';
             echo 'alert("No se edito el servicio"); window.location="consultas.php";';
             echo '</script>';
+            //var_dump($_POST);
  //echo 'window.location.href="../administracion/consultas.php"';
             echo 'javascript:history.back()';
                 echo '</script>';
             //var_dump($_POST);
     }
-}
-else{
-    echo "fallo";
 }
     include("../views/_footer.html");
     

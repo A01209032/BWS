@@ -5,10 +5,11 @@ function conectDb(){
   $username= "root";
   $password= "";
   $dbname="servicio_social";*/
-  $servername="sql9.freemysqlhosting.net";
-  $username= "sql9284997";
-  $password= "K2kRkpIfJR";
-  $dbname="sql9284997";
+    
+  $servername="remotemysql.com";
+  $username= "thdR7Lb9W9";
+  $password= "e52rzReZ8d";
+  $dbname="thdR7Lb9W9";
 
   $con = mysqli_connect($servername,$username,$password,$dbname);
 
@@ -51,7 +52,11 @@ $month = date('m', strtotime($Fecha));
     $date2 .=$month;
     $date2 .="-31";
 //INNER JOIN departamento as d ON d.IdDepartamento=a.IdDepartamento
-   $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento WHERE a.IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ";
+   // var_dump($Depa);
+    //var_dump($Fecha);
+  $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento WHERE a.IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ";
+    /*
+    $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden WHERE IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."' AND Fecha <=  '".$date2."'  ";*/
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
     echo '<table  cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
@@ -183,9 +188,7 @@ function delete_by_ID($ID){
 }
 function update_Servicio($idAtienden,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup){
    $conn=conectDb();
-    $sql ="UPDATE atienden SET IdDepartamento='$IdDepartamento', IdPaciente='$IdPaciente', IdVoluntario='$IdVoluntario',Fecha='$Fecha', IdServicio='$IdServicio', Observaciones='$Observaciones', CuotaRecup='$CuotaRecup' WHERE idAtienden = '".$idAtienden."' ";
-   
-
+    
     $idAtienden = $conn->real_escape_string($idAtienden);
 $IdDepartamento = $conn->real_escape_string($IdDepartamento);
      $IdVoluntario = $conn->real_escape_string($IdVoluntario);
@@ -194,6 +197,10 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
     $Fecha = $conn->real_escape_string($Fecha);
  $Observaciones = $conn->real_escape_string($Observaciones);
     $CuotaRecup = $conn->real_escape_string($CuotaRecup);
+    
+    $sql ="UPDATE atienden SET IdDepartamento='$IdDepartamento', IdPaciente='$IdPaciente', IdVoluntario='$IdVoluntario',Fecha='$Fecha', IdServicio='$IdServicio', Observaciones='$Observaciones', CuotaRecup='$CuotaRecup' WHERE idAtienden ='".$idAtienden."' ";
+   
+
     
      $result = mysqli_query($conn,$sql);
     closeDb($conn);
