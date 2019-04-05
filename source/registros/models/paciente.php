@@ -68,6 +68,6 @@ function registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$c
       if($res){
       	return 100;    
         }
-      return "Error";
+      return $nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion;
     }
  ?>

@@ -92,7 +92,7 @@
 
 
        if($error!=100)
-          echo json_encode(array("Error: En insercion de base de datos!"));
+          echo json_encode(array("Error: En insercion de base de datos!",$error));
        else 
           echo json_encode(array("Success: Al ingresar datos"));
       }
