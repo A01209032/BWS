@@ -17,7 +17,7 @@ function findDepartmentByName($name) {
 
 		$user = array('id'  => $row['IdDepartamento'],
 					 'name'=> $row['NombreDepartamento'],
-					 'pass'=> $row['contraseña']);
+					 'pass'=> $row['contrasena']);
 	}
 
 	return $user;
