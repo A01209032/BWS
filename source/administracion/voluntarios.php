@@ -42,7 +42,7 @@
       echo '  <td>
 <div class="btn-group-vertical">
 <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
-
+		<br>
         <form action="eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
         <input type="hidden" value='.$temp.' name="id" id="id">
         <input type="submit" class=" clsButton btn btn-danger active  " role="button" aria-pressed="true" value="Eliminar">
@@ -60,37 +60,36 @@
 
 
 <script type="text/javascript">
+
   $(document).ready(function(){
+      /*
       $("#myBtn").click(function(){
-    $("#myModal").modal("toggle");
-  });
+        $("#myModal").modal("toggle");
+      });*/
+
       $('#add').click(function(){
-           $('#insert').val("Insert");
-           $('#insert_form')[0].reset();
+        $('#insert').val("Insert");
+        $('#insert_form')[0].reset();
       });
 
       $(document).on('click', '.edit_data', function(){
-          var employee_id = $(this).attr("id");
-          $.ajax({
-                url:"fetch.php",
-                method:"POST",
-                data: {employee_id: employee_id},
-                dataType:"json",
-                success:function(data){
-                //alert(employee_id);
-                  //alert(data.FechadeNacimiento);
-                  $('#nombreM').val(data.Nombre);
-                  $('#fechaDeNacimientoM').val(data.FechadeNacimiento);
-                  //if(data.Sexo==){
-
-                  $('#sexoM').val(data.Sexo);
-                  $('#cargoM').val(data.Cargo);
-                  $('#tipoM').val(data.Tipo);
-                  $('#employee_id').val(data.IdVoluntario);
-                  $('#insert').val("Actualizar");
-                  $('#modificarVoluntario').modal('show');
-                }
-           });
+        var employee_id = $(this).attr("id");
+        $.ajax({
+          url:"fetch.php",
+          method:"POST",
+          data: {employee_id: employee_id},
+          dataType:"json",
+          success:function(data){
+            $('#nombreM').val(data.Nombre);
+            $('#fechaDeNacimientoM').val(data.FechadeNacimiento);
+            $('#sexoM').val(data.Sexo);
+            $('#cargoM').val(data.Cargo);
+            $('#tipoM').val(data.Tipo);
+            $('#employee_id').val(data.IdVoluntario);
+            $('#insert').val("Actualizar");
+            $('#modificarVoluntario').modal('show');
+          }
+        });
       });
 /*
       $('#insert_form').on("submit", function(event){
@@ -131,5 +130,6 @@
       });  */
 
  });
+
 </script>
 <?php include("../views/_footer.html"); ?>
