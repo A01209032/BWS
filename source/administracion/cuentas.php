@@ -2,7 +2,7 @@
   session_start();
   include("../views/_header_carpetas.html");
   include("partials/_cuentas.html");
-  require_once ("util.php");
+  require_once ("modelo/util.php");
 
 
 echo '
@@ -21,7 +21,7 @@ echo '
           }
         echo  '
         <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-          <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
+          <form action="controlador/guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
             <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
             <input type="hidden" value="1" name="id" id="id">
             <br>
@@ -43,7 +43,7 @@ echo '    <div class="col-lg-3">
           }
         echo  '
         <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-          <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
+          <form action="controlador/guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
             <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
             <input type="hidden" value="3" name="id" id="id">
             <br>
@@ -65,7 +65,7 @@ echo '
             }
           echo  '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-            <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
+            <form action="controlador/guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
               <input type="hidden" value="4" name="id" id="id">
               <br>
@@ -88,7 +88,7 @@ echo '
             }
           echo  '
           <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-             <form action="guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
+             <form action="controlador/guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();" >
               <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva" placeholder="Ejemplo: 4,8,1,5">
               <input type="hidden" value="2" name="id" id="id">
               <br>

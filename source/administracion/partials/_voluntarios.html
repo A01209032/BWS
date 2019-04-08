@@ -38,7 +38,7 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                              <form action="guardar_voluntario.php" method="POST">
+                              <form action="controlador/guardar_voluntario.php" method="POST">
 
                                 <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
@@ -118,8 +118,8 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                        
-                              <form method="POST" id="insert_form" action="editar_voluntario.php"  >
+
+                              <form method="POST" id="insert_form" action="controlador/editar_voluntario.php"  >
 
                                 <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
@@ -129,7 +129,7 @@
                                 <br>
                                 <input type="date" id="fechaDeNacimientoM" name="fechaDeNacimientoM" class="form-control" required>
                                 <br>
-                                
+
                                 <label for="sexo">Sexo</label>
                                 <select class="form-control form-control-sm" id="sexoM" name="sexoM"required>
                                   <option value="M">Masculino</option>
@@ -163,8 +163,8 @@
                                 <input type="hidden" name="employee_id" id="employee_id" />
 
                                   <!--button type="submit" id="submit" class="btn btn-primary" name="submit">Modificar voluntario</button-->
-                                <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" /> 
-                                  
+                                <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+
                               </form>
                             </div>
                           </div>
@@ -194,4 +194,3 @@
     </div>
   </div>
 <br>
-
