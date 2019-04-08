@@ -39,7 +39,7 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                              <form action="guardar_servicio.php" method="POST" autocomplete="off">
+                              <form action="controlador/guardar_servicio.php" method="POST" autocomplete="off">
                                      <p></p>
                                 <label for="dep" style="border-left:  "> Departamento  </label>    
                                 <select name="depa" id="depa">
@@ -74,7 +74,7 @@
                                 <br>
                                   <label>Cuota de Recuperacion</label>
                                   <br>
-                                <input type="number" id="cuota" name="cuota" >
+                                <input type="number" id="cuota" name="cuota" value="0" >
                                 <br>
                                   <button type="submit" id="submit" name="submit">Agregar servicio</button>
                               </form>
@@ -122,7 +122,7 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                                <form action="editar_servicio.php" method="POST">
+                                <form action="controlador/editar_servicio.php" method="POST">
                                 <label for="dep" style="border-left:  "> Departamento  </label>    
                                 <select name="depa2" id="depa2">
                                      <option value="3">Dispensario</option>
@@ -192,7 +192,7 @@
    
 
 
-<script type="text/javascript" src="edicionS.js" ></script>
+<script type="text/javascript" src="js/edicionS.js" ></script>
 <script type="text/javascript" src="autocomplete.js"></script>
 <script type="text/javascript">
   window.addEventListener("load", function() {
