@@ -14,7 +14,7 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="off" id="form_registros">
 
                   <br>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modalPaciente">
                         Registrar Paciente</button>
                         
                   <br>
@@ -23,7 +23,15 @@
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?><span id="pacienteErr"></span></span></label>
                   <br>
                   <div class="autocomplete">
-                    <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                    <input  type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                  </div>
+                  <div class="row">
+                    <div class="col s10"></div>
+                    <div class="col s2">
+                      <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalPaciente">Modificar Paciente </button>
+                    </div>
+                    
+                    
                   </div>
                   <br>
                   <!--<button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>-->
@@ -72,6 +80,19 @@
                   ?>
                     
                   </select>
+                  
+                  <br>
+                  <div class="row">
+                    <div class="col s10"></div>
+                    <div class="col s2">
+                      <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalPaciente">Nuevo tipo de asistencia </button>
+                    </div>
+                    
+                    
+                  </div>
+                        
+                  <br>
+                  <br>
 
                   <label for="observaciones">Observaciones</label>
                   <input type="text" id="observaciones" name="observaciones">
@@ -94,7 +115,7 @@
   <br>
 
 <!-- The Modal -->
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="modalPaciente">
                       <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
@@ -112,6 +133,36 @@
                        </div>
                      </div>
                    </div>
+                   
+                   
+                   <div class="modal" id="modalEnfermedad">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Registra nueva enfermedad</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                          <form id='nuevaEnfermedad'>
+                            <input type="text" name="enfermedadNueva" id="enfermedadNueva"/><span id="enfermedadNErr"></span>
+                            <input type="submit" value="Submit"/>
+                          </form>
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                  
+                      </div>
+                    </div>
+                  </div>
+
+                   
 
 <script type="text/javascript" src="autocomplete.js"></script>
 <script type="text/javascript">
@@ -155,7 +206,7 @@
             $('#direccion').val('');
             $('#telefono').val('');
             $('#celular').val(' ');
-            $('#myModal').modal('hide');
+            $('#modalPaciente').modal('hide');
 
             cargarPacientes();
           }
@@ -276,6 +327,39 @@
 
   });
   
+  
+  $('#nuevaEnfermedad').on('submit', function(ev) {
+      ev.preventDefault();
+
+
+
+      $.ajax({
+        url: 'nuevaEnfermedad.php',
+        method: 'POST',
+        data: {
+          enfermedad: $('#paciente').val(),
+          submit: ''
+        },
+        success: function(data) {
+          data = JSON.parse(data);
+          if(data[0]=="Error: En insercion de base de datos!"){
+            alert(data[0]);
+          }
+          else if(data[0]=="Success: Al ingresar datos"){
+            alert('Se ingresaron los datos');
+            $('#enfermedad').val('');
+            $('#modalEnfermedad').hide()
+          }
+          else{
+            $('#enfermedadNErr').html(data[0]);
+            
+          }
+        },
+        dataType: 'text'
+      });
+
+      
+    });
 
   
 </script>

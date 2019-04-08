@@ -117,7 +117,31 @@ function addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNac
 
 
 
+function addEnfermedad($nombre){
+    $con= conectDb();
+    //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
+    $sql = "INSERT INTO `enfermedades`(`nombre`) VALUES ($nombre)";
+    $result = mysqli_query($con,$sql);
+    closeDb($con);
+    return $result;
+}
 
+function getEnfermedad($nombre){
+    $con= conectDb();
+    //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
+    $sql = "select nombre from enfermedades";
+    $resultado;
+    if(mysqli_num_rows($res) > 0){//If there are actually results
+        $row = mysqli_fetch_array($res);
+        $resultado=$row['IdServicio'];
+        closeDB($conn);
+        
+    }else{
+        closeDB($conn);
+        $resultado="Error";
+    }
+    return $resultado;  
+}
 
 
 
