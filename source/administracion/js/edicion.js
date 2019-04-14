@@ -4,11 +4,11 @@ $(document).ready(function(){
         $('#insert').val("Insert");
         $('#insert_form')[0].reset();
       });
-
+      /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
       $(document).on('click', '.edit_data', function(){
         
 
-        var employee_id = $(this).attr("id");
+        let employee_id = $(this).attr("id");
         $.ajax({
           url:"modelo/fetch.php",
           method:"POST",

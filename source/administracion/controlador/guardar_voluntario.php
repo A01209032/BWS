@@ -1,7 +1,6 @@
 <?php
+    /*Controaldor que almacena un voluntario si todos los campos de la forma estan llenos*/
     require_once("../modelo/util.php");
-    
-    
     
     //Validación de datos
     if(isset($_POST["nombre"]) && isset($_POST["nombre"]) != "" &&
@@ -18,15 +17,11 @@
 
         /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo,1);//){
           //Se cargaron los datos
-          //include("voluntarios.php");
-          
-          //header('Location: '.$_SERVER['HTTP_REFERER']); //Regresar a donde fue la petición
-          //header ('Location :administracion/voluntarios.php');
-          //ec("refresh:5;url=index.php"); // really should be a fully qualified URI
           echo '<script language="javascript">';
-          echo 'alert("Se agrego el voluntario de manera exitosa"); window.location="../voluntarios.php";';
+          echo 'alert("Se agrego el voluntario de manera exitosa")'; 
+          echo 'window.location="../voluntarios.php";';
           echo '</script>';
-      //}else{
+        //}else{
           //Error al cargar las datos
         //}
     }else{
