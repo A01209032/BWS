@@ -4,9 +4,7 @@
   require_once ("modelo/util.php");
 
   $result=getVoluntarios();
-  //$edad=getEdadVoluntario();
   
-
   include("partials/_voluntarios.html");
 
   if(mysqli_num_rows($result)>0){
@@ -15,10 +13,10 @@
         <tr>
           <th>Id</th>
           <th>Nombre</th>
-	      <th>Edad</th>
-	      <th>Sexo</th>
-	      <th>Cargo</th>
-	      <th>Tipo</th>
+	        <th>Edad</th>
+	        <th>Sexo</th>
+	        <th>Cargo</th>
+	        <th>Tipo</th>
 	    </tr>
     </thead>
     </tr></thead><tbody>';
@@ -40,13 +38,13 @@
       echo '<td>'.$row["Tipo"].'</td>';
       /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
       echo '  <td>
-<div class="btn-group-vertical">
-<input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
-		<br>
-        <form action="controlador/eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
-        <input type="hidden" value='.$temp.' name="id" id="id">
-        <input type="submit" class=" clsButton btn btn-danger active  " role="button" aria-pressed="true" value="Eliminar">
-</div>
+      <div class="btn-group-vertical">
+      <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
+      		<br>
+              <form action="controlador/eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
+              <input type="hidden" value='.$temp.' name="id" id="id">
+              <input type="submit" class=" clsButton btn btn-danger active  " role="button" aria-pressed="true" value="Eliminar">
+      </div>
       </form></td>';
 
   /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/

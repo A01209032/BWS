@@ -219,11 +219,20 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
   	closeDb($conn);
   	return $result;
   }
-
+/*
   //Obtiene todos los departamentos
   function getDepartamentos(){
     $conn=conectDb();
     $sql="SELECT IdDepartamento, NombreDepartamento, contraseña, IdRol FROM departamento";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }*/
+
+  //Obtiene todos los departamentos
+  function getDepartamentosImagen(){
+    $conn=conectDb();
+    $sql="SELECT IdDepartamento, NombreDepartamento, contrasena, IdRol, imagen FROM departamento";
     $result = mysqli_query($conn, $sql);
     closeDb($conn);
     return $result;
