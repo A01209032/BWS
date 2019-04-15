@@ -1,14 +1,16 @@
-.header{
+/*#login-container{
     /*color:darkred;
     border-width: medium;
     border-color: whitesmoke;
     background-color:#FA8072  ;
     font-size: 20px;*/
-    font-family: Arial, Helvetica, sans-serif;
-}
+/*    font-family: Arial, Helvetica, sans-serif;
+    background-color: azure;
+  
+}*/
 
 body {
-  background-color: azure;
+  background-color: white;
 }
 
 .site-section {
@@ -245,3 +247,6 @@ body {
   }
 
 
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
