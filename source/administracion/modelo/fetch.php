@@ -1,6 +1,7 @@
 <?php  
  //fetch.php  
-require_once("util.php");
+ /*Obtiene los datos del voluntario seleccionado*/
+ require_once("util.php");
  $connect=conectDb();
  if(isset($_POST["employee_id"]))  
  {  

@@ -211,7 +211,7 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
 //Aqui va lo de tony----------------
 
 
-  //Obtiene todos los voluntarios
+  //Obtiene todos los voluntarios activos
   function getVoluntarios(){
   	$conn=conectDb();
   	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios WHERE Activo=1";
@@ -219,11 +219,20 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
   	closeDb($conn);
   	return $result;
   }
-
+/*
   //Obtiene todos los departamentos
   function getDepartamentos(){
     $conn=conectDb();
     $sql="SELECT IdDepartamento, NombreDepartamento, contraseña, IdRol FROM departamento";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }*/
+
+  //Obtiene todos los departamentos
+  function getDepartamentosImagen(){
+    $conn=conectDb();
+    $sql="SELECT IdDepartamento, NombreDepartamento, contrasena, IdRol, imagen FROM departamento";
     $result = mysqli_query($conn, $sql);
     closeDb($conn);
     return $result;
