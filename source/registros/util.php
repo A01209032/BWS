@@ -145,5 +145,4 @@ function getEnfermedad($nombre){
 
 
 
-
 ?>
