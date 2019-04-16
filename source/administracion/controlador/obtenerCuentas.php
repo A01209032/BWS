@@ -29,3 +29,4 @@
 	  echo $text;
 	  mysqli_free_result($result); //Se libera la variable de memoria
 ?>
+

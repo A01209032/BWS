@@ -1,9 +1,25 @@
 $(document).ready(function(){
 
-      $('#add').click(function(){
-        $('#insert').val("Insert");
-        $('#insert_form')[0].reset();
-      });
+  $('#agregarVol').submit(function(e) {
+
+    e.preventDefault();
+    
+        $.ajax({
+              url: 'controlador/guardar_voluntario.php',
+              method: 'POST',
+              data: {
+                nombre: $('#nombre').val(),
+                fechaDeNacimiento: $('#fechaDeNacimiento').val(),
+                sexo: $('#sexo').val(),
+                cargo: $('#cargo').val(),
+                tipo: $('#tipo').val()
+              },
+              success: function(data) {
+                alert(data);
+              }
+            });
+  });
+
       /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
       $(document).on('click', '.edit_data', function(){
         

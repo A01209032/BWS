@@ -43,24 +43,23 @@ function sendRequest2(){
      
        
    }
-   
 }
-/*
-window.onload(requestCuentas());
-
-function requestCuentas(){
-  $.get( "controlador/obtenerCuentas.php")
-        .done(function( data ) {
-            var ajaxResponse = document.getElementById('reporteCuentas');
-            ajaxResponse.innerHTML = data;
-            ajaxResponse.style.visibility = "visible";
-        });
-}*/
-
 
 $(document).ready(function(){  
-  $('form.ajax').on("submit", function(){  
-    
+
+  window.onload=requestCuentas();
+
+  function requestCuentas(){
+    $.get( "controlador/obtenerCuentas.php")
+          .done(function( data ) {
+              var ajaxResponse = document.getElementById('reporteCuentas');
+              ajaxResponse.innerHTML = data;
+              ajaxResponse.style.visibility = "visible";
+          });
+  }
+
+  $('form.ajax').on("submit", function(event){  
+    event.preventDefault(); 
       var that=$(this),
         url = 'controlador/guardar_contrasena.php',
         type=that.attr('method'),
@@ -74,7 +73,6 @@ $(document).ready(function(){
       });  
       //var boton=data[id];
       //boton='#'+boton;
-
       $.ajax({
         url: url,
         type:type,
@@ -91,72 +89,10 @@ $(document).ready(function(){
         }
       });
       return false;
-      
   });
-
-
-
-
-
 });
-/*
-$(document).ready(function(){  
-  $('submit').on("click", function(event){  
-           event.preventDefault(); 
 
-           if($('#contrasenaNueva').val() == "")  
-           {  
-                alert("Ingrese contasena");  
-           }  
-           else if($('#id').val() == '')  
-           {  
-                alert("error id");  
-           }  
-           else  
-           {  
-                var contrasenaNueva= this.find('#contrasenaNueva');
-                var id= this.find('#id');
-                alert(contrasenaNueva);
-                alert(id);
-                $.ajax({  
-                     url:"controlador/guardar_contrasena.php",  
-                     method:"POST",  
-                     data:{
-                      contrasenaNueva:contrasenaNueva,
-                      id:id
-                     },  
-                     beforeSend:function(){
-                          $('#insert').val("Insertando");  
-                     },  
-                     success:function(data){  
 
-                          $('#insert_form')[0].reset();  
-                          //$('#add_data_Modal').modal('hide');  
-                          //$('#employee_table').html(data);  
-                     }  
-                });  
-           }  
-      });  
-});*/
-/*
-function myFunction(){
-  //alert("SI");
-  let var=$(this);
-  $.ajax({
-        url: 'controlador/guardar_contrasena.php',
-        method: 'POST',
-        data: {
-          contrasenaNueva: this.attr('contrasenaNueva').val(),
-          id: this.attr('id').val()
-        },
-        success: function(data) {
-        alert("SI");
-        this.attr('contrasenaNueva').val('');
-        this.attr('id').val('');
-        },
-        dataType: 'text'
-      });
-}*/
 
 /*
 function selectValue() {
