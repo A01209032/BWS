@@ -1,5 +1,5 @@
   <!-- Page Content -->
-  <div class="container" id="login-container" >
+  <div class="container" id="images-container" >
     <div class="row">
       <div class="col-md-5 col-lg-5 mb-5">
         <div class="site-section">
@@ -59,7 +59,7 @@
             <!-- <button id="submit" name="submit" type="submit">Entrar</button> -->
           </form>
         </div>
-        <button id="enter-btn" class="btn btn-primary">Amén</button>
+        <button id="enter-btn" class="btn boton">Amén</button>
       </div>
     </div>
 

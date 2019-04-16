@@ -1,5 +1,5 @@
-body,header{
-  background-color:azure;
+body{
+  background-color:white;
   margin:0 auto;
 
 }
@@ -13,9 +13,6 @@ body,header{
     font-family: Palatino, URW Palladio L, serif;
 }
 
-h3{
-  font-family:"Book Antiqua";
-}
 
 h1{
   margin-top:1em;
@@ -23,9 +20,8 @@ h1{
 }
 
 .divEnmarcado{
-	border-width:2px;
-	border-style:solid;
-	border-color:black;
+  background-color: #B0C4DE;
+  
 }
 
 .cortarImagen{
@@ -177,4 +173,49 @@ input[type=submit] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important; 
   color: #ffffff; 
+}
+
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.boton{
+   background-color: #6495ED; 
+}
+
+.botonAdmin{
+   background-color: #6495ED; 
+   height: 320px;
+   padding-top: 2px;
+   font-size: 50px;
+}
+
+.material-icons.mdI{
+  font-size: 250px;
+}
+
+.btn-label {
+  margin-top: -50px;
+}
+.cuentasicono{
+  background-color: #9400D3;
+  
+}
+.cuentasicono:hover {
+  background-color: #ee82ee;
+}
+.reportesicono{
+  background-color: #000080;
+}
+.consultasicono:hover {
+  background-color: #FFFF00;
+}
+.consultasicono{
+  background-color: #FFD700;
+}
+.voluntariosicono:hover {
+  background-color: #90EE90;
+}
+.voluntariosicono{
+  background-color: #008000;
 }

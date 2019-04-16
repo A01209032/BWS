@@ -3,6 +3,8 @@
 }
 
 
+
+
 .header{
     /*color:darkred;
     border-width: medium;
@@ -10,4 +12,9 @@
     background-color:#FA8072	;
     font-size: 20px;*/
     font-family: Palatino, URW Palladio L, serif;
+}
+
+
+*{
+  font-family: Arial, Helvetica, sans-serif;
 }
