@@ -46,6 +46,119 @@ function sendRequest2(){
    
 }
 /*
+window.onload(requestCuentas());
+
+function requestCuentas(){
+  $.get( "controlador/obtenerCuentas.php")
+        .done(function( data ) {
+            var ajaxResponse = document.getElementById('reporteCuentas');
+            ajaxResponse.innerHTML = data;
+            ajaxResponse.style.visibility = "visible";
+        });
+}*/
+
+
+$(document).ready(function(){  
+  $('form.ajax').on("submit", function(){  
+    
+      var that=$(this),
+        url = 'controlador/guardar_contrasena.php',
+        type=that.attr('method'),
+        data={};
+      that.find('[name]').each(function(index,value){
+        var eso=$(this);
+        name=eso.attr('name'),
+        value=eso.val();
+
+        data[name]=value;
+      });  
+      //var boton=data[id];
+      //boton='#'+boton;
+
+      $.ajax({
+        url: url,
+        type:type,
+        data: data,
+        /*
+        beforeSend:function(){
+          echo (boton);
+          $(boton).val("Insertando");  
+        }, */
+        success: function(data) {
+          alert(data);
+          that[0].reset();
+          window.location="cuentas.php";
+        }
+      });
+      return false;
+      
+  });
+
+
+
+
+
+});
+/*
+$(document).ready(function(){  
+  $('submit').on("click", function(event){  
+           event.preventDefault(); 
+
+           if($('#contrasenaNueva').val() == "")  
+           {  
+                alert("Ingrese contasena");  
+           }  
+           else if($('#id').val() == '')  
+           {  
+                alert("error id");  
+           }  
+           else  
+           {  
+                var contrasenaNueva= this.find('#contrasenaNueva');
+                var id= this.find('#id');
+                alert(contrasenaNueva);
+                alert(id);
+                $.ajax({  
+                     url:"controlador/guardar_contrasena.php",  
+                     method:"POST",  
+                     data:{
+                      contrasenaNueva:contrasenaNueva,
+                      id:id
+                     },  
+                     beforeSend:function(){
+                          $('#insert').val("Insertando");  
+                     },  
+                     success:function(data){  
+
+                          $('#insert_form')[0].reset();  
+                          //$('#add_data_Modal').modal('hide');  
+                          //$('#employee_table').html(data);  
+                     }  
+                });  
+           }  
+      });  
+});*/
+/*
+function myFunction(){
+  //alert("SI");
+  let var=$(this);
+  $.ajax({
+        url: 'controlador/guardar_contrasena.php',
+        method: 'POST',
+        data: {
+          contrasenaNueva: this.attr('contrasenaNueva').val(),
+          id: this.attr('id').val()
+        },
+        success: function(data) {
+        alert("SI");
+        this.attr('contrasenaNueva').val('');
+        this.attr('id').val('');
+        },
+        dataType: 'text'
+      });
+}*/
+
+/*
 function selectValue() {
 
    var list=document.getElementById("list");

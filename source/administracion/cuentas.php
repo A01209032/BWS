@@ -23,11 +23,11 @@
                   <h5 class="card-title">'.$row["NombreDepartamento"].'</h5>
                   <p class="card-text"><b>Contraseña actual:</b></p>'.$row["contrasena"].'<br><br>
                 <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
-                  <form action="controlador/guardar_contrasena.php" method="POST" onsubmit="return cambiarContrasena();">
+                  <form method="POST" class="ajax">
                     <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
                     <input type="hidden" value="'.$row["IdDepartamento"].'" name="id" id="id">
                     <br>
-                  <input type="submit" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña">
+                  <input type="submit" id="'.$row["IdDepartamento"].'" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña">
                   </form></td>
                 </div>
               </div>
@@ -37,6 +37,8 @@
   $text=$text.'</div></div>';
   echo $text;
   mysqli_free_result($result); //Se libera la variable de memoria
-
+?>
+<script type="text/javascript" src="js/ajax.js"> </script>
+<?php
   include("../views/_footer.html");
 ?>
