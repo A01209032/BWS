@@ -35,8 +35,8 @@
         $annos = $hoy->diff($cumpleanos);
         $text=$text."<td>".$annos->y." años</td>";
         $text=$text.'<td>'.$row["Sexo"].'</td>';
-        $text=$text.'<td>'.$row["Cargo"].'</td>';
-        $text=$text.'<td>'.$row["Tipo"].'</td>';
+        $text=$text.'<td>'.$row["NombreCargo"].'</td>';
+        $text=$text.'<td>'.$row["NombreTipo"].'</td>';
         /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
         $text=$text.'  <td>
         <div class="btn-group-vertical">
@@ -50,6 +50,8 @@
         /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
         $text=$text.'</tr>';
       }
+  }else{
+    echo "No hay voluntarios registrados";
   }
   $text=$text.'</tbody></table>';
   echo $text;

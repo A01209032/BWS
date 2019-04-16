@@ -18,8 +18,8 @@ $(document).ready(function(){
             $('#nombreM').val(data.Nombre);
             $('#fechaDeNacimientoM').val(data.FechadeNacimiento);
             $('#sexoM').val(data.Sexo);
-            $('#cargoM').val(data.Cargo);
-            $('#tipoM').val(data.Tipo);
+            $('#cargoM').val(data.idCargo);
+            $('#tipoM').val(data.idTipo);
             $('#employee_id').val(data.IdVoluntario);
             $('#insert').val("Actualizar");
             $('#modificarVoluntario').modal('show');
