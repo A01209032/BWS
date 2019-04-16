@@ -56,21 +56,23 @@
                                 <label for="cargo">Cargo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="cargo" name="cargo" required>
-                                  <option value="ninguno">Ninguno</option>
-                                  <option value="representante">Representante Legal</option>
-                                  <option value="vicepresidente">Vicepresidente</option>
-                                  <option value="secretaria">Secretaria</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $cargos=getCargos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($cargos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
                                 <label for="tipo">Tipo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="tipo" name="tipo" required>
-                                  <option value="superiora">Superiora</option>
-                                  <option value="enfermera">Enfermera</option>
-                                  <option value="medico_familiar">Medico Familiar</option>
-                                  <option value="voluntario">Voluntario</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $tipos=getTipos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($tipos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
                                   <button type="submit" id="submit" class="btn btn-primary" name="submit">Agregar voluntario</button>
@@ -141,22 +143,24 @@
                                 <br>
 
                                 <select class="form-control form-control-sm" id="cargoM" name="cargoM" required>
-                                  <option value="ninguno">Ninguno</option>
-                                  <option value="representante">Representante Legal</option>
-                                  <option value="vicepresidente">Vicepresidente</option>
-                                  <option value="secretaria">Secretaria</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $cargos=getCargos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($cargos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
 
                                 <label for="tipoM">Tipo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="tipoM" name="tipoM" required>
-                                  <option value="superiora">Superiora</option>
-                                  <option value="enfermera">Enfermera</option>
-                                  <option value="medico_familiar">Medico Familiar</option>
-                                  <option value="voluntario">Voluntario</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $tipos=getTipos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($tipos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
 

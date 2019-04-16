@@ -214,10 +214,26 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
   //Obtiene todos los voluntarios activos
   function getVoluntarios(){
   	$conn=conectDb();
-  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, Cargo, Tipo FROM voluntarios WHERE Activo=1";
+  	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, c.NombreCargo, t.NombreTipo FROM voluntarios AS v, tipo AS t, cargo AS c WHERE v.Activo=1 AND v.idCargo=c.idCargo AND v.idTipo=t.idTipoVoluntario";
   	$result = mysqli_query($conn, $sql);
   	closeDb($conn);
   	return $result;
+  }
+
+  function getCargos(){
+    $conn=conectDb();
+    $sql="SELECT * FROM cargo";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }
+
+  function getTipos(){
+    $conn=conectDb();
+    $sql="SELECT * FROM tipo";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
   }
 /*
   //Obtiene todos los departamentos
@@ -271,7 +287,7 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
     $bd = conectDb();
 
     // insert command specification
-    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,Cargo,Tipo,Activo) VALUES (?,?,?,?,?,?)';
+    $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,idCargo,idTipo,Activo) VALUES (?,?,?,?,?,?)';
     // Preparing the statement
     if (!($statement = $bd->prepare($query))) {
       die("Preparation failed: (" . $bd->errno . ") " . $bd->error);
@@ -315,7 +331,7 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
 
   function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
     $conn=conectDb();
-    $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', Cargo='$cargo', Tipo='$tipo' WHERE IdVoluntario= '".$id."' ";
+    $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', idCargo='$cargo', idTipo='$tipo' WHERE IdVoluntario= '".$id."' ";
       $result = mysqli_query($conn,$sql);
 
       $id = $conn->real_escape_string($id);

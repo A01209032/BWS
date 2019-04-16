@@ -16,11 +16,11 @@
         $tipo=htmlspecialchars($_POST["tipo"]);
 
         /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo,1);//){
-          //Se cargaron los datos
           echo '<script language="javascript">';
-          echo 'alert("Se agrego el voluntario de manera exitosa")'; 
-          echo 'window.location="../voluntarios.php";';
+          echo 'alert("Se agrego el voluntario de manera exitosa")';
+          //echo 'window.location="../voluntarios.php";';
           echo '</script>';
+          header( "refresh:.1; url=../voluntarios.php" );
         //}else{
           //Error al cargar las datos
         //}
