@@ -55,10 +55,12 @@ $(document).ready(function(){
               var ajaxResponse = document.getElementById('reporteCuentas');
               ajaxResponse.innerHTML = data;
               ajaxResponse.style.visibility = "visible";
+              insertar();
           });
   }
 
-  $('form.ajax').on("submit", function(event){  
+  function insertar(){
+    $('form.ajax').on("submit", function(event){  
     event.preventDefault(); 
       var that=$(this),
         url = 'controlador/guardar_contrasena.php',
@@ -85,11 +87,13 @@ $(document).ready(function(){
         success: function(data) {
           alert(data);
           that[0].reset();
-          window.location="cuentas.php";
+          requestCuentas();
         }
       });
       return false;
   });
+  }
+  
 });
 
 

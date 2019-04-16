@@ -12,8 +12,7 @@
   include("partials/_cuentas.html");
   
 ?>
-
+<script type="text/javascript" src="js/ajax.js"> </script>
 <?php
   include("../views/_footer.html");
 ?>
-<script type="text/javascript" src="js/ajax.js"> </script>
