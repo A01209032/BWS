@@ -161,7 +161,6 @@
 
 */
 
-  session_start();
   include("../views/_header.html");
   include("registro.html"); 
   include("../views/_footer.html");
