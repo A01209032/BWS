@@ -1,16 +1,25 @@
 $(document).ready(function(){
-
+  const loader = document.querySelector(".loader");
   //cargar
   window.onload=requestVoluntarios();
 
   function requestVoluntarios(){
-    $.get( "controlador/obtener_voluntarios.php")
-          .done(function( data ) {
-              var ajaxResponse = document.getElementById('listaVoluntarios');
-              ajaxResponse.innerHTML = data;
-              ajaxResponse.style.visibility = "visible";
-              eliminarVoluntario();
-          });
+    $.ajax({
+              url: 'controlador/obtener_voluntarios.php',
+              method: 'GET',
+              data: {
+              },
+              success: function(data) {
+                
+                var ajaxResponse = document.getElementById('listaVoluntarios');
+                ajaxResponse.innerHTML = data;
+                ajaxResponse.style.visibility = "visible";
+                eliminarVoluntario();
+                loader.className += " hidden"; // class "loader hidden"
+                //document.getElementById('mostrar_loading').style.display="none";
+              }
+
+            });
   }
 
   //agregar

@@ -38,6 +38,13 @@
 }
 </style>
 
+
+ <?php
+  include("../views/_header_carpetas.html");
+  include("../administracion/partials/_admin.html");
+  include("../views/_footer.html");
+?>
+
 <div class="loader">
     <img src="loading.gif" alt="Loading..." />
 </div>
@@ -48,8 +55,3 @@
     loader.className += " hidden"; // class "loader hidden"
   });
 </script>
- <?php
-  include("../views/_header_carpetas.html");
-  include("../administracion/partials/_admin.html");
-  include("../views/_footer.html");
-?>
