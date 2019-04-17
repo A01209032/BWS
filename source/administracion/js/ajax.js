@@ -60,8 +60,6 @@ function sendRequest2(){
    }
 }
 
-<<<<<<< HEAD
-
 
 function sendRequest4(){
 
@@ -89,7 +87,6 @@ function getval(first){
 function getval2(second){
     auxiliar2=second;
 }
-=======
 $(document).ready(function(){  
 
   window.onload=requestCuentas();
@@ -154,8 +151,7 @@ $(document).ready(function(){
   
 });
 
-/*
->>>>>>> 1cf89f2bec480b551bc353c7210dd0e485273d13
+
 function selectValue() {
 
    var list=document.getElementById("list");
