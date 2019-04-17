@@ -1,3 +1,8 @@
+   //nuevovoluntario
+ function agregarnuevovol(){
+     alert("esta entrando");
+           $('#registrarVoluntario').modal('show');
+      }
 $(document).ready(function(){
   const loader = document.querySelector(".loader");
   //cargar
@@ -40,8 +45,9 @@ $(document).ready(function(){
               success: function(data) {
                 alert(data);
     
-                $('#registrarVoluntario').hide();
                 requestVoluntarios();
+                  
+                $('#registrarVoluntario').modal('hide');
               }
 
             });
@@ -119,9 +125,10 @@ $(document).ready(function(){
           return false;
       });
     }
+ 
     
-
-      /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
+    
+    /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
       
       $(document).on('click', '.edit_data', function(){
         
