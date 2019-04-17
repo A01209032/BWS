@@ -52,29 +52,10 @@
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?><span id="tipoErr"></span></span></label>
                   <select id="tipo" name="tipo">
                   <?php
-                  switch ($_SESSION['departamento']) {
-                    case 'asistencias':
-                     echo ' <option selected value="domiciliaria">Domiciliaria</option>';
-                     echo '<option value="nocturna">Nocturna</option>';
-                     echo '<option value="diurna">Diurna</option>';
-                     echo '<option value="hospitalaria">Hospitalaria</option>';
-                      break;
-                    case 'porteria':
-                     echo ' <option selected value="Servicio">Servicio</option>';
-                     echo '<option value="Alimento">Alimento</option>';
-                     echo '<option value="Despensa">Despensa</option>';
-                     echo '<option value="Ropa">Ropa</option>';
-                      break;
-                    case 'dispensario':
-                      echo ' <option selected value="Dispensario">Dispensario</option>';
-                   
-                      break;
-                  
-                  
-                  }
-                  
-                  
-                  
+                  require_once("util.php");
+                  $id=getIdDepartamento($_SESSION['departamento']);
+                  getTipodeServicio($id);
+
                   ?>
                     
                   </select>

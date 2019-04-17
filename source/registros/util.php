@@ -149,8 +149,28 @@ function getPaciente($id){
     return $resultado;  
 }
 
+function getTipodeServicio($id){
+    $conn=conectDb();
+    $query = "SELECT idServicio,NombreServicio FROM tipodeservicio WHERE idDepartamento = $id";
+    $res = mysqli_query($conn, $query);
+    $resultado;
+    if(mysqli_num_rows($res) > 0){//If there are actually results
+        while($row=mysqli_fetch_assoc($res)){
+        echo '<option value="'.$row["idServicio"].'">'.$row["NombreServicio"].'</option>';
+    }
 
+        closeDB($conn);
+        
+    }else{
+        closeDB($conn);
+        $resultado="Error";
+        echo $resultado;
+        
+    }
+     
+}
 
+ 
 
 
 
