@@ -1,4 +1,4 @@
-<!-- Page Content -->
+ <!-- Page Content -->
             <div class="container">
               <div class="row">
                 <div class="col-lg-12 text-center">
@@ -23,7 +23,13 @@
                   <label for="paciente">Buscar paciente <span id="error"><?php echo $pacienteErr;?><span id="pacienteErr"></span></span></label>
                   <br>
                   <div class="autocomplete">
-                    <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" type="" autocomplete="off">
+                    <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" autocomplete="off">
+                  </div>
+                  <div class="row">
+                    <div class="col s6"></div>
+                    <div class="col s6">
+                      <button type="button" class="btn btn-primary">Modificar paciente</button>
+                    </div>
                   </div>
                   <br>
                   <!--<button type="button" class="btn btn-primary" onclick="sendNombreQuery()">¡Buscar!</button>-->
@@ -46,29 +52,10 @@
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?><span id="tipoErr"></span></span></label>
                   <select id="tipo" name="tipo">
                   <?php
-                  switch ($_SESSION['departamento']) {
-                    case 'asistencias':
-                     echo ' <option selected value="domiciliaria">Domiciliaria</option>';
-                     echo '<option value="nocturna">Nocturna</option>';
-                     echo '<option value="diurna">Diurna</option>';
-                     echo '<option value="hospitalaria">Hospitalaria</option>';
-                      break;
-                    case 'porteria':
-                     echo ' <option selected value="Servicio">Servicio</option>';
-                     echo '<option value="Alimento">Alimento</option>';
-                     echo '<option value="Despensa">Despensa</option>';
-                     echo '<option value="Ropa">Ropa</option>';
-                      break;
-                    case 'dispensario':
-                      echo ' <option selected value="Dispensario">Dispensario</option>';
-                   
-                      break;
-                  
-                  
-                  }
-                  
-                  
-                  
+                  require_once("util.php");
+                  $id=getIdDepartamento($_SESSION['departamento']);
+                  getTipodeServicio($id);
+
                   ?>
                     
                   </select>
@@ -114,168 +101,5 @@
                    </div>
 
 <script type="text/javascript" src="autocomplete.js"></script>
-<script type="text/javascript">
-  window.addEventListener("load", function() {
-
-
-    var pacientes = {arr: []};
-
-    // Habilitar Ajax a los forms para que todo sea con js
-    $('#form_pacientes').on('submit', function(ev) {
-      ev.preventDefault();
-
-
-
-      $.ajax({
-        url: 'registro_paciente.php',
-        method: 'POST',
-        data: {
-          nombre: $('#nombre').val(),
-          apellido: $('#apellido').val(),
-          enfermedad: $('#enfermedad').val(),
-          direccion: $('#direccion').val(),
-          telefono: $('#telefono').val(),
-          celular: $('#celular').val(),
-          fecha_nacimiento: $('#fecha_nacimiento').val(),
-          sexo: $('#sexo').val(),
-          religion: $('#religion').val(),
-          nivel: $('#nivel').val()
-        },
-        success: function(data) {
-          data = JSON.parse(data);
-          if(data[0]=="Error: En insercion de base de datos!"){
-            alert(data[0]);
-            alert(data[1]);
-          }
-          else if(data[0]=="Success: Al ingresar datos"){
-            alert('Se registro exitosamente el paciente');
-            $('#nombre').val('');
-            $('#fecha_nacimiento').val('');
-            $('#apellido').val('');
-            $('#direccion').val('');
-            $('#telefono').val('');
-            $('#celular').val(' ');
-            $('#myModal').modal('hide');
-
-            cargarPacientes();
-          }
-          else{
-            $('#nombreErr').html(data[0]);
-            $('#nivelErr').html(data[1]);
-            $('#apellidoErr').html(data[2]);
-            $('#fechaNacimientoErr').html(data[3]);
-            $('#enfermedadErr').html(data[4]);
-            $('#sexoErr').html(data[5]);
-            $('#religionErr').html(data[6]);
-            
-          }
-        },
-        dataType: 'text'
-      });
-
-      
-    });
-
-    // Registro Servicio AJAX
-    $('#form_registros').on('submit', function(ev) {
-      ev.preventDefault();
-
-
-
-      $.ajax({
-        url: 'nuevo_registro.php',
-        method: 'POST',
-        data: {
-          paciente: $('#paciente').val(),
-          asistente: $('#asistente').val(),
-          fecha: $('#fecha').val(),
-          tipo: $('#tipo').val(),
-          observaciones: $('#observaciones').val(),
-          CuotaRecup: $('#CuotaRecup').val(),
-          submit: ''
-        },
-        success: function(data) {
-          data = JSON.parse(data);
-          if(data[0]=="Error: En insercion de base de datos!"){
-            alert(data[0]);
-          }
-          else if(data[0]=="Success: Al ingresar datos"){
-            alert('Se ingresaron los datos');
-            $('#paciente').val('');
-            $('#asistente').val('');
-            $('#fecha').val('');
-            $('#tipo').val('');
-            $('#observaciones').val('');
-            $('#CuotaRecup').val('');
-          }
-          else{
-            $('#pacienteErr').html(data[0]);
-            $('#asistenteErr').html(data[1]);
-            $('#fechaErr').html(data[2]);
-            $('#tipoErr').html(data[3]);
-            
-          }
-        },
-        dataType: 'text'
-      });
-
-      
-    });
-
-
-    // Cargar Lista de Pacientes
-    function cargarPacientes() {
-      $.ajax({
-        url: "listar_pacientes.php",
-        method: 'GET',
-        data: {pattern: 'all'},
-        type: 'json',
-        success: function(data) {
-          //console.log("Pacientes:" + data);
-          data = JSON.parse(data);
-          if (data[0] == "Error") {
-            alert("There was a critical error on the server!");
-            return;
-          }
-          //console.log(data);
-          var nombres = [];
-          for (var i=0; i < data.length; i++) {
-            //console.log(data[i])
-            nombres.push(data[i]['fname']);
-          }
-          pacientes.arr = nombres;
-          autocomplete(document.getElementById('paciente'), pacientes);
-        }
-      });
-    }
-    cargarPacientes();
-
-
-    // Cargar Lista de Voluntarios/Asistentes
-    $.ajax({
-      url: "listar_asistentes.php",
-      method: 'GET',
-      data: {pattern: 'all'},
-      type: 'json',
-      success: function(data) {
-        //console.log("Asistentes:" + data);
-        data = JSON.parse(data);
-        if (data[0] == "Error") {
-          alert("There was a critical error on the server!");
-          return;
-        }
-        //console.log(data);
-        var nombres = [];
-        for (var i=0; i < data.length; i++) {
-          //console.log(data[i])
-          nombres.push(data[i]['fname']);
-        }
-        autocomplete(document.getElementById('asistente'), {arr: nombres });
-      }
-    });
-
-  });
-  
-
-  
+<script type="text/javascript" src="../js/registro_serv.js"> 
 </script>

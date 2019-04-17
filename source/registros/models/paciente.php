@@ -22,7 +22,7 @@ function listarPacientesCon($pattern) {
 	$conn = conectDB();
 
 	// For Table Pacientes con Nombre y Apellido
-	$sqlQuery = "SELECT IdPaciente, Nombre
+	$sqlQuery = "SELECT IdPaciente, Nombre, FechadeNacimiento
 				 FROM pacientes 
 				 ORDER BY nombre";
 
@@ -34,7 +34,9 @@ function listarPacientesCon($pattern) {
 		while ($row = mysqli_fetch_assoc($res)) {
 			$id    = $row['IdPaciente'];
 			$fname = $row['Nombre'];
-			array_push($pacientes, array("id"=>$id, "fname"=>$fname));
+
+			$edad  = calcularEdad($row['FechadeNacimiento']);
+			array_push($pacientes, array("id"=>$id, "fname"=>$fname, "edad"=>$edad));
 		}
 	}
 
@@ -45,6 +47,16 @@ function listarPacientesCon($pattern) {
 	return $pacientes;
 }
 
+function calcularEdad($fecha) {
+	$birthDate = explode("/", $fecha);
+
+	// stackoverflow.co PHP calculate age
+	$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md")
+		? ((date("Y") - $birthDate[0]) - 1)
+		: (date("Y") - $birthDate[0]));
+
+	return $age;
+}
 
 /*
  * Funcion A Implementar

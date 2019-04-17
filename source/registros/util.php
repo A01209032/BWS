@@ -99,8 +99,8 @@ function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observacio
     /*echo "|Paciente: " .$paciente . "| Asistente: " . $asistente .
             "| Fecha: " . $fecha . "| Tipo: " . $tipo . "| observaciones: ". $observaciones . "| Cuota: " . $cuota;*/
 
-    //$sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
-    $sql = "call creaServicio($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
+    $sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
+    //$sql = "call creaServicio($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
@@ -109,15 +109,68 @@ function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observacio
 function addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
     $con= conectDb();
     //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
-    $sql ="INSERT INTO `pacientes`(`Nombre`, `FechadeNacimiento`, `Sexo`, `Activo`, `Direccion`, `Telefono`, `Celular`,`Religion`,`NivelEconomico`) values('$nombre','$fechaNacimiento','$sexo',1,'$direccion',$telefono,$celular,'$religion','$nivel')";
+    $sql ="INSERT INTO `pacientes`(`IdEnfermedad`, `Nombre`, `FechadeNacimiento`, `Sexo`, `Activo`, `Direccion`, `Telefono`, `Celular`, `Religion`, `NivelEconomico`) values($enfermedad,'$nombre','$fechaNacimiento','$sexo',1,'$direccion','$telefono','$celular','$religion','$nivel')";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
 }
 
+function updatePaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
+    $con= conectDb();
+    //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
+    $sql ="update `pacientes` set `IdEnfermedad` = $enfermedad, `Nombre`='$nombre', `FechadeNacimiento`='$fechaNacimiento', `Sexo`='$sexo', `Direccion`='$direccion', `Telefono`='$telefono', `Celular`='$celular', `Religion`='$religion', `NivelEconomico`='$nivel') where `IdPaciente`=$id";
+    $result = mysqli_query($con,$sql);
+    closeDb($con);
+    return $result;
+}
 
+function getPaciente($id){
+    $conn=conectDb();
+    $query = "SELECT * FROM pacientes WHERE idPaciente = $id";
+    $res = mysqli_query($conn, $query);
+    $resultado;
+    if(mysqli_num_rows($res) > 0){//If there are actually results
+        $row = mysqli_fetch_array($res);
+        $resultado[0]=$row['IdEnfermedad'];
+        $resultado[1]=$row['Nombre'];
+        $resultado[2]=$row['FechadeNacimiento'];
+        $resultado[3]=$row['Sexo'];
+        $resultado[4]=$row['Direccion'];
+        $resultado[5]=$row['Telefono'];
+        $resultado[6]=$row['Celular'];
+        $resultado[7]=$row['Religion'];
+        $resultado[8]=$row['NivelEconomico'];
+        closeDB($conn);
+        
+    }else{
+        closeDB($conn);
+        $resultado="Error";
+    }
+    return $resultado;  
+}
 
+function getTipodeServicio($id){
+    $conn=conectDb();
+    $query = "SELECT idServicio,NombreServicio FROM tipodeservicio WHERE idDepartamento = $id";
+    $res = mysqli_query($conn, $query);
+    $resultado;
+    if(mysqli_num_rows($res) > 0){//If there are actually results
+        while($row=mysqli_fetch_assoc($res)){
+        echo '<option value="'.$row["idServicio"].'">'.$row["NombreServicio"].'</option>';
+    }
 
+        closeDB($conn);
+        
+    }else{
+        closeDB($conn);
+        $resultado="Error";
+        echo $resultado;
+        
+    }
+     
+}
+
+ 
 
 
 

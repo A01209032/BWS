@@ -1,4 +1,4 @@
-function autocomplete(inp, opts) {
+function autocomplete(inp, opts, opcionActual) {
   console.log(opts);
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -20,22 +20,30 @@ function autocomplete(inp, opts) {
       for (i = 0; i < opts.arr.length; i++) {
         console.log("Checking for " + opts.arr[i])
         /*check if the item starts with the same letters as the text field value:*/
-        if (opts.arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        if (opts.arr[i].val.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + opts.arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += opts.arr[i].substr(val.length);
+          b.innerHTML = "<strong>" + opts.arr[i].val.substr(0, val.length) + "</strong>";
+          b.innerHTML += opts.arr[i].val.substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + opts.arr[i] + "'>";
+          b.innerHTML += "<input type='hidden' value='" + opts.arr[i].val + "'>";
+          let name = opts.arr[i].val;
+          let id = opts.arr[i].id;
           /*execute a function when someone clicks on the item value (DIV element):*/
-              b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
-              closeAllLists();
-          });
+              b.addEventListener("click", (function (){
+                var name = opts.arr[i].val;
+                var id = opts.arr[i].id;
+                return function(e) {
+                  /*insert the value for the autocomplete text field:*/
+                  //inp.value = this.getElementsByTagName("input")[0].value;
+                  inp.value = name;
+                  opcionActual.id = id;
+                  /*close the list of autocompleted values,
+                  (or any other open lists of autocompleted values:*/
+                  closeAllLists();
+                };
+              })());
           a.appendChild(b);
         }
       }
