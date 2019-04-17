@@ -177,7 +177,7 @@
         method: 'POST',
         data: {
           paciente: pacienteActual.id,
-          asistente: $('#asistente').val(),
+          asistente: voluntarioActual.id,
           fecha: $('#fecha').val(),
           tipo: $('#tipo').val(),
           observaciones: $('#observaciones').val(),
@@ -185,6 +185,7 @@
           submit: ''
         },
         success: function(data) {
+          console.log(data);
           data = JSON.parse(data);
           if(data[0]=="Error: En insercion de base de datos!"){
             alert(data[0]);
@@ -194,6 +195,7 @@
             $('#paciente').val('');
             pacienteActual.id = -1;
             $('#asistente').val('');
+            voluntarioActual.id = -1;
             $('#fecha').val('');
             $('#tipo').val('');
             $('#observaciones').val('');
@@ -232,7 +234,7 @@
           var nombres = [];
           for (var i=0; i < data.length; i++) {
             //console.log(data[i])
-            nombres.push({val: data[i]['fname'], id: data[i]['id']});
+            nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años") , id: data[i]['id']});
           }
           pacientes.arr = nombres;
           autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
