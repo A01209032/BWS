@@ -109,7 +109,7 @@ function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observacio
 function addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
     $con= conectDb();
     //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
-    $sql ="INSERT INTO `pacientes`(`idEnfermedad`,`Nombre`, `FechadeNacimiento`, `Sexo`, `Activo`, `Direccion`, `Telefono`, `Celular`,`Religion`,`NivelEconomico`) values($enfermedad,'$nombre','$fechaNacimiento','$sexo',1,'$direccion',$telefono,$celular,'$religion','$nivel')";
+    $sql ="INSERT INTO `pacientes`(`IdEnfermedad`, `Nombre`, `FechadeNacimiento`, `Sexo`, `Activo`, `Direccion`, `Telefono`, `Celular`, `Religion`, `NivelEconomico`) values($enfermedad,'$nombre','$fechaNacimiento','$sexo',1,'$direccion','$telefono','$celular','$religion','$nivel')";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
