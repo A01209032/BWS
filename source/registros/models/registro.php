@@ -4,8 +4,9 @@
     
     
     function registrar($paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
-        $paciente=getIdPaciente($paciente);
-        $asistente=getIdVoluntario($asistente);
+        //$paciente=getIdPaciente($paciente);
+        
+        //$asistente=getIdVoluntario($asistente);
         $departamento=getIdDepartamento($_SESSION['departamento']);
         $tipo = getIdServicio($tipo);
         //echo '<script type="text/javascript">','alert("'.$departamento.' '.$paciente.' '.$asistente.' '.$fecha.' '.$tipo.' '.$observaciones.' '.$cuota.'");','</script>';
