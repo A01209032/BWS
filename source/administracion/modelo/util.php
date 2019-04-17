@@ -207,6 +207,22 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
     return $result;
 
 }
+function getdepas(){
+    $conn=conectDb();
+    $sql="SELECT * FROM departamento";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }
+
+  function getTiposdeServicio(){
+    $conn=conectDb();
+    $sql="SELECT * FROM tipodeservicio";
+    $result = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $result;
+  }
+
 
 //Aqui va lo de tony----------------
 

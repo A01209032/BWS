@@ -187,7 +187,7 @@ input[type=submit] {
    background-color: #6495ED; 
    height: 320px;
    padding-top: 2px;
-   font-size: 50px;
+   font-size: 45px;
 }
 
 .material-icons.mdI{
@@ -195,27 +195,27 @@ input[type=submit] {
 }
 
 .btn-label {
-  margin-top: -50px;
+  margin-top: -30px;
 }
 .cuentasicono{
-  background-color: #9400D3;
+  background-color: #483D8B;
   
 }
 .cuentasicono:hover {
-  background-color: #ee82ee;
+  background-color: #4B0082;
 }
 .reportesicono{
-  background-color: #000080;
+  background-color: #00BFFF;
 }
 .consultasicono:hover {
-  background-color: #FFFF00;
+  background-color: #008B8B;
 }
 .consultasicono{
-  background-color: #FFD700;
+  background-color: #008080;
 }
 .voluntariosicono:hover {
-  background-color: #90EE90;
+  background-color: #4682B4;
 }
 .voluntariosicono{
-  background-color: #008000;
+  background-color: #191970;
 }

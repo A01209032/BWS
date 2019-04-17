@@ -18,8 +18,10 @@ $(document).ready(function(){
                 success:function(data){    
                      $('#depa2').val(data.IdDepartamento);  
                      parseInt($('#employee_id').val(data.idAtienden),10);  
-                     $('#paciente2').val(data.IdPaciente);  
-                     $('#asistente2').val(data.IdVoluntario);  
+                   //  $('#userInput').val(data.IdPaciente);  
+                   $('#paciente2').val(data.IdPaciente);  
+                     $('#asistente2').val(data.IdVoluntario); 
+                   //$('#userInput2').val(data.IdVoluntario);  
                      $('#date2').val(data.Fecha);  
                      $('#servicio2').val(data.IdServicio);  
                 $('#Observaciones2').val(data.Observaciones);  

@@ -22,6 +22,7 @@
           echo '<script language="javascript">';
             echo 'alert("Se edito el servicio correctamente!"); window.location="../consultas.php";';
             echo '</script>';
+//var_dump($_POST);
          /*   echo '<script language="javascript">';
  //echo 'window.location.href="../administracion/consultas.php"';
             echo 'javascript:history.back()';
@@ -40,8 +41,10 @@
                 echo '</script>';*/
             //var_dump($_POST);
     }
-}
+} else{
     //include("../views/_footer.html");
+echo "no hay nada";
+var_dump($_POST);}
     
   
 ?>
