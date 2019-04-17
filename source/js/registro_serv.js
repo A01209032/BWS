@@ -147,7 +147,7 @@ window.addEventListener("load", function() {
     data: {pattern: 'all'},
     type: 'json',
     success: function(data) {
-      //console.log("Asistentes:" + data);
+      console.log("Asistentes:" + data);
       data = JSON.parse(data);
       if (data[0] == "Error") {
         alert("There was a critical error on the server!");

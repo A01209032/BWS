@@ -1,6 +1,5 @@
 <?php
   session_start();
-  require_once("util.php");
    $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
    $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '*';
   /*

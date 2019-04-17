@@ -8,7 +8,7 @@
         
         //$asistente=getIdVoluntario($asistente);
         $departamento=getIdDepartamento($_SESSION['departamento']);
-        $tipo = getIdServicio($tipo);
+        //$tipo = getIdServicio($tipo);
         //echo '<script type="text/javascript">','alert("'.$departamento.' '.$paciente.' '.$asistente.' '.$fecha.' '.$tipo.' '.$observaciones.' '.$cuota.'");','</script>';
         if($tipo!="Error" or $asistente!="Error" and $paciente!="Error" and $departamento!="Error"){
             $res=addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observaciones,$cuota);

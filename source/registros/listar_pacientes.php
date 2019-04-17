@@ -34,17 +34,16 @@ if (isset($_GET['pattern'])) {
 	// $pacientePattern = mysqli_escape_string($pacientePattern);
 
 	$pacientes = listarPacientesCon($pacientePattern);
-
+	//echo $pacientes;
 	$resStr = "";
 	for ($i=0; $i < count($pacientes); $i++) {
 		$pId = $pacientes[$i]['id'];
 		$pName = $pacientes[$i]['fname'];
 		
 		$resStr .= "$pId|$pName";
-
+		
 		if ($i != count($pacientes)-1) $resStr .= "#";
 	}
-
 	echo json_encode($pacientes);
 	//echo $resStr;
 
