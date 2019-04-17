@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require_once("util.php");
    $pacienteErr= $asistenteErr = $fechaError = $tipoErr = "*";
    $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '*';
   /*
@@ -161,7 +162,6 @@
 
 */
 
-  session_start();
   include("../views/_header.html");
   include("registro.html"); 
   include("../views/_footer.html");
