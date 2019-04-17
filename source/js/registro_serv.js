@@ -3,7 +3,7 @@ var voluntarioActual = { id: -1 };
 window.addEventListener("load", function() {
 
 
-  var pacientes = {arr: []};
+  var pacientes = {arr: [], creadoBuscador: false};
   
 
   // Habilitar Ajax a los forms para que todo sea con js
@@ -18,7 +18,8 @@ window.addEventListener("load", function() {
       data: {
         nombre: $('#nombre').val(),
         apellido: $('#apellido').val(),
-        enfermedad: $('#enfermedad').val(),
+        //enfermedad: $('#enfermedad').val(),
+        enfermedad: enfermedadActual.id,
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
@@ -40,10 +41,15 @@ window.addEventListener("load", function() {
           $('#apellido').val('');
           $('#direccion').val('');
           $('#telefono').val('');
-          $('#celular').val(' ');
+          $('#celular').val('');
           $('#myModal').modal('hide');
 
+          enfermedad: $('#enfermedad').val(''),
+          enfermedadActual.id = -1;
+
+
           cargarPacientes();
+          cargarEnfermedades();
         }
         else{
           $('#nombreErr').html(data[0]);
@@ -133,7 +139,11 @@ window.addEventListener("load", function() {
           nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años") , id: data[i]['id']});
         }
         pacientes.arr = nombres;
-        autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
+
+        if (!pacientes.creadoBuscador) {
+          pacientes.creadoBuscador = true;
+          autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
+        }
       }
     });
   }
