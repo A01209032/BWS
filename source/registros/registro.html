@@ -1,4 +1,4 @@
-<!-- Page Content -->
+ <!-- Page Content -->
             <div class="container">
               <div class="row">
                 <div class="col-lg-12 text-center">
@@ -115,10 +115,13 @@
 
 <script type="text/javascript" src="autocomplete.js"></script>
 <script type="text/javascript">
+  var pacienteActual   = { id: -1 };
+  var voluntarioActual = { id: -1 };
   window.addEventListener("load", function() {
 
 
     var pacientes = {arr: []};
+    
 
     // Habilitar Ajax a los forms para que todo sea con js
     $('#form_pacientes').on('submit', function(ev) {
@@ -186,7 +189,7 @@
         url: 'nuevo_registro.php',
         method: 'POST',
         data: {
-          paciente: $('#paciente').val(),
+          paciente: pacienteActual.id,
           asistente: $('#asistente').val(),
           fecha: $('#fecha').val(),
           tipo: $('#tipo').val(),
@@ -202,6 +205,7 @@
           else if(data[0]=="Success: Al ingresar datos"){
             alert('Se ingresaron los datos');
             $('#paciente').val('');
+            pacienteActual.id = -1;
             $('#asistente').val('');
             $('#fecha').val('');
             $('#tipo').val('');
@@ -241,10 +245,10 @@
           var nombres = [];
           for (var i=0; i < data.length; i++) {
             //console.log(data[i])
-            nombres.push(data[i]['fname']);
+            nombres.push({val: data[i]['fname'], id: data[i]['id']});
           }
           pacientes.arr = nombres;
-          autocomplete(document.getElementById('paciente'), pacientes);
+          autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
         }
       });
     }
@@ -268,9 +272,9 @@
         var nombres = [];
         for (var i=0; i < data.length; i++) {
           //console.log(data[i])
-          nombres.push(data[i]['fname']);
+          nombres.push({val: data[i]['fname'], id: data[i]['id']});
         }
-        autocomplete(document.getElementById('asistente'), {arr: nombres });
+        autocomplete(document.getElementById('asistente'), {arr: nombres }, voluntarioActual);
       }
     });
 
