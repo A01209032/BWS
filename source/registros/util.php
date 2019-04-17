@@ -100,7 +100,7 @@ function addRegistro($departamento,$paciente,$asistente,$fecha,$tipo,$observacio
             "| Fecha: " . $fecha . "| Tipo: " . $tipo . "| observaciones: ". $observaciones . "| Cuota: " . $cuota;*/
 
     //$sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
-    $sql = "call creaServicio($de   partamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
+    $sql = "call creaServicio($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
