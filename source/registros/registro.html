@@ -196,7 +196,7 @@
         method: 'POST',
         data: {
           paciente: pacienteActual.id,
-          asistente: $('#asistente').val(),
+          asistente: voluntarioActual.id,
           fecha: $('#fecha').val(),
           tipo: $('#tipo').val(),
           observaciones: $('#observaciones').val(),
@@ -204,6 +204,7 @@
           submit: ''
         },
         success: function(data) {
+          console.log(data);
           data = JSON.parse(data);
           if(data[0]=="Error: En insercion de base de datos!"){
             alert(data[0]);
@@ -213,6 +214,7 @@
             $('#paciente').val('');
             pacienteActual.id = -1;
             $('#asistente').val('');
+            voluntarioActual.id = -1;
             $('#fecha').val('');
             $('#tipo').val('');
             $('#observaciones').val('');
