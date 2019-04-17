@@ -3,17 +3,21 @@
   <div class="row">
     <div class="col-lg-12 text-center">
 
+      <div id="mostrar_loading" class="loader" style="display:none;">
+          <!--img src="loading.gif"  alt="Loading..." /-->
+      </div>
+
       <h1 class="mt-5">Lista de voluntarios</h1><br>
 
       <ul class="list-unstyled">
-
-
 
      <br>
 
       <div class="container">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar voluntario</button>
+        <button type="button" class="clsButton btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar voluntario</button>
+
+        <div class="text-center" id="listaVoluntarios"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="registrarVoluntario" role="dialog">
@@ -38,7 +42,7 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                              <form action="controlador/guardar_voluntario.php" method="POST">
+                              <form method="POST" id="agregarVol">
 
                                 <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
@@ -56,21 +60,23 @@
                                 <label for="cargo">Cargo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="cargo" name="cargo" required>
-                                  <option value="ninguno">Ninguno</option>
-                                  <option value="representante">Representante Legal</option>
-                                  <option value="vicepresidente">Vicepresidente</option>
-                                  <option value="secretaria">Secretaria</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $cargos=getCargos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($cargos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
                                 <label for="tipo">Tipo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="tipo" name="tipo" required>
-                                  <option value="superiora">Superiora</option>
-                                  <option value="enfermera">Enfermera</option>
-                                  <option value="medico_familiar">Medico Familiar</option>
-                                  <option value="voluntario">Voluntario</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $tipos=getTipos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($tipos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
                                   <button type="submit" id="submit" class="btn btn-primary" name="submit">Agregar voluntario</button>
@@ -119,9 +125,9 @@
                             </div>
                             <div class="column">
 
-                              <form method="POST" id="insert_form" action="controlador/editar_voluntario.php"  >
+                              <form method="POST" id="insert_form">
 
-                                <label for="nombre">Nombre(s) y apellido(s) completos</label>
+                                <label for="nombreM">Nombre(s) y apellido(s) completos</label>
                                 <br>
                                 <input type="text" id="nombreM" name="nombreM" placeholder="Nombre(s)" class="form-control" required>
 
@@ -130,33 +136,35 @@
                                 <input type="date" id="fechaDeNacimientoM" name="fechaDeNacimientoM" class="form-control" required>
                                 <br>
 
-                                <label for="sexo">Sexo</label>
+                                <label for="sexoM">Sexo</label>
                                 <select class="form-control form-control-sm" id="sexoM" name="sexoM"required>
                                   <option value="M">Masculino</option>
                                   <option value="F">Femenino</option>
                                 </select>
 
                                 <br>
-                                <label for="cargo">Cargo</label>
+                                <label for="cargoM">Cargo</label>
                                 <br>
 
                                 <select class="form-control form-control-sm" id="cargoM" name="cargoM" required>
-                                  <option value="ninguno">Ninguno</option>
-                                  <option value="representante">Representante Legal</option>
-                                  <option value="vicepresidente">Vicepresidente</option>
-                                  <option value="secretaria">Secretaria</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $cargos=getCargos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($cargos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
 
                                 <label for="tipoM">Tipo</label>
                                 <br>
                                 <select class="form-control form-control-sm" id="tipoM" name="tipoM" required>
-                                  <option value="superiora">Superiora</option>
-                                  <option value="enfermera">Enfermera</option>
-                                  <option value="medico_familiar">Medico Familiar</option>
-                                  <option value="voluntario">Voluntario</option>
-                                  <option value="tesorera">Tesorera</option>
+                                  <?php 
+                                    $tipos=getTipos();
+                                  ?>
+                                  <?php while($row = mysqli_fetch_array($tipos)):;?>
+                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                  <?php endwhile;?>
                                 </select>
                                 <br>
 

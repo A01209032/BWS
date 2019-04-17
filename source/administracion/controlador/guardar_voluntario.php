@@ -16,16 +16,16 @@
         $tipo=htmlspecialchars($_POST["tipo"]);
 
         /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo,1);//){
-          //Se cargaron los datos
-          echo '<script language="javascript">';
-          echo 'alert("Se agrego el voluntario de manera exitosa")'; 
-          echo 'window.location="../voluntarios.php";';
-          echo '</script>';
+          //echo '<script language="javascript">';
+          echo 'Se agregó el voluntario de manera exitosa';
+          //echo 'window.location="../voluntarios.php";';
+          //echo '</script>';
+          //header( "refresh:.1; url=../voluntarios.php" );
         //}else{
           //Error al cargar las datos
         //}
     }else{
       //error "Falta llenar todos los campos"
-      header("../voluntarios.php");
+      //header("../voluntarios.php");
     }
 ?>

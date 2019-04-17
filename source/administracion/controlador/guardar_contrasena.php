@@ -25,33 +25,22 @@
             //Si son números validos se cambia la contraseña
             if($valores==True){
                 modifyContraseniaById($id,$password);
-                echo '<script language="javascript">';
-                echo 'alert("¡La contraseña se cambio con éxito!");';
-                //echo 'window.location="../cuentas.php";';
-                echo '</script>';
+                echo 'La contraseña se cambio con éxito!';
             //Si son números invalidos no se cambia la contraseña
             }else{
-                echo '<script language="javascript">';
-                echo 'alert("Error: Ingrese números con valores del 0 al 4");';
-                //echo 'window.location="../cuentas.php";';
-                echo '</script>';
+                echo 'Error: Ingrese números con valores del 0 al 4';
             }
         //Si no son números no se cambia la contraseña
         } else {
-            echo '<script language="javascript">';
-            echo 'alert("¡Error! Porfavor ingrese adecuadamente los datos");';
-            //echo 'window.location="../cuentas.php";';
-            echo '</script>';
+            echo '¡Error! Porfavor ingrese adecuadamente los datos';
         }
-        header( "refresh:.1; url=../cuentas.php" );
+        //header( "refresh:.1; url=../cuentas.php" );
         //header('Location: ../cuentas.php');
 
     }else{
         //Error al cargar las datos
-        echo '<script language="javascript">';
-        echo 'alert("¡Error! Porfavor inserte los datos");';
-        echo '</script>';
-        eader( "refresh:.1; url=../cuentas.php" );
+        echo 'alert("¡Error! Porfavor inserte los datos';
+        //header( "refresh:.1; url=../cuentas.php" );
         var_dump($_POST);
     }
 ?>
