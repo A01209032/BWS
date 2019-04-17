@@ -17,7 +17,7 @@
 
         /*if(*/insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo,1);//){
           //echo '<script language="javascript">';
-          echo 'alert("Se agrego el voluntario de manera exitosa")';
+          echo 'Se agregó el voluntario de manera exitosa';
           //echo 'window.location="../voluntarios.php";';
           //echo '</script>';
           //header( "refresh:.1; url=../voluntarios.php" );

@@ -4,10 +4,10 @@
   include("../views/_header_carpetas.html");
   require_once ("modelo/util.php");
 
-  $result=getVoluntarios();
+  //$result=getVoluntarios();
   
   include("partials/_voluntarios.html");
-
+/*
   $text='';
   if(mysqli_num_rows($result)>0){
     $text=$text.'<br><table class="table table-white "><thead><h2>Listado de todos los voluntarios</h2><tr>
@@ -37,17 +37,18 @@
         $text=$text.'<td>'.$row["Sexo"].'</td>';
         $text=$text.'<td>'.$row["NombreCargo"].'</td>';
         $text=$text.'<td>'.$row["NombreTipo"].'</td>';
-        /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
+        /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> 
         $text=$text.'  <td>
         <div class="btn-group-vertical">
         <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
         		<br>
-                <form action="controlador/eliminar_voluntario.php" method="POST" onsubmit="return eliminar();" >
+                <form class="ajax" method="POST" >
                 <input type="hidden" value='.$temp.' name="id" id="id">
-                <input type="submit" class=" clsButton btn btn-danger active  " role="button" aria-pressed="true" value="Eliminar">
+                <input type="submit" class=" clsButton btn btn-danger active" role="button" aria-pressed="true" value="Eliminar">
         </div>
-        </form></td>';
+        </form></td>';*/
         /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
+        /*
         $text=$text.'</tr>';
       }
   }else{
@@ -55,7 +56,7 @@
   }
   $text=$text.'</tbody></table>';
   echo $text;
-  mysqli_free_result($result); //Se libera la variable de memoria
+  mysqli_free_result($result); //Se libera la variable de memoria*/
 ?>
 
 <script type="text/javascript" src="js/edicion.js"></script>

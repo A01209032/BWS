@@ -12,7 +12,6 @@ function getRequestObject(){
 function sendRequest(){
 
   let NUEVO_CODIGO = 1;
-   
    if (NUEVO_CODIGO) {
         $.post( "controlador/consulta_tabla.php", { date: document.getElementById('date').value ,depa: document.getElementById('depa').value })
           .done(function( data ) {
@@ -20,9 +19,7 @@ function sendRequest(){
               ajaxResponse.innerHTML = data;
               ajaxResponse.style.visibility = "visible";
           });
-      
    } else {
-     
        
    }
    
@@ -59,9 +56,21 @@ $(document).ready(function(){
           });
   }
 
+  function cambiarContrasena() {
+  var retVal = confirm("¿Esta seguro que desea cambiar la contraseña?");
+    if( retVal == true ) {
+      //document.write ("User wants to continue!");
+      return true;
+    } else {
+      //document.write ("User does not want to continue!");
+      return false;
+    }
+  }
+
   function insertar(){
     $('form.ajax').on("submit", function(event){  
     event.preventDefault(); 
+    if(cambiarContrasena()){
       var that=$(this),
         url = 'controlador/guardar_contrasena.php',
         type=that.attr('method'),
@@ -90,13 +99,12 @@ $(document).ready(function(){
           requestCuentas();
         }
       });
+    }
       return false;
   });
   }
   
 });
-
-
 
 /*
 function selectValue() {

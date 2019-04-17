@@ -5,15 +5,17 @@
 
       <h1 class="mt-5">Lista de voluntarios</h1><br>
 
+      
+
       <ul class="list-unstyled">
-
-
 
      <br>
 
       <div class="container">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar voluntario</button>
+        <button type="button" class="clsButton btn btn-primary text-center" data-toggle="modal" data-target="#registrarVoluntario">Agregar voluntario</button>
+
+        <div class="text-center" id="listaVoluntarios"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="registrarVoluntario" role="dialog">
@@ -121,9 +123,9 @@
                             </div>
                             <div class="column">
 
-                              <form method="POST" id="insert_form" action="controlador/editar_voluntario.php"  >
+                              <form method="POST" id="insert_form">
 
-                                <label for="nombre">Nombre(s) y apellido(s) completos</label>
+                                <label for="nombreM">Nombre(s) y apellido(s) completos</label>
                                 <br>
                                 <input type="text" id="nombreM" name="nombreM" placeholder="Nombre(s)" class="form-control" required>
 
@@ -132,14 +134,14 @@
                                 <input type="date" id="fechaDeNacimientoM" name="fechaDeNacimientoM" class="form-control" required>
                                 <br>
 
-                                <label for="sexo">Sexo</label>
+                                <label for="sexoM">Sexo</label>
                                 <select class="form-control form-control-sm" id="sexoM" name="sexoM"required>
                                   <option value="M">Masculino</option>
                                   <option value="F">Femenino</option>
                                 </select>
 
                                 <br>
-                                <label for="cargo">Cargo</label>
+                                <label for="cargoM">Cargo</label>
                                 <br>
 
                                 <select class="form-control form-control-sm" id="cargoM" name="cargoM" required>

@@ -19,18 +19,17 @@
         updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo);
         //Se cargaron los datos
         //var_dump($_POST);
-        echo '<script language="javascript">';
-        echo 'alert("Se edito el voluntario")';
+        //echo '<script language="javascript">';
+        echo 'Se edito el voluntario';
         //echo 'window.location="../voluntarios.php";';
-        echo '</script>';
-        header( "refresh:.1; url=../voluntarios.php" );
-        //header('Location: '.$_SERVER['HTTP_REFERER']);
+        //echo '</script>';
+        //header( "refresh:.1; url=../voluntarios.php" );
     }else{
         //Error al cargar las datos
-        echo '<script language="javascript">';
-        echo 'alert("No se encontro el registro de volutario")';
-        echo '</script>';
-        header( "refresh:.1; url=../voluntarios.php" );
+        //echo '<script language="javascript">';
+        echo 'No se encontro el registro de volutario';
+        //echo '</script>';
+        //header( "refresh:.1; url=../voluntarios.php" );
         var_dump($_POST);
     }
 ?>
