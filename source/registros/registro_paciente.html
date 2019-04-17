@@ -72,20 +72,7 @@
         </ul>
       </div>
     </div>
-    <script type="text/javascript">
-      var enfermedadActual = { id: -1 };
-      window.addEventListener('load', function() {
-
-        $.ajax({
-          success: function(data) {
-            autocomplete(document.getElementById('enfermedad'), 
-              {arr: [{val:'Cancer',id:0},{val:'Diabetes',id:1},{val:'Hepatitis',id:2},{val:'Depresion',id:3}]},enfermedadActual);
-          }
-        });
-        
-      });
-
-    </script>
+    <script type="text/javascript" src="../js/registro_paciente.js"></script>
   </div>
 
 
