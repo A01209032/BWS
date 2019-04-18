@@ -32,11 +32,9 @@
           $text=$text.'<td>'.$row["NombreTipo"].'</td>';
           $text=$text.'  <td>
           <div class="btn-group-vertical">
-          <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
-              <br>
-                  <form class="ajax" method="POST" >
-                  <input type="hidden" value='.$temp.' name="id" id="id">
-                  <input type="submit" class="clsButton btn btn-danger active delete_data" role="button" aria-pressed="true" value="Eliminar">
+            <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
+            <br>
+            <input type="button" name="delete" value="Eliminar" id="'.$temp.'" class="clsButton btn btn-danger delete_data">
           </div>
           </form></td>';
           $text=$text.'</tr>';

@@ -26,7 +26,6 @@ $(document).ready(function(){
                         'csv', 'excel', 'pdf', 'print'
                     ]
                 } );
-                eliminarVoluntario();
                 loader.className += " hidden"; // class "loader hidden"
               }
 
@@ -99,38 +98,21 @@ $(document).ready(function(){
     }
 
     //eliminar
-    function eliminarVoluntario(){
-
-      $('form.ajax').on("submit", function(event){
-
-        event.preventDefault();
-          if (eliminar()){
-              var that=$(this),
-              url = 'controlador/eliminar_voluntario.php',
-              type=that.attr('method'),
-              data={};
-            that.find('[name]').each(function(index,value){
-              var eso=$(this);
-              name=eso.attr('name'),
-              value=eso.val();
-
-              data[name]=value;
-            });
-
-            $.ajax({
-              url: url,
-              type:type,
-              data: data,
-              success: function(data) {
-                alert(data);
-                requestVoluntarios();
-              }
-            });
-          }
-
-          return false;
+    
+      $(document).on('click', '.delete_data', function(){
+        if (eliminar()){
+          let employee_id = $(this).attr("id");
+          $.ajax({
+            url:"controlador/eliminar_voluntario.php",
+            method:"POST",
+            data: {employee_id: employee_id},
+            success:function(data){
+              alert(data);
+              requestVoluntarios();
+            }
+          });
+        }
       });
-    }
 
 
 
