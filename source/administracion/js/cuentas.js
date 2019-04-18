@@ -1,5 +1,6 @@
-$(document).ready(function(){  
+$(document).ready(function(){
 
+  const loader = document.querySelector(".loader");
   window.onload=requestCuentas();
 
   function requestCuentas(){
@@ -9,6 +10,7 @@ $(document).ready(function(){
               ajaxResponse.innerHTML = data;
               ajaxResponse.style.visibility = "visible";
               insertar();
+              loader.className += " hidden"; // class "loader hidden"
           });
   }
 
@@ -24,8 +26,8 @@ $(document).ready(function(){
   }
 
   function insertar(){
-    $('form.ajax').on("submit", function(event){  
-    event.preventDefault(); 
+    $('form.ajax').on("submit", function(event){
+    event.preventDefault();
     if(cambiarContrasena()){
       var that=$(this),
         url = 'controlador/guardar_contrasena.php',
@@ -37,7 +39,7 @@ $(document).ready(function(){
         value=eso.val();
 
         data[name]=value;
-      });  
+      });
       //var boton=data[id];
       //boton='#'+boton;
       $.ajax({
@@ -47,7 +49,7 @@ $(document).ready(function(){
         /*
         beforeSend:function(){
           echo (boton);
-          $(boton).val("Insertando");  
+          $(boton).val("Insertando");
         }, */
         success: function(data) {
           alert(data);
@@ -59,5 +61,5 @@ $(document).ready(function(){
       return false;
   });
   }
-  
+
 });

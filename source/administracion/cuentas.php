@@ -7,12 +7,13 @@
   /*Se carga todos los datos de todos los departamentos y se muestran en cartas con su contraseña
   y con la opción de modificarla*/
   //se conecta con controlador/guardar_contrasena.php
- 
+
   //título
   include("partials/_cuentas.html");
-  
+
 ?>
 <script type="text/javascript" src="js/cuentas.js"> </script>
+<script type="text/javascript" src="js/loading.js"></script>
 <?php
   include("../views/_footer.html");
 ?>

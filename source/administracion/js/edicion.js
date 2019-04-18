@@ -1,8 +1,7 @@
    //nuevovoluntario
- function agregarnuevovol(){
-     //alert("esta entrando");
-           $('#registrarVoluntario').modal('show');
-      }
+function agregarnuevovol(){
+  $('#registrarVoluntario').modal('show');
+}
 $(document).ready(function(){
 
   const loader = document.querySelector(".loader");
@@ -20,16 +19,15 @@ $(document).ready(function(){
                 var ajaxResponse = document.getElementById('listaVoluntarios');
                 ajaxResponse.innerHTML = data;
                 ajaxResponse.style.visibility = "visible";
-                
+
                 $('#tablaVoluntarios').DataTable( {
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        'csv', 'excel', 'pdf', 'print'
                     ]
                 } );
                 eliminarVoluntario();
                 loader.className += " hidden"; // class "loader hidden"
-                //document.getElementById('mostrar_loading').style.display="none";
               }
 
             });
