@@ -19,7 +19,7 @@ if (isset($_POST['user'])) {
 		$error = "¡La contraseña no es correcta!";
 		include("views/_header_login.html");
 		include("views/login_view.php");
-
+		include("views/forgotPassword_view.php");
 		exit;
 	}
 
