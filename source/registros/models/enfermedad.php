@@ -8,7 +8,7 @@
  *
  * Funciones:
  * - listarEnfermedadesCon($pattern) Devuelve un array de enfermedades cuyo nombre contiene pattern.
- * - buscarEnfermedadPorId($id) Busca en la base de datos la enferemedad con id $id y lo devuelve.
+ * - registrarEnfermedad($enfNombre) Registra en la base de datos una enfermedad.
  *
 */
 
@@ -41,6 +41,21 @@ function listarEnfermedadesCon($pattern) {
 	closeDB($conn);
 
 	return $enfermedades;
+}
+
+function registrarEnfermedad($enfNombre) {
+	$conn = conectDB();
+
+	$sql = "INSERT INTO enfermedades (Nombre) VALUES ('$enfNombre')";
+
+	$res = mysqli_query($conn, $sql);
+
+	if ($res === false)
+		return false;
+	else
+		return mysqli_insert_id($conn);
+
+	closeDB($conn);
 }
 
 ?>

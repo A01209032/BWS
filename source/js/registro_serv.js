@@ -20,6 +20,7 @@ window.addEventListener("load", function() {
         apellido: $('#apellido').val(),
         //enfermedad: $('#enfermedad').val(),
         enfermedad: enfermedadActual.id,
+        enfermedadNombre: $('#enfermedad').val(),
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
@@ -29,6 +30,8 @@ window.addEventListener("load", function() {
         nivel: $('#nivel').val()
       },
       success: function(data) {
+        console.log("Pacientes Reg Resp:");
+        console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
           alert(data[0]);
