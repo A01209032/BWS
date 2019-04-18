@@ -1,9 +1,9 @@
-<?php 
+<?php
     require_once("../modelo/util.php");
-    $result=getVoluntarios();  
+    $result=getVoluntarios();
     $text='';
     if(mysqli_num_rows($result)>0){
-      $text=$text.'<br><table class="table table-white ">
+      $text=$text.'<br><table id="tablaVoluntarios" class="display nowrap" style="width:100%">
       <thead>
           <tr>
             <th>Id</th>
@@ -12,13 +12,13 @@
             <th>Sexo</th>
             <th>Cargo</th>
             <th>Tipo</th>
+            <th>Modificar</th>
         </tr>
       </thead>
       </tr></thead><tbody>';
 
       //Imprimir cada fila
       while($row=mysqli_fetch_assoc($result)){
-          //$row2=mysqli_fetch_assoc($edad);
           $temp=$row["IdVoluntario"];
           $text=$text.'<tr>';
           $text=$text.'<td>'.$temp.'</td> ';
@@ -30,7 +30,6 @@
           $text=$text.'<td>'.$row["Sexo"].'</td>';
           $text=$text.'<td>'.$row["NombreCargo"].'</td>';
           $text=$text.'<td>'.$row["NombreTipo"].'</td>';
-          /*echo ' <td><button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#modificarVoluntario" value='.$temp.'>Modificar</button> */
           $text=$text.'  <td>
           <div class="btn-group-vertical">
           <input type="button" name="edit" value="Editar" id="'.$temp.'" class="clsButton btn btn-primary edit_data">
@@ -40,7 +39,6 @@
                   <input type="submit" class="clsButton btn btn-danger active delete_data" role="button" aria-pressed="true" value="Eliminar">
           </div>
           </form></td>';
-          /*<button type="button" onclick="eliminar()" class="btn btn-danger" value='.$temp.'>Eliminar</button></td>'*/
           $text=$text.'</tr>';
         }
     }else{
@@ -50,4 +48,3 @@
     echo $text;
     mysqli_free_result($result); //Se libera la variable de memoria
 ?>
-

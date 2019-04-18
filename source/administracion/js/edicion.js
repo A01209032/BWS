@@ -1,9 +1,10 @@
    //nuevovoluntario
  function agregarnuevovol(){
-     alert("esta entrando");
+     //alert("esta entrando");
            $('#registrarVoluntario').modal('show');
       }
 $(document).ready(function(){
+
   const loader = document.querySelector(".loader");
   //cargar
   window.onload=requestVoluntarios();
@@ -15,10 +16,17 @@ $(document).ready(function(){
               data: {
               },
               success: function(data) {
-                
+
                 var ajaxResponse = document.getElementById('listaVoluntarios');
                 ajaxResponse.innerHTML = data;
                 ajaxResponse.style.visibility = "visible";
+                
+                $('#tablaVoluntarios').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
                 eliminarVoluntario();
                 loader.className += " hidden"; // class "loader hidden"
                 //document.getElementById('mostrar_loading').style.display="none";
@@ -44,9 +52,9 @@ $(document).ready(function(){
               },
               success: function(data) {
                 alert(data);
-    
+
                 requestVoluntarios();
-                  
+
                 $('#registrarVoluntario').modal('hide');
               }
 
@@ -95,9 +103,9 @@ $(document).ready(function(){
     //eliminar
     function eliminarVoluntario(){
 
-      $('form.ajax').on("submit", function(event){  
+      $('form.ajax').on("submit", function(event){
 
-        event.preventDefault(); 
+        event.preventDefault();
           if (eliminar()){
               var that=$(this),
               url = 'controlador/eliminar_voluntario.php',
@@ -121,17 +129,17 @@ $(document).ready(function(){
               }
             });
           }
-          
+
           return false;
       });
     }
- 
-    
-    
+
+
+
     /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
-      
+
       $(document).on('click', '.edit_data', function(){
-        
+
         let employee_id = $(this).attr("id");
         $.ajax({
           url:"modelo/fetch.php",
