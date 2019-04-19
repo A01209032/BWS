@@ -1,6 +1,7 @@
 <?php
     require_once("../util.php");
     require_once("models/paciente.php");
+    require_once("models/enfermedad.php");
     $nombre = $nivel = $apellido = $enfermedad = $direccion = $telefono = $celular = $fechaNacimiento = $sexo = $religion = ' ';
     $nombreErr = $nivelErr =$apellidoErr = $fechaNacimientoErr =$enfermedadErr = $sexoErr = $religionErr = '';
     $error = 0;
@@ -46,14 +47,23 @@
        
 
     }
-     if (empty($_POST["enfermedad"])) {
-     $enfermedadErr = "Datos incompletos";
-     $error = 1;
-     } else {
-       $enfermedad = test_input($_POST["enfermedad"]);
-       
-
-    }
+   if ($_POST["enfermedad"] == '-1') {
+      // Necesita Registrar la Enfermedad Nueva
+      if (empty($_POST["enfermedadNombre"])) {
+        $error = 1;
+        $enfermedadErr = "Datos incompletos";
+      } else {
+        $enfermedad = registrarEnfermedad(test_input($_POST["enfermedadNombre"]));
+      }
+   } else {
+      $enfermedad = test_input($_POST["enfermedad"]);
+   }
+   /*if (empty($_POST["enfermedad"])) {
+    $enfermedadErr = "Datos incompletos";
+    $error = 1;
+   } else {
+     $enfermedad = test_input($_POST["enfermedad"]);
+   }*/
     if (empty($_POST["direccion"])) {
      
      } else {

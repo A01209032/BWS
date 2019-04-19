@@ -1,4 +1,9 @@
+   //nuevovoluntario
+function agregarnuevovol(){
+  $('#registrarVoluntario').modal('show');
+}
 $(document).ready(function(){
+
   const loader = document.querySelector(".loader");
   //cargar
   window.onload=requestVoluntarios();
@@ -10,13 +15,18 @@ $(document).ready(function(){
               data: {
               },
               success: function(data) {
-                
+
                 var ajaxResponse = document.getElementById('listaVoluntarios');
                 ajaxResponse.innerHTML = data;
                 ajaxResponse.style.visibility = "visible";
-                eliminarVoluntario();
+
+                $('#tablaVoluntarios').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
                 loader.className += " hidden"; // class "loader hidden"
-                //document.getElementById('mostrar_loading').style.display="none";
               }
 
             });
@@ -39,9 +49,10 @@ $(document).ready(function(){
               },
               success: function(data) {
                 alert(data);
-    
-                $('#registrarVoluntario').hide();
+
                 requestVoluntarios();
+
+                $('#registrarVoluntario').modal('hide');
               }
 
             });
@@ -87,44 +98,28 @@ $(document).ready(function(){
     }
 
     //eliminar
-    function eliminarVoluntario(){
-
-      $('form.ajax').on("submit", function(event){  
-
-        event.preventDefault(); 
-          if (eliminar()){
-              var that=$(this),
-              url = 'controlador/eliminar_voluntario.php',
-              type=that.attr('method'),
-              data={};
-            that.find('[name]').each(function(index,value){
-              var eso=$(this);
-              name=eso.attr('name'),
-              value=eso.val();
-
-              data[name]=value;
-            });
-
-            $.ajax({
-              url: url,
-              type:type,
-              data: data,
-              success: function(data) {
-                alert(data);
-                requestVoluntarios();
-              }
-            });
-          }
-          
-          return false;
-      });
-    }
     
+      $(document).on('click', '.delete_data', function(){
+        if (eliminar()){
+          let employee_id = $(this).attr("id");
+          $.ajax({
+            url:"controlador/eliminar_voluntario.php",
+            method:"POST",
+            data: {employee_id: employee_id},
+            success:function(data){
+              alert(data);
+              requestVoluntarios();
+            }
+          });
+        }
+      });
 
-      /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
-      
+
+
+    /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
+
       $(document).on('click', '.edit_data', function(){
-        
+
         let employee_id = $(this).attr("id");
         $.ajax({
           url:"modelo/fetch.php",
