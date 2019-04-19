@@ -8,6 +8,23 @@ function getRequestObject(){
         return (null);
     }
 }
+function sendRequest(){
+
+  let NUEVO_CODIGO = 1;
+   if (NUEVO_CODIGO) {
+        $.post( "controlador/consulta_tabla.php", { date: document.getElementById('date').value ,depa: document.getElementById('depa').value })
+          .done(function( data ) {
+              var ajaxResponse = document.getElementById('ajaxResponse');
+              ajaxResponse.innerHTML = data;
+              ajaxResponse.style.visibility = "visible";
+          });
+   } else {
+       
+   }
+   
+}
+
+
 function sendRequest3(){
 
   let NUEVO_CODIGO = 1;
@@ -27,21 +44,24 @@ function sendRequest3(){
 
 }
 
-function sendRequest(){
+
+function sendRequest4(){
 
   let NUEVO_CODIGO = 1;
+   
    if (NUEVO_CODIGO) {
-        $.post( "controlador/consulta_tabla.php", { date: document.getElementById('date').value ,depa: document.getElementById('depa').value })
+       
+       $.get( "controlador/verificarv.php", { pattern2: document.getElementById('userInput2').value  })
           .done(function( data ) {
-              var ajaxResponse = document.getElementById('ajaxResponse');
-              ajaxResponse.innerHTML = data;
-              ajaxResponse.style.visibility = "visible";
+              var ajaxResponse3= document.getElementById('ajaxResponse4');
+              ajaxResponse3.innerHTML = data;
+              ajaxResponse3.style.visibility = "visible";
           });
    } else {
-
    }
 
 }
+//reportes
 function sendRequest2(){
 
   let NUEVO_CODIGO = 1;
@@ -59,9 +79,25 @@ function sendRequest2(){
 
    }
 }
+function sendRequest5(){
 
-
-function sendRequest4(){
+  let NUEVO_CODIGO = 1;
+   
+   if (NUEVO_CODIGO) {
+       
+       $.get( "controlador/verificarv.php", { pattern2: document.getElementById('userInput2').value  })
+          .done(function( data ) {
+              var ajaxResponse3= document.getElementById('ajaxResponse4');
+              ajaxResponse3.innerHTML = data;
+              ajaxResponse3.style.visibility = "visible";
+          });
+   } else {
+     
+       
+   }
+   
+}
+function sendRequest6(){
 
   let NUEVO_CODIGO = 1;
 
@@ -79,6 +115,8 @@ function sendRequest4(){
    }
 
 }
+
+//
 var auxiliar;
 var auxiliar2;
 function getval(first){
