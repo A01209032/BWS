@@ -3,24 +3,29 @@ var voluntarioActual = { id: -1 };
 window.addEventListener("load", function() {
 
 
-  var pacientes = {arr: [], creadoBuscador: false};
+  var pacientes = {arr: []};
   
+  $('#registrarPaciente').on('click', function(ev) {
+    ev.preventDefault();
+    $('#submit').show();
+    $('#submitM').hide();
+    $('#RP').show();
+    $('#MP').hide();
+
+  });
+
 
   // Habilitar Ajax a los forms para que todo sea con js
   $('#form_pacientes').on('submit', function(ev) {
     ev.preventDefault();
-
-
+    
 
     $.ajax({
       url: 'registro_paciente.php',
       method: 'POST',
       data: {
         nombre: $('#nombre').val(),
-        apellido: $('#apellido').val(),
-        //enfermedad: $('#enfermedad').val(),
-        enfermedad: enfermedadActual.id,
-        enfermedadNombre: $('#enfermedad').val(),
+        enfermedad: $('#enfermedad').val(),
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
@@ -30,8 +35,6 @@ window.addEventListener("load", function() {
         nivel: $('#nivel').val()
       },
       success: function(data) {
-        console.log("Pacientes Reg Resp:");
-        console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
           alert(data[0]);
@@ -41,18 +44,12 @@ window.addEventListener("load", function() {
           alert('Se registro exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
-          $('#apellido').val('');
           $('#direccion').val('');
           $('#telefono').val('');
-          $('#celular').val('');
+          $('#celular').val(' ');
           $('#myModal').modal('hide');
 
-          enfermedad: $('#enfermedad').val(''),
-          enfermedadActual.id = -1;
-
-
           cargarPacientes();
-          cargarEnfermedades();
         }
         else{
           $('#nombreErr').html(data[0]);
@@ -142,11 +139,7 @@ window.addEventListener("load", function() {
           nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años") , id: data[i]['id']});
         }
         pacientes.arr = nombres;
-
-        if (!pacientes.creadoBuscador) {
-          pacientes.creadoBuscador = true;
-          autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
-        }
+        autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
       }
     });
   }
@@ -175,5 +168,141 @@ window.addEventListener("load", function() {
       autocomplete(document.getElementById('asistente'), {arr: nombres }, voluntarioActual);
     }
   });
+
+
+$('#registrarNuevoServicio').on('click', function(ev) {
+    ev.preventDefault();
+
+
+
+    $.ajax({
+      url: 'tipodeservicio.php',
+      method: 'POST',
+      data: {
+        nombreServicio: $('#nombreServicio').val()
+      },
+      success: function(data) {
+        data = JSON.parse(data);
+        if(data[0]==1){
+          $('#errorNS').html('Datos incompletos');
+          //alert($('#nombreServicio').val());
+        }
+        else if(data[0]==3){
+          alert(data[0]);
+        }
+        else{
+          alert("Se agrego exitosamente");
+          $('#nombreServicio').val('');
+          $('#errorNS').html('');
+          $('#crearServicio').modal('hide');
+          $('#res').html(data[1]);
+        }
+       
+      },
+      dataType: 'text'
+    });
+
+    
+  });
+
+ $('#updatePaciente').on('click', function(ev) {
+    ev.preventDefault();
+
+  if(pacienteActual.id==-1){
+        $('#noSelect').html('No selecciono ningun paciente');
+      }
+  else{
+    $.ajax({
+      url: 'get_paciente.php',
+      method: 'POST',
+      data: {
+        id: pacienteActual.id
+      },
+      success: function(data) {
+        data = JSON.parse(data);
+        if(data[0]=="Error"){
+          alert(data[0]);
+          alert(data[1]);
+        }
+        else{
+          $('#submit').hide();
+          $('#submitM').show();
+          $('#RP').hide();
+          $('#MP').show();
+          $('#myModal').modal('show');
+          $('#nombre').val(data[1]);
+          $('#fecha_nacimiento').val(data[2]);
+          $('#direccion').val(data[4]);
+          $('#telefono').val(data[5]);
+          $('#celular').val(data[6]);
+          $('#sexo').val(data[3]);
+          $('#religion').val(data[7]);
+          $('#nivel').val(data[8]);
+          $('#enfermedad').val(data[0]);
+          $('#noSelect').html('');
+
+          cargarPacientes();
+        }
+        
+      },
+      dataType: 'text'
+    });
+  }
+ });
+
+ $('#submitM').on('click', function(ev) {
+    ev.preventDefault();
+
+    $.ajax({
+      url: 'update_paciente.php',
+      method: 'POST',
+      data: {
+        id: pacienteActual.id,
+        nombre: $('#nombre').val(),
+        enfermedad: $('#enfermedad').val(),
+        direccion: $('#direccion').val(),
+        telefono: $('#telefono').val(),
+        celular: $('#celular').val(),
+        fecha_nacimiento: $('#fecha_nacimiento').val(),
+        sexo: $('#sexo').val(),
+        religion: $('#religion').val(),
+        nivel: $('#nivel').val()
+      },
+      success: function(data) {
+        data = JSON.parse(data);
+        if(data[0]=="Error: En insercion de base de datos!"){
+          alert(data[0]);
+          alert(data[1]);
+        }
+        else if(data[0]=="Success: Al ingresar datos"){
+          alert('Se actualizo exitosamente el paciente');
+          $('#nombre').val('');
+          $('#fecha_nacimiento').val('');
+          $('#apellido').val('');
+          $('#direccion').val('');
+          $('#telefono').val('');
+          $('#celular').val(' ');
+          $('#myModal').modal('hide');
+          $('#noSelect').html('');
+
+          cargarPacientes();
+        }
+        else{
+          $('#nombreErr').html(data[0]);
+          $('#nivelErr').html(data[1]);
+          $('#apellidoErr').html(data[2]);
+          $('#fechaNacimientoErr').html(data[3]);
+          $('#enfermedadErr').html(data[4]);
+          $('#sexoErr').html(data[5]);
+          $('#religionErr').html(data[6]);
+          
+        }
+      },
+      dataType: 'text'
+    });
+  
+ });
+
+
 
 });
