@@ -1,0 +1,20 @@
+  <form  style="text-align: left" >
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label"  for="date">Selecciona dia y mes inicial:</label>
+       <input type="date" value="YYYY-MM-DD" name="date" id="date">
+      </div>
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label"  for="date2">Selecciona dia y mes final:</label>
+       <input type="date" value="YYYY-MM-DD" name="date2" id="date2">
+      </div>
+
+     </form>
+          <div class="form-group text-left" style="text-align: left">
+              <button class="btn btn-primary "   onclick="sendRequest2()">Enviar datos</button>
+          </div>
+
+
+
+ <div style="text-align: center" id="ajaxResponse6"></div>
+
+    <script type="text/javascript" src="js/ajax.js"></script>
