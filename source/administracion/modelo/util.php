@@ -88,8 +88,7 @@ $month = date('m', strtotime($Fecha));
     closeDb($conn);
     return $result;
 }
-
-function getServicioByFecha($Fecha,$Fecha2){
+function jap($Fecha,$Fecha2){
 
   $conn=conectDb();
   $year = date('Y', strtotime($Fecha));
@@ -114,11 +113,61 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .="-";
     $date2 .=$month2;
     $date2 .="-31";
+    
+     $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
+    $result= mysqli_query($conn,$sqlser);
+      if(mysqli_num_rows($result)>0){
+    echo '<div  style="width:75% ;  margin: 0 auto"><table id="tiposdeservicio" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Productividad</h2><br><tr><th>Servicios
+    </th><th>Total</th></tr></thead><tbody>';
+    //Imprimir cada fila
+    while($row=mysqli_fetch_assoc($result)){
+      echo '<tr>';
+      echo '<td>'.$row["NombreServicio"].'</td>';
+      echo '<td>'.$row["Total"].'</td>';
+
+      echo '</tr>';
+    }
+                      echo '</tbody></table></div> <br><br>'; 
+
+  }
+
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+    
+    mysqli_free_result($result);
+    closeDb($conn);
+    return $result;
+}
+
+function getServicioByFecha($Fecha,$Fecha2){
+
+  $conn=conectDb();
+  $year = date('Y', strtotime($Fecha));
+  $month = date('m', strtotime($Fecha));
+
+$year = date('Y', strtotime($Fecha));
+
+$month = date('m', strtotime($Fecha));
+$year2 = date('Y', strtotime($Fecha2));
+
+$month2 = date('m', strtotime($Fecha2));
+    $date='';
+    $date .=$year;
+    $date .="-";
+    $date .=$month;
+    $date .="-01";
+
+    $date2='';
+    $date2 .=$year2;
+    $date2 .="-";
+    $date2 .=$month2;
+    $date2 .="-31";
 //dispensario consulta
    $sqldis ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=3";
     $result= mysqli_query($conn,$sqldis);
       if(mysqli_num_rows($result)>0){
-    echo '<table id="dispensario" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Dispensario</h2><br><tr><th>Nombre
+    echo '<div style=" margin: 0 auto"> <div style="width:75% ;  margin: 0 auto"> <table id="dispensario" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Dispensario</h2><br><tr><th>Nombre
     </th><th>Voluntario</th><th>Departamento</th><th>Servicio</th><th>Fecha</th><th>Observaciones</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
@@ -144,7 +193,7 @@ $month2 = date('m', strtotime($Fecha2));
    $sqlasi ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=2";
     $result2= mysqli_query($conn,$sqlasi);
       if(mysqli_num_rows($result2)>0){
-    echo '<table id="asistencias" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Asistencias</h2><br><tr><th>Nombre
+    echo '<table id="asistencias" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Asistencias</h2><br><tr><th>Nombre
     </th><th>Voluntario</th><th>Departamento</th><th>Servicio</th><th>Fecha</th><th>Observaciones</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result2)){
@@ -171,7 +220,7 @@ $month2 = date('m', strtotime($Fecha2));
    $sqlpor ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=4";
     $result3= mysqli_query($conn,$sqlpor);
       if(mysqli_num_rows($result3)>0){
-    echo '<table id="porteria" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Porteria</h2><br><tr><th>Nombre
+    echo '<table id="porteria" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Porteria</h2><br><tr><th>Nombre
     </th><th>Voluntario</th><th>Departamento</th><th>Servicio</th><th>Fecha</th><th>Observaciones</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result3)){
@@ -186,7 +235,7 @@ $month2 = date('m', strtotime($Fecha2));
 
       echo '</tr>';
     }
-                      echo '</tbody></table> <br><br>'; 
+                      echo '</tbody></table> </div><br><br>'; 
 
   }
 
@@ -245,29 +294,33 @@ $month2 = date('m', strtotime($Fecha2));
       $hos=$row["total7"];
     }
   }
-    echo "<table align=\"center\"> <tr><th> Servicios de asistencias </th> <th>Total</th></tr>
-    <tr>
-    <td> Domiciliaria </td>
-    <td> ".$dom."</td>
-    </tr>
-    <tr>
-    <td> Nocturna </td>
-    <td> ".$noc." </td>
-    </tr>
-    <tr>
-    <td> Diurna </td>
-    <td> ".$diu." </td>
-    </tr>
-    <tr>
-    <td> Hospitalaria </td>
-    <td> ".$hos." </td>
-    </tr>
-    </table><br><br>";
+    
     //
-    $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio AND a.IdServicio>=5  AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
+     $sqlasistencias ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio AND a.IdDepartamento=2 AND     Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
+    $result6= mysqli_query($conn,$sqlasistencias);
+      if(mysqli_num_rows($result6)>0){
+    echo '<div style="width:50%; margin: 0 auto"> <table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
+    </th><th>Total</th></tr></thead><tbody>';
+    //Imprimir cada fila
+    while($row=mysqli_fetch_assoc($result6)){
+      echo '<tr>';
+      echo '<td>'.$row["NombreServicio"].'</td>';
+      echo '<td>'.$row["Total"].'</td>';
+
+      echo '</tr>';
+    }
+                      echo '</tbody></table> <br><br>'; 
+
+  }
+
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+    //
+    $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
     $result4= mysqli_query($conn,$sqlser);
       if(mysqli_num_rows($result4)>0){
-    echo '<table id="tiposdeservicio" align="center"><thead><h2 style="text-align: center">Productividad</h2><br><tr><th>Servicios
+    echo '<table id="tiposdeservicio" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Productividad</h2><br><tr><th>Servicios
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result4)){
@@ -288,7 +341,7 @@ $month2 = date('m', strtotime($Fecha2));
      $sqlse ="SELECT p.NivelEconomico,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.NivelEconomico";
     $result5= mysqli_query($conn,$sqlse);
       if(mysqli_num_rows($result5)>0){
-    echo '<table id="socioeconomico" align="center"><thead><h2 style="text-align: center">Nivel Socioeconomico</h2><br><tr><th>Estado Socioeconomico
+    echo '<table id="socioeconomico" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Nivel Socioeconomico</h2><br><tr><th>Estado Socioeconomico
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result5)){
@@ -298,7 +351,7 @@ $month2 = date('m', strtotime($Fecha2));
 
       echo '</tr>';
     }
-                      echo '</tbody></table> <br><br>'; 
+                      echo '</tbody></table> <br><br></div></div>'; 
 
   }
 
@@ -311,6 +364,7 @@ $month2 = date('m', strtotime($Fecha2));
     mysqli_free_result($result3);
     mysqli_free_result($result4);
     mysqli_free_result($result5);
+    mysqli_free_result($result6);
     mysqli_free_result($res1);
     mysqli_free_result($res2);
     mysqli_free_result($res3);
