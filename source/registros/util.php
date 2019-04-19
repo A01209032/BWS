@@ -158,6 +158,7 @@ function getPaciente($id){
         $resultado[6]=$row['Celular'];
         $resultado[7]=$row['Religion'];
         $resultado[8]=$row['NivelEconomico'];
+        $resultado[9]=$row['IdEnfermedad'];
         closeDB($conn);
         
     }else{

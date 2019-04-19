@@ -18,14 +18,18 @@ window.addEventListener("load", function() {
   // Habilitar Ajax a los forms para que todo sea con js
   $('#form_pacientes').on('submit', function(ev) {
     ev.preventDefault();
-    
+
+
 
     $.ajax({
       url: 'registro_paciente.php',
       method: 'POST',
       data: {
         nombre: $('#nombre').val(),
-        enfermedad: $('#enfermedad').val(),
+        apellido: $('#apellido').val(),
+        //enfermedad: $('#enfermedad').val(),
+        enfermedad: enfermedadActual.id,
+        enfermedadNombre: $('#enfermedad').val(),
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
@@ -35,6 +39,8 @@ window.addEventListener("load", function() {
         nivel: $('#nivel').val()
       },
       success: function(data) {
+        console.log("Pacientes Reg Resp:");
+        console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
           alert(data[0]);
@@ -44,12 +50,18 @@ window.addEventListener("load", function() {
           alert('Se registro exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
+          $('#apellido').val('');
           $('#direccion').val('');
           $('#telefono').val('');
-          $('#celular').val(' ');
+          $('#celular').val('');
           $('#myModal').modal('hide');
 
+          enfermedad: $('#enfermedad').val(''),
+          enfermedadActual.id = -1;
+
+
           cargarPacientes();
+          cargarEnfermedades();
         }
         else{
           $('#nombreErr').html(data[0]);
@@ -239,6 +251,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           $('#religion').val(data[7]);
           $('#nivel').val(data[8]);
           $('#enfermedad').val(data[0]);
+          enfermedadActual.id=data[9];
           $('#noSelect').html('');
 
           cargarPacientes();
@@ -259,7 +272,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
       data: {
         id: pacienteActual.id,
         nombre: $('#nombre').val(),
-        enfermedad: $('#enfermedad').val(),
+        enfermedad: enfermedadActual.id,
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
