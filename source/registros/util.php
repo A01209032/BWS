@@ -124,6 +124,24 @@ function updatePaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$f
     return $result;
 }
 
+function getEnfermedad($id){
+    $conn=conectDb();
+    $query = "SELECT nombre FROM enfermedades WHERE id=$id";
+    $res = mysqli_query($conn, $query);
+    $resultado;
+    if(mysqli_num_rows($res) > 0){//If there are actually results
+        $row = mysqli_fetch_array($res);
+        $resultado=$row['nombre'];
+        closeDB($conn);
+        
+    }else{
+        closeDB($conn);
+        $resultado="Error";
+    }
+    return $resultado;  
+}
+
+
 function getPaciente($id){
     $conn=conectDb();
     $query = "SELECT * FROM pacientes WHERE idPaciente = $id";
@@ -131,7 +149,7 @@ function getPaciente($id){
     $resultado;
     if(mysqli_num_rows($res) > 0){//If there are actually results
         $row = mysqli_fetch_array($res);
-        $resultado[0]=$row['IdEnfermedad'];
+        $resultado[0]=getEnfermedad($row['IdEnfermedad']);
         $resultado[1]=$row['Nombre'];
         $resultado[2]=$row['FechadeNacimiento'];
         $resultado[3]=$row['Sexo'];
@@ -179,8 +197,6 @@ function addServicio($departamento,$nombre){
     closeDb($con);
     return $result;
 }
-
- 
 
 
 

@@ -73,8 +73,8 @@ function buscarPacientePorId($id) {
 
 	return $paciente;
 }
-function registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
-      $nombre = $nombre.' '.$apellido;
+function registrarPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
+      
       //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.'");','</script>';
       $res=addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
       if($res){
@@ -82,4 +82,17 @@ function registrarPaciente($nombre,$apellido,$enfermedad,$direccion,$telefono,$c
         }
       return $nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion;
     }
+    
+function actualizarPaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
+	$res=updatePaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
+	if($res){
+      	return 100;    
+        }
+      return $id.' '.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel;
+}
+    
+function listarPacientes($id){
+	return getPaciente($id);
+}
+    
  ?>

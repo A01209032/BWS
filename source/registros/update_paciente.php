@@ -91,10 +91,11 @@
       if($error) echo json_encode($array);
       else {
        //echo '<script type="text/javascript">','alert("'.$nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel.'");','</script>';
-       $error=registrarPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
+        $id = test_input($_POST["id"]);
+       $error=actualizarPaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
 
 
-       if($error!=100)
+        if($error!=100)
           echo json_encode(array("Error: En insercion de base de datos!",$error));
        else 
           echo json_encode(array("Success: Al ingresar datos"));

@@ -14,11 +14,9 @@
             <div class="column">
               <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" id="form_pacientes" autocomplete="off">
                   
-                  <label for="nombre">Nombre <span id="error"><?php echo $nombreErr;?><span id="nombreErr"></span></span></label>
+                  <label for="nombre">Nombre Completo<span id="error"><?php echo $nombreErr;?><span id="nombreErr"></span></span></label>
                 <input type="text" id="nombre" name="nombre" placeholder="">
 
-                  <label for="apellido">Apellido <span id="error"><?php echo $apellidoErr;?><span id="apellidoErr"></span></span></label>
-                <input type="text" id="apellido" name="apellido" placeholder="">
 
                 <label for="enfermedad">Enfermedad <span id="error"><?php echo $enfermedadErr;?><span id="enfermedadErr"></span></span></label>
                 <div class="autocomplete">
@@ -63,7 +61,7 @@
                   <option value="Bajo">Bajo</option>
                 </select>
                 <button type="submit" class="btn btn-primary" id="submit" name="submit" >Agregar paciente</button>
-
+                <button type="submit" class="btn btn-primary" id="submitM" name="submitM" >Modificar paciente</button>
                  
               </form>
             </div>
