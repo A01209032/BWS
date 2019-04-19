@@ -170,6 +170,15 @@ function getTipodeServicio($id){
      
 }
 
+function addServicio($departamento,$nombre){
+    $con= conectDb();
+    //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
+    $sql ="INSERT INTO `tipodeservicio`(`IdDepartamento`, `NombreServicio`) values($departamento,'$nombre')";
+    $result = mysqli_query($con,$sql);
+    closeDb($con);
+    return $result;
+}
+
  
 
 

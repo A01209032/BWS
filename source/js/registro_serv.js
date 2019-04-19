@@ -163,4 +163,41 @@ window.addEventListener("load", function() {
     }
   });
 
+
+$('#registrarNuevoServicio').on('click', function(ev) {
+    ev.preventDefault();
+
+
+
+    $.ajax({
+      url: 'tipodeservicio.php',
+      method: 'POST',
+      data: {
+        nombreServicio: $('#nombreServicio').val()
+      },
+      success: function(data) {
+        if(data="errord"){
+          alert(data);
+          $('#errorNS').html('Datos incompletos');
+          //alert($('#nombreServicio').val());
+        }
+        else if(data="error"){
+          alert(data);
+        }
+        else{
+          alert(data);
+          $('#nombreServicio').val('');
+          $('#errorNS').html('');
+          $('#crearServicio').modal('hide');
+        }
+       
+      },
+      dataType: 'text'
+    });
+
+    
+  });
+
+
+
 });

@@ -254,3 +254,7 @@ input[type=submit] {
     border: 1px solid black;
     margin: 10px;
 }
+
+.error{
+  color: red;
+}
