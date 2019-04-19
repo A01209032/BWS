@@ -50,15 +50,17 @@
                   <input  type="date" value="<?php echo date('Y-m-d')?>" id="fecha" name="fecha">
 
                   <label for="tipo">Tipo de Asistencia <span id="error"><?php echo $tipoErr; ?><span id="tipoErr"></span></span></label>
-                  <select id="tipo" name="tipo">
+                  <div id='res'>
+                  
                   <?php
                   require_once("util.php");
                   $id=getIdDepartamento($_SESSION['departamento']);
-                  getTipodeServicio($id);
+                  echo getTipodeServicio($id);
 
                   ?>
                     
-                  </select>
+                    
+                  </div>
                   <div class="row">
                     <div class="col s6"></div>
                     <div class="col s6">

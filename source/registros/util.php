@@ -153,18 +153,19 @@ function getTipodeServicio($id){
     $conn=conectDb();
     $query = "SELECT idServicio,NombreServicio FROM tipodeservicio WHERE idDepartamento = $id";
     $res = mysqli_query($conn, $query);
-    $resultado;
+    $resultado='<select id="tipo" name="tipo">';
     if(mysqli_num_rows($res) > 0){//If there are actually results
         while($row=mysqli_fetch_assoc($res)){
-        echo '<option value="'.$row["idServicio"].'">'.$row["NombreServicio"].'</option>';
+        $resultado= $resultado.'<option value="'.$row["idServicio"].'">'.$row["NombreServicio"].'</option>';
     }
-
+        $resultado=$resultado.'</select>';
+        return $resultado;
         closeDB($conn);
         
     }else{
         closeDB($conn);
         $resultado="Error";
-        echo $resultado;
+        return $resultado;
         
     }
      

@@ -216,10 +216,8 @@ input[type=submit] {
   background-color: #4682B4;
 }
 .voluntariosicono{
-<<<<<<< HEAD
   background-color: #191970;
-=======
-  background-color: #008000;
+
 }
 /*PARA EL LOADING:*/
 
@@ -256,13 +254,9 @@ input[type=submit] {
     height: 100px;
     border: 1px solid black;
     margin: 10px;
-<<<<<<< HEAD
 }
 
 .error{
   color: red;
 }
-=======
->>>>>>> 1cf89f2bec480b551bc353c7210dd0e485273d13
-}
->>>>>>> d7eefb1919f95c576290cab2b8f530933b8991c3
+
