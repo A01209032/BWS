@@ -70,26 +70,70 @@ function sendRequest2(){
 
        $.post( "controlador/reporte_tabla.php", { date: document.getElementById('date').value ,date2: document.getElementById('date2').value })
           .done(function( data ) {
+          
               var ajaxResponse2 = document.getElementById('ajaxResponse2');
               ajaxResponse2.innerHTML = data;
               ajaxResponse2.style.visibility = "visible";
+            $('#dispensario').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+           $('#asistencias').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+           $('#porteria').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+           $('#asistenciasnum').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+           $('#tiposdeservicio').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+           $('#socioeconomico').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
           });
    } else {
 
 
    }
 }
-function sendRequest5(){
+function sendRequest6(){
 
   let NUEVO_CODIGO = 1;
    
    if (NUEVO_CODIGO) {
        
-       $.get( "controlador/verificarv.php", { pattern2: document.getElementById('userInput2').value  })
+        $.post( "controlador/reporteJAP.php", { date: document.getElementById('date').value ,date2: document.getElementById('date2').value })
           .done(function( data ) {
-              var ajaxResponse3= document.getElementById('ajaxResponse4');
-              ajaxResponse3.innerHTML = data;
-              ajaxResponse3.style.visibility = "visible";
+          
+              var ajaxResponse6 = document.getElementById('ajaxResponse6');
+              ajaxResponse6.innerHTML = data;
+              ajaxResponse6.style.visibility = "visible";
+           $('#tiposdeservicio').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
           });
    } else {
      
@@ -97,7 +141,7 @@ function sendRequest5(){
    }
    
 }
-function sendRequest6(){
+/*function sendRequest5(){
 
   let NUEVO_CODIGO = 1;
 
@@ -114,7 +158,7 @@ function sendRequest6(){
 
    }
 
-}
+}*/
 
 //
 var auxiliar;
@@ -136,7 +180,7 @@ function selectValue() {
     var aux=userInput.value;
     var nombre=document.getElementById("userInput");
     nombre.value=list.options[list.selectedIndex].text;
-   ajaxResponse.style.visibility="hidden";
+   ajaxResponse.style.display="none";
    nombre.focus();
 
 
@@ -153,7 +197,7 @@ function selectValue2() {
     var aux2=userInput.value;
     var nombre=document.getElementById("userInput2");
     nombre.value=list.options[list.selectedIndex].text;
-   ajaxResponse.style.visibility="hidden";
+   ajaxResponse.style.display="none";
    nombre.focus();
 
 

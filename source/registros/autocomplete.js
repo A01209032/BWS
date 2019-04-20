@@ -8,6 +8,10 @@ function autocomplete(inp, opts, opcionActual) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
+
+      // Resetear Current Id para que no se guarde una seleccion pasada
+      opcionActual.id = -1;
+
       if (!val) { return false;}
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
@@ -30,6 +34,11 @@ function autocomplete(inp, opts, opcionActual) {
           b.innerHTML += "<input type='hidden' value='" + opts.arr[i].val + "'>";
           let name = opts.arr[i].val;
           let id = opts.arr[i].id;
+
+          // Si es exactamente lo que escribio el usuario, utilizar el id y nombre como valor
+          if (name.toUpperCase() == val.toUpperCase()) {
+            opcionActual.id = id;
+          }
           /*execute a function when someone clicks on the item value (DIV element):*/
               b.addEventListener("click", (function (){
                 var name = opts.arr[i].val;
