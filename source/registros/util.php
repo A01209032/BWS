@@ -118,7 +118,7 @@ function addPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNac
 function updatePaciente($id,$nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel){
     $con= conectDb();
     //echo '<script type="text/javascript">','alert("'.$nombre.' '.$enfermedad.' '.$direccion.' '.$telefono.' '.$celular.' '.$fechaNacimiento.' '.$sexo.' '.$religion.' '.$nivel.'");','</script>';
-    $sql ="update `pacientes` set `IdEnfermedad` = $enfermedad, `Nombre`='$nombre', `FechadeNacimiento`='$fechaNacimiento', `Sexo`='$sexo', `Direccion`='$direccion', `Telefono`='$telefono', `Celular`='$celular', `Religion`='$religion', `NivelEconomico`='$nivel') where `IdPaciente`=$id";
+    $sql ="UPDATE `pacientes` SET `IdEnfermedad`=$enfermedad,`Nombre`='$nombre',`FechadeNacimiento`='$fechaNacimiento',`Sexo`='$sexo',`Activo`=1,`Direccion`='$direccion',`Telefono`='$telefono',`Celular`='$celular',`Religion`='$religion',`NivelEconomico`='$nivel' WHERE `IdPaciente`=$id";
     $result = mysqli_query($con,$sql);
     closeDb($con);
     return $result;
