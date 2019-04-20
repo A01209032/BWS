@@ -38,3 +38,5 @@ if (isset($_POST['user'])) {
 }
 
 ?>
+
+<script type="text/javascript" src="../js/recuperar_contrasena.js"></script>

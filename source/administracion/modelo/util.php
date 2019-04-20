@@ -579,15 +579,16 @@ function getdepas(){
 
   function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
     $conn=conectDb();
+
+    $id = $conn->real_escape_string($id);
+    $nombre = $conn->real_escape_string($nombre);
+    $fechaNacimiento = $conn->real_escape_string($fechaNacimiento);
+    $genero = $conn->real_escape_string($genero);
+    $cargo = $conn->real_escape_string($cargo);
+    $tipo = $conn->real_escape_string($tipo);
+
     $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', idCargo='$cargo', idTipo='$tipo' WHERE IdVoluntario= '".$id."' ";
       $result = mysqli_query($conn,$sql);
-
-      $id = $conn->real_escape_string($id);
-      $nombre = $conn->real_escape_string($nombre);
-      $fechaNacimiento = $conn->real_escape_string($fechaNacimiento);
-      $genero = $conn->real_escape_string($genero);
-      $cargo = $conn->real_escape_string($cargo);
-      $tipo = $conn->real_escape_string($tipo);
 
       closeDb($conn);
       return $result;

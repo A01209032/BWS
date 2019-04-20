@@ -22,4 +22,15 @@ function findDepartmentByName($name) {
 
 	return $user;
 }
+
+function findAllDepartments() {
+
+	$conn = connectDB();
+
+	$sql = "SELECT NombreDepartamento,contrasena FROM departamento";
+
+	$res = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $res;
+}
 ?>

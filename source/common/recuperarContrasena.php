@@ -8,12 +8,25 @@ use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
+require_once("models/departamento.php");
+
+//Se obtienen los usuarios y contraseñas
+$result=findAllDepartments();   
+$text='';
+if(mysqli_num_rows($result)>0){
+	$text=$text.'<b>Contraseñas actuales:</b><br>';
+	while($row=mysqli_fetch_assoc($result)){
+      	$text=$text.$row["NombreDepartamento"].': '.$row["contrasena"].'<br>';
+    }
+}
+mysqli_free_result($result); //Se libera la variable de memoria
+
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = 1;                                       // Enable verbose debug output
+    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
     $mail->isSMTP();                                            // Set mailer to use SMTP
     $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -26,18 +39,18 @@ try {
     //Recipients
     $mail->SetFrom('test@gmail.com');
     $mail->addAddress('apap71@gmail.com');     // Add a recipient
-    //$mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->addAddress('rodriguezduranros@yahoo.com.mx');               // Name is optional
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'Recuperación de contraseña';
+    $mail->Body    = $text;
+    $mail->AltBody = $text;
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'Se envió un correo con las contraseñas al administrador. Favor de comunicarse con ella/él';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "No se pudo enviar el mensaje. Mailer Error: {$mail->ErrorInfo}";
 }
 
 ?>

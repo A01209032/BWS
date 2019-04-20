@@ -1,7 +1,8 @@
-   //nuevovoluntario
+//nuevovoluntario
 function agregarnuevovol(){
   $('#registrarVoluntario').modal('show');
 }
+
 $(document).ready(function(){
 
   const loader = document.querySelector(".loader");
