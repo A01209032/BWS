@@ -141,25 +141,37 @@ function sendRequest6(){
    }
    
 }
-/*function sendRequest5(){
+function sendRequest5(){
 
   let NUEVO_CODIGO = 1;
-
+   
    if (NUEVO_CODIGO) {
-
-       $.get( "controlador/verificarv.php", { pattern2: document.getElementById('userInput2').value  })
+       
+        $.post( "controlador/reportelocal.php", { date: document.getElementById('date').value ,date2: document.getElementById('date2').value })
           .done(function( data ) {
-              var ajaxResponse3= document.getElementById('ajaxResponse4');
-              ajaxResponse3.innerHTML = data;
-              ajaxResponse3.style.visibility = "visible";
+          
+              var ajaxResponse5 = document.getElementById('ajaxResponse5');
+              ajaxResponse5.innerHTML = data;
+              ajaxResponse5.style.visibility = "visible";
+           $('#local').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
+            $('#religion').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
           });
    } else {
-
-
+     
+       
    }
-
-}*/
-
+   
+}
 //
 var auxiliar;
 var auxiliar2;
