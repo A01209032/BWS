@@ -273,6 +273,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
         id: pacienteActual.id,
         nombre: $('#nombre').val(),
         enfermedad: enfermedadActual.id,
+        enfermedadNombre: $('#enfermedad').val(),
         direccion: $('#direccion').val(),
         telefono: $('#telefono').val(),
         celular: $('#celular').val(),
