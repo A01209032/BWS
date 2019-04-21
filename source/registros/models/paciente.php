@@ -22,9 +22,8 @@ function listarPacientesCon($pattern) {
 	$conn = conectDB();
 
 	// For Table Pacientes con Nombre y Apellido
-	$sqlQuery = "SELECT IdPaciente, Nombre, FechadeNacimiento
-				 FROM pacientes 
-				 ORDER BY nombre";
+	$sqlQuery = "SELECT IdPaciente, Nombre, FechadeNacimiento, NivelEconomico FROM pacientes 
+				 	   ORDER BY nombre";
 
 
 
@@ -34,9 +33,10 @@ function listarPacientesCon($pattern) {
 		while ($row = mysqli_fetch_assoc($res)) {
 			$id    = $row['IdPaciente'];
 			$fname = $row['Nombre'];
-
+			$nivel = $row['NivelEconomico'];
 			$edad  = calcularEdad($row['FechadeNacimiento']);
-			array_push($pacientes, array("id"=>$id, "fname"=>$fname, "edad"=>$edad));
+
+			array_push($pacientes, array("id"=>$id, "fname"=>$fname, "edad"=>$edad, "nivel"=>$nivel));
 		}
 	}
 

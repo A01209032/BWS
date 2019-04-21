@@ -148,7 +148,7 @@ window.addEventListener("load", function() {
         var nombres = [];
         for (var i=0; i < data.length; i++) {
           //console.log(data[i])
-          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años") , id: data[i]['id']});
+          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años - "+data[i]['nivel']) , id: data[i]['id']});
         }
         pacientes.arr = nombres;
         autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
