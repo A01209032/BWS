@@ -139,6 +139,89 @@ $month2 = date('m', strtotime($Fecha2));
     closeDb($conn);
     return $result;
 }
+//local
+function local($Fecha,$Fecha2){
+
+  $conn=conectDb();
+  $year = date('Y', strtotime($Fecha));
+  $month = date('m', strtotime($Fecha));
+
+    $conn=conectDb();
+
+$year = date('Y', strtotime($Fecha));
+
+$month = date('m', strtotime($Fecha));
+$year2 = date('Y', strtotime($Fecha2));
+
+$month2 = date('m', strtotime($Fecha2));
+    $date='';
+    $date .=$year;
+    $date .="-";
+    $date .=$month;
+    $date .="-01";
+
+    $date2='';
+    $date2 .=$year2;
+    $date2 .="-";
+    $date2 .=$month2;
+    $date2 .="-31";
+    
+     $sqllocal ="SELECT v.Nombre as nombrev,p.Nombre as nombrep,e.nombre as enfermedad,fecha,p.Direccion as dir,Observaciones FROM atienden as a INNER JOIN pacientes as p on a.IdPaciente=p.IdPaciente INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN enfermedades as e ON e.id=p.IdPaciente WHERE 	a.IdPaciente=p.IdPaciente AND v.IdVoluntario=a.IdVoluntario   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   ";
+    $result= mysqli_query($conn,$sqllocal);
+      if(mysqli_num_rows($result)>0){
+    echo '<div  style="width:75% ;  margin: 0 auto"><table id="local" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Reporte Local  </h2><br><tr><th>Voluntario
+    </th><th>Paciente
+    </th><th>Enfermedad
+    </th><th>Fecha
+    </th><th>Direccion
+    </th><th>Observaciones</th></tr></thead><tbody>';
+    //Imprimir cada fila
+    while($row=mysqli_fetch_assoc($result)){
+      echo '<tr>';
+      echo '<td>'.$row["nombrev"].'</td>';
+      echo '<td>'.$row["nombrep"].'</td>';
+      echo '<td>'.$row["enfermedad"].'</td>';
+      echo '<td>'.$row["fecha"].'</td>';
+      echo '<td>'.$row["dir"].'</td>';
+      echo '<td>'.$row["Observaciones"].'</td>';
+
+      echo '</tr>';
+    }
+                      echo '</tbody></table> <br><br>'; 
+
+  }
+
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+    //
+      $sqlse ="SELECT p.Religion,count(idAtienden) as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.Religion";
+    $result2= mysqli_query($conn,$sqlse);
+      if(mysqli_num_rows($result2)>0){
+    echo '<div  style="width:75% ;  margin: 0 auto"><table id="religion" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Religión</h2><br><tr><th> Religión
+    </th><th>Total</th></tr></thead><tbody>';
+    //Imprimir cada fila
+    while($row=mysqli_fetch_assoc($result2)){
+      echo '<tr>';
+      echo '<td>'.$row["Religion"].'</td>';
+      echo '<td>'.$row["Total"].'</td>';
+
+      echo '</tr>';
+    }
+                      echo '</tbody></table> <br><br></div></div>'; 
+
+  }
+
+    else{
+        echo "No hay registros en esa fecha o es una fecha invalida";
+    }
+    
+    mysqli_free_result($result);
+    mysqli_free_result($result2);
+    closeDb($conn);
+    return $result;
+}
+//
 
 function getServicioByFecha($Fecha,$Fecha2){
 
