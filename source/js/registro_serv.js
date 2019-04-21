@@ -7,6 +7,14 @@ window.addEventListener("load", function() {
   
   $('#registrarPaciente').on('click', function(ev) {
     ev.preventDefault();
+    $('#nombre').val('');
+    $('#fecha_nacimiento').val('');
+    $('#apellido').val('');
+    $('#direccion').val('');
+    $('#telefono').val('');
+    $('#celular').val('');
+    enfermedad: $('#enfermedad').val(''),
+    enfermedadActual.id = -1;
     $('#submit').show();
     $('#submitM').hide();
     $('#RP').show();
