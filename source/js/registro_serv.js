@@ -300,6 +300,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           $('#noSelect').html('');
 
           cargarPacientes();
+          cargarEnfermedades();
         }
         else{
           $('#nombreErr').html(data[0]);
