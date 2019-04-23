@@ -45,8 +45,6 @@
       if (empty($_POST["enfermedadNombre"])) {
         $error = 1;
         $enfermedadErr = "Datos incompletos";
-      } else {
-        $enfermedad = registrarEnfermedad(test_input($_POST["enfermedadNombre"]));
       }
    } else {
       $enfermedad = test_input($_POST["enfermedad"]);
@@ -90,6 +88,11 @@
 
       if($error) echo json_encode($array);
       else {
+
+        if ($_POST["enfermedad"] == '-1') {
+          $enfermedad = registrarEnfermedad(test_input($_POST["enfermedadNombre"]));
+        }
+
        //echo '<script type="text/javascript">','alert("'.$nombre,$apellido,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel.'");','</script>';
        $error=registrarPaciente($nombre,$enfermedad,$direccion,$telefono,$celular,$fechaNacimiento,$sexo,$religion,$nivel);
 
