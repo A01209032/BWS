@@ -18,15 +18,17 @@ $(document).ready(function(){
                 success:function(data){    
                      $('#depa2').val(data.IdDepartamento);  
                      parseInt($('#employee_id').val(data.idAtienden),10);  
-                   //  $('#userInput').val(data.IdPaciente);  
-                   $('#paciente2').val(data.IdPaciente);  
+                    $('#userInput').val(data.IdPaciente);  
+                    $('#userInput2').val(data.IdVoluntario);  
+                    $('#paciente2').val(data.IdPaciente);  
                      $('#asistente2').val(data.IdVoluntario); 
+                    
                    //$('#userInput2').val(data.IdVoluntario);  
                      $('#date2').val(data.Fecha);  
                      $('#servicio2').val(data.IdServicio);  
                 $('#Observaciones2').val(data.Observaciones);  
                      $('#cuota2').val(data.CuotaRecup);  
-                     $('#insert').val("Update"); 
+                     $('#insert').val("Actualizar"); 
                      $('#modificarServicio').modal('show');  
                 },  
                 dataType:"json" 
