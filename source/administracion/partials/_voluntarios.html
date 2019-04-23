@@ -46,7 +46,7 @@
 
                                 <label for="nombre">Nombre(s) y apellido(s) completos</label>
                                 <br>
-                                <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>
+                                <input type="text" id="nombre" name="nombre" onkeypress="return soloLetras(event)" placeholder="Nombre(s)" required>
                                 <label>Fecha de Nacimiento</label>
                                   <br>
                                 <input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento"required>
@@ -129,7 +129,7 @@
 
                                 <label for="nombreM">Nombre(s) y apellido(s) completos</label>
                                 <br>
-                                <input type="text" id="nombreM" name="nombreM" placeholder="Nombre(s)" class="form-control" required>
+                                <input type="text" id="nombreM" name="nombreM"onkeypress="return soloLetras(event)" placeholder="Nombre(s)" class="form-control" required>
 
                                 <label>Fecha de Nacimiento</label>
                                 <br>

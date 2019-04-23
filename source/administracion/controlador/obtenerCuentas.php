@@ -15,7 +15,7 @@
                   <p class="card-text"><b>Contraseña actual:</b></p>'.$row["contrasena"].'<br><br>
                 <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
                   <form method="POST" class="ajax">
-                    <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 4,8,1,5">
+                    <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 0,4,1,2">
                     <input type="hidden" value="'.$row["IdDepartamento"].'" name="id" id="id">
                     <br>
                   <input type="submit" id="'.$row["IdDepartamento"].'" class="btn btn-primary active" role="button" aria-pressed="true" value="Cambiar contraseña">
