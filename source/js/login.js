@@ -303,15 +303,15 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 	var passIn = document.getElementById('pass');
 
 	if (account == 1)
-		userIn.value = "administrador";
+		userIn.value = "Administrador";
 	else if (account == 2)
-		userIn.value = "dispensario";
+		userIn.value = "Dispensario";
 	else if (account == 3)
-		userIn.value = "asistencias";
+		userIn.value = "Asistencias";
 	else if (account == 4)
-		userIn.value = "porteria";
+		userIn.value = "Porteria";
 	else
-		userIn.value = "unknown";
+		userIn.value = "Unknown";
 
 	passIn.value = pass;
 
