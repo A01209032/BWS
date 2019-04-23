@@ -54,19 +54,19 @@
                                 <br>
                                
                                      <label >Buscar paciente </label>
-                                      <input type="text" id="userInput" onkeyup="sendRequest3();">
+                                      <input type="text" id="userInput" onkeypress="return soloLetras(event)" onkeyup="sendRequest3();"required>
                               <div style="text-align: center" id="ajaxResponse3"> </div>
                               <br>
                                     <input type="hidden" name="paciente2" id="paciente2" />
                                 <br>
                                      <label >Buscar voluntario </label>
-                                      <input type="text" id="userInput2" onkeyup="sendRequest4();">
+                                      <input type="text" id="userInput2" onkeypress="return soloLetras(event)"onkeyup="sendRequest4();"required>
                                        <input type="hidden" name="asistente2" id="asistente2" />
                               <div style="text-align: center" id="ajaxResponse4"> </div>
                                
                                 <div class="form-group"> <!-- Date input -->
                                 <label class="control-label"  for="date2">Selecciona dia y mes:</label>
-                                    <input type="date" value="YYYY-MM-DD" name="date2" id="date2" />
+                                    <input type="date" value="YYYY-MM-DD" name="date2" id="date2" required/>
                                 </div>
                                   <label>Servicio</label>
                                   <br>

@@ -4,8 +4,7 @@
     //include("../views/_header_carpetas.html");
         
     //Validación de datos
-    if(isset($_POST["depa2"]) && isset($_POST["depa2"]) != ""  &&
-        isset($_POST["paciente2"]) && isset($_POST["paciente2"]) != "" && isset($_POST["asistente2"]) && isset($_POST["asistente2"]) != ""  ){
+    if(isset($_POST["depa2"]) && isset($_POST["depa2"]) != ""  && isset($_POST["paciente2"]) && isset($_POST["paciente2"]) !="" && isset($_POST["asistente2"]) && isset($_POST["asistente2"]) != ""  ){
         
         $IdDepartamento=htmlspecialchars($_POST["depa2"]);
         $IdPaciente=htmlspecialchars($_POST["paciente2"]);
