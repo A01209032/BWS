@@ -121,7 +121,7 @@ window.addEventListener("load", function() {
           $('#fecha').val('');
           $('#tipo').val('');
           $('#observaciones').val('');
-          $('#CuotaRecup').val('');
+          $('#CuotaRecup').val(0);
         }
         else{
           $('#pacienteErr').html(data[0]);

@@ -9,14 +9,14 @@
    $error = 0;
 
    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["paciente"])) {
+   if ($_POST["paciente"]==-1) {
      $pacienteErr = "Datos incompletos";
      $error = 1;
    } else {
      $paciente = test_input($_POST["paciente"]);
    }
 
-   if (empty($_POST["asistente"])) {
+   if ($_POST["asistente"]==-1) {
      $asistenteErr = "Datos incompletos";
      $error = 1;
    } else {
