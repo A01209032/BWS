@@ -54,7 +54,7 @@ $month = date('m', strtotime($Fecha));
 //INNER JOIN departamento as d ON d.IdDepartamento=a.IdDepartamento
    // var_dump($Depa);
     //var_dump($Fecha);
-  $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento WHERE a.IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ";
+  $sql ="SELECT idAtienden,Fecha, IdServicio,Observaciones,CuotaRecup,p.Nombre,v.Nombre as Nv,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON v.IdVoluntario=a.IdVoluntario WHERE a.IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ";
     /*
     $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden WHERE IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."' AND Fecha <=  '".$date2."'  ";*/
     $result= mysqli_query($conn,$sql);
@@ -68,6 +68,7 @@ $month = date('m', strtotime($Fecha));
       echo '<tr>';
       echo '<td>' .$row["idAtienden"]. '</td> ';
       echo ' <td>' .$row["Nombre"]. '</td> ';
+      echo ' <td>' .$row["Nv"]. '</td> ';
      echo ' <td>' .$row["NombreDepartamento"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
         
@@ -191,9 +192,6 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
     //
       $sqlse ="SELECT p.Religion,count(idAtienden) as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.Religion";
     $result2= mysqli_query($conn,$sqlse);
@@ -294,9 +292,7 @@ $month2 = date('m', strtotime($Fecha2));
                       echo '</tbody></table> <br><br>'; 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
+    
    
     //porteria consulta
     
@@ -322,9 +318,7 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
+    
    //numeros finales
     $sqlcount1 ="SELECT COUNT(idAtienden) AS total1 FROM atienden WHERE IdDepartamento=3";
     $res1= mysqli_query($conn,$sqlcount1);
@@ -346,8 +340,9 @@ $month2 = date('m', strtotime($Fecha2));
           while($row=mysqli_fetch_assoc($res3)){
       $port=$row["total3"];
     }
+         
   }
-    echo "<br>Total de servicios dados:<br>Departamento Dispensario fue de ".$dis."<br>Departamento Asistencias fue de ".$asis."<br>Departamento Porteria fue de ".$port."<br><br>" ;
+   
     //Productividad
     $sqlcount4 ="SELECT COUNT(idAtienden) AS total4 FROM atienden WHERE IdServicio=1";
     $res4= mysqli_query($conn,$sqlcount4);
@@ -382,6 +377,7 @@ $month2 = date('m', strtotime($Fecha2));
      $sqlasistencias ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio AND a.IdDepartamento=2 AND     Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
     $result6= mysqli_query($conn,$sqlasistencias);
       if(mysqli_num_rows($result6)>0){
+          echo "<br>Total de servicios dados:<br>Departamento Dispensario fue de ".$dis."<br>Departamento Asistencias fue de ".$asis."<br>Departamento Porteria fue de ".$port."<br><br>" ;
     echo '<div style="width:50%; margin: 0 auto"> <table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila
@@ -396,9 +392,6 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
     //
     $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
     $result4= mysqli_query($conn,$sqlser);
@@ -417,9 +410,7 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
+    
     //
      $sqlse ="SELECT p.NivelEconomico,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.NivelEconomico";
     $result5= mysqli_query($conn,$sqlse);
@@ -438,9 +429,6 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
-    }
     //
     mysqli_free_result($result);
     mysqli_free_result($result2);

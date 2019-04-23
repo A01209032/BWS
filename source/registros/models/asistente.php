@@ -23,7 +23,7 @@ function listarVoluntariosCon($pattern) {
 
 	// For Table voluntarios con Nombre y Apellido
 	$sqlQuery = "SELECT IdVoluntario, Nombre
-				 FROM voluntarios 
+				 FROM voluntarios WHERE Activo=1
 				 ORDER BY Nombre";
 
 
