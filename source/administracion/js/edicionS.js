@@ -33,6 +33,22 @@ $(document).ready(function(){
                 },  
                 dataType:"json" 
            });  
+          var paciente2 = $(this).attr("paciente2");
+          
+          $.ajax({  
+
+                url:"modelo/fetchvol.php",  
+                method:"POST",  
+
+                data:{employee_id:employee_id},  
+                 
+                success:function(data){ 
+                    $('#userInput').val(data.IdPaciente);  
+                    $('#userInput2').val(data.IdVoluntario);  
+                },  
+                dataType:"json" 
+           }); 
+           
       });  
 
       

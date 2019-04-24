@@ -128,7 +128,7 @@ $month2 = date('m', strtotime($Fecha2));
 
       echo '</tr>';
     }
-                      echo '</tbody></table></div> <br><br>'; 
+                      echo '</tbody></table> <br><br>'; 
 
   }
 
@@ -136,7 +136,31 @@ $month2 = date('m', strtotime($Fecha2));
         echo "No hay registros en esa fecha o es una fecha invalida";
     }
     
+    $aux ="SELECT p.Nombre as Nombre,p.Sexo as sexo,FLOOR(DATEDIFF(CURRENT_DATE,p.FechadeNacimiento)/365) as 'Edad',a.CuotaRecup as cp,ts.NombreServicio as ns FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE a.IdPaciente=p.IdPaciente AND ts.IdServicio=a.IdServicio    AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'";
+    $result2= mysqli_query($conn,$aux);
+      if(mysqli_num_rows($result2)>0){
+   echo '<table id="totales" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Beneficiados</h2><br><tr><th>Nombre
+    </th><th>Sexo
+    </th><th>Edad
+    </th><th>Cuota de Recuperación
+    </th><th>Servicio otorgado</th></tr></thead><tbody>';
+    //Imprimir cada fila
+    while($row=mysqli_fetch_assoc($result2)){
+      echo '<tr>';
+      echo '<td>'.$row["Nombre"].'</td>';
+      echo '<td>'.$row["sexo"].'</td>';
+      echo '<td>'.$row["Edad"].'</td>';
+      echo '<td>'.$row["cp"].'</td>';
+      echo '<td>'.$row["ns"].'</td>';
+      echo '</tr>';
+    }
+                      echo '</tbody></table></div> <br><br>'; 
+
+  }
+
+    
     mysqli_free_result($result);
+    mysqli_free_result($result2);
     closeDb($conn);
     return $result;
 }
@@ -377,7 +401,7 @@ $month2 = date('m', strtotime($Fecha2));
      $sqlasistencias ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio AND a.IdDepartamento=2 AND     Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
     $result6= mysqli_query($conn,$sqlasistencias);
       if(mysqli_num_rows($result6)>0){
-          echo "<br>Total de servicios dados:<br>Departamento Dispensario fue de ".$dis."<br>Departamento Asistencias fue de ".$asis."<br>Departamento Porteria fue de ".$port."<br><br>" ;
+          echo "Total de servicios dados:<br>Departamento Dispensario fue de ".$dis."<br>Departamento Asistencias fue de ".$asis."<br>Departamento Porteria fue de ".$port."<br><br><br><br>" ;
     echo '<div style="width:50%; margin: 0 auto"> <table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila

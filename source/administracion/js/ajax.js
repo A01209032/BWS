@@ -151,6 +151,12 @@ function sendRequest6(){
                         'csv', 'excel', 'pdf', 'print'
                     ]
                 } );
+            $('#totales').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv', 'excel', 'pdf', 'print'
+                    ]
+                } );
           });
    } else {
      
@@ -234,3 +240,39 @@ document.getElementById('asistente2').value=aux2;
 
    // alert(aux2);
 }
+
+
+function eliminarServicio(Servicio) {
+        var eliminarser = confirm("¿Esta seguro que desea eliminar el servicio"+" "+Servicio+"?");
+               if( eliminarser == false ) {
+                  //document.write ("User wants to continue!");
+                  //document.write(eliminarser);
+                   return false;
+
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return true;
+               }
+}
+    function modificarServicio(Servicio) {
+        var mod = confirm("¿Esta seguro que desea modificar el servicio"+" "+Servicio+"?");
+               if( mod == false ) {
+                  //document.write ("User wants to continue!");
+                  return false;
+               } else {
+                  //document.write ("User does not want to continue!");
+                  return true;
+               }
+}
+    function reportes(){
+        var mod = confirm("¿Esta seguro que desea generar el reporte"+"?");
+               if( mod == false ) {
+                  //document.write ("User wants to continue!");
+                  return false;
+               } else {
+                  alert("Se creo el reporte!")
+                  return true;
+               }
+
+    }
+
