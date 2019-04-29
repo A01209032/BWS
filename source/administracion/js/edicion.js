@@ -39,32 +39,8 @@ $(document).ready(function(){
                 var ajaxResponse = document.getElementById('listaVoluntarios');
                 ajaxResponse.innerHTML = data;
                 ajaxResponse.style.visibility = "visible";
-                
-                var spanishLang = {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
 
+                let tituloListaVoluntarios='Lista de voluntarios';
                 $('#tablaVoluntarios').DataTable( {
 
                     "language": {
@@ -74,10 +50,20 @@ $(document).ready(function(){
                     "responsive": true,
                     
                     dom: 'Bfrtip',
-                    buttons: [ 'csv', 'excel', 'pdf',
+                    buttons: [ {
+		                extend: 'csv',
+		                title: tituloListaVoluntarios
+		            }, {
+		                extend: 'pdf',
+		                title: tituloListaVoluntarios
+		            }, {
+		                extend: 'excel',
+		                title: tituloListaVoluntarios
+		            },
                       {
                         extend: 'print',
-                        text: 'Imprimir'
+                        text: 'Imprimir',
+                        title: tituloListaVoluntarios
                       }
                     ]
                 } );
