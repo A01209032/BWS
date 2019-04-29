@@ -91,40 +91,165 @@ function sendRequest2(){
               var ajaxResponse2 = document.getElementById('ajaxResponse2');
               ajaxResponse2.innerHTML = data;
               ajaxResponse2.style.visibility = "visible";
+
+            let tituloDispensario='Reporte de dispensario';
             $('#dispensario').DataTable( {
+              "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloDispensario
+                }, {
+                    extend: 'pdf',
+                    title: tituloDispensario
+                }, {
+                    extend: 'excel',
+                    title: tituloDispensario
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloDispensario
+                      }
                     ]
                 } );
+
+          let tituloAsist='Reporte de asistencias';
            $('#asistencias').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloAsist
+                }, {
+                    extend: 'pdf',
+                    title: tituloAsist
+                }, {
+                    extend: 'excel',
+                    title: tituloAsist
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloAsist
+                      }
                     ]
                 } );
+           let tituloNumAsist='Reporte de porteria';
            $('#porteria').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloNumAsist
+                }, {
+                    extend: 'pdf',
+                    title: tituloNumAsist
+                }, {
+                    extend: 'excel',
+                    title: tituloNumAsist
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloNumAsist
+                      }
                     ]
                 } );
+
+           let tituloNumAsist2='Número de asistencias';
            $('#asistenciasnum').DataTable( {
+                
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloNumAsist2
+                }, {
+                    extend: 'pdf',
+                    title: tituloNumAsist2
+                }, {
+                    extend: 'excel',
+                    title: tituloNumAsist2
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloNumAsist2
+                      }
                     ]
                 } );
+
+           let tituloTipoServicio='Reporte por tipo de servicio'
            $('#tiposdeservicio').DataTable( {
+               "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloTipoServicio
+                }, {
+                    extend: 'pdf',
+                    title: tituloTipoServicio
+                }, {
+                    extend: 'excel',
+                    title: tituloTipoServicio
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloTipoServicio
+                      }
                     ]
                 } );
+           let nivelSocioeconomico='Nivel socioeconómico';
            $('#socioeconomico').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: nivelSocioeconomico
+                }, {
+                    extend: 'pdf',
+                    title: nivelSocioeconomico
+                }, {
+                    extend: 'excel',
+                    title: nivelSocioeconomico
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: nivelSocioeconomico
+                      }
                     ]
                 } );
           });
@@ -145,10 +270,30 @@ function sendRequest6(){
               var ajaxResponse6 = document.getElementById('ajaxResponse6');
               ajaxResponse6.innerHTML = data;
               ajaxResponse6.style.visibility = "visible";
+          let tituloTipoServicio='Tipo de servicio';
            $('#tiposdeservicio').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloTipoServicio
+                }, {
+                    extend: 'pdf',
+                    title: tituloTipoServicio
+                }, {
+                    extend: 'excel',
+                    title: tituloTipoServicio
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloTipoServicio
+                      }
                     ]
                 } );
           });
@@ -170,16 +315,56 @@ function sendRequest5(){
               var ajaxResponse5 = document.getElementById('ajaxResponse5');
               ajaxResponse5.innerHTML = data;
               ajaxResponse5.style.visibility = "visible";
+          let tituloReporteLocal='Reporte Local';
            $('#local').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloReporteLocal
+                }, {
+                    extend: 'pdf',
+                    title: tituloReporteLocal
+                }, {
+                    extend: 'excel',
+                    title: tituloReporteLocal
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloReporteLocal
+                      }
                     ]
                 } );
+           let tituloReligion='Religión';
             $('#religion').DataTable( {
+                "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+                    extend: 'csv',
+                    title: tituloReligion
+                }, {
+                    extend: 'pdf',
+                    title: tituloReligion
+                }, {
+                    extend: 'excel',
+                    title: tituloReligion
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloReligion
+                      }
                     ]
                 } );
           });
