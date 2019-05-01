@@ -110,10 +110,14 @@ window.addEventListener("load", function() {
         console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
-          alert(data[0]);
+          //alert(data[0]);
+          $('#alertModal').show();
+          $('#alertModalData').html(data[0]);
         }
         else if(data[0]=="Success: Al ingresar datos"){
-          alert('Se ingresaron los datos');
+          //alert('Se ingresaron los datos');
+          $('#alertModal').show();
+          $('#alertModalData').html('Registro exitoso');
           $('#paciente').val('');
           pacienteActual.id = -1;
           $('#asistente').val('');
