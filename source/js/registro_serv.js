@@ -122,7 +122,6 @@ window.addEventListener("load", function() {
           pacienteActual.id = -1;
           $('#asistente').val('');
           voluntarioActual.id = -1;
-          $('#fecha').val('');
           $('#tipo').val('');
           $('#observaciones').val('');
           $('#CuotaRecup').val(0);
