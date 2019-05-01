@@ -115,7 +115,7 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .=$month2;
     $date2 .="-31";
     
-     $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
+     $sqlser ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'    GROUP BY ts.NombreServicio  ";
     $result= mysqli_query($conn,$sqlser);
       if(mysqli_num_rows($result)>0){
     echo '<div  style="width:75% ;  margin: 0 auto"><table id="tiposdeservicio" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Productividad</h2><br><tr><th>Servicios
@@ -136,7 +136,7 @@ $month2 = date('m', strtotime($Fecha2));
         echo "No hay registros en esa fecha o es una fecha invalida";
     }
     
-    $aux ="SELECT p.Nombre as Nombre,p.Sexo as sexo,FLOOR(DATEDIFF(CURRENT_DATE,p.FechadeNacimiento)/365) as 'Edad',a.CuotaRecup as cp,ts.NombreServicio as ns FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE a.IdPaciente=p.IdPaciente AND ts.IdServicio=a.IdServicio    AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'";
+    $aux ="SELECT p.Nombre as Nombre,p.Sexo as sexo,FLOOR(DATEDIFF(CURRENT_DATE,p.FechadeNacimiento)/365) as 'Edad',a.CuotaRecup as cp,ts.NombreServicio as ns FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE a.IdPaciente=p.IdPaciente AND ts.IdServicio=a.IdServicio    AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
     $result2= mysqli_query($conn,$aux);
       if(mysqli_num_rows($result2)>0){
    echo '<table id="totales" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Beneficiados</h2><br><tr><th>Nombre
@@ -191,7 +191,7 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .=$month2;
     $date2 .="-31";
     
-     $sqllocal ="SELECT v.Nombre as nombrev,p.Nombre as nombrep,e.nombre as enfermedad,fecha,p.Direccion as dir,Observaciones FROM atienden as a INNER JOIN pacientes as p on a.IdPaciente=p.IdPaciente INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN enfermedades as e ON e.id=p.IdPaciente WHERE 	a.IdPaciente=p.IdPaciente AND v.IdVoluntario=a.IdVoluntario   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   ";
+     $sqllocal ="SELECT v.Nombre as nombrev,p.Nombre as nombrep,e.nombre as enfermedad,fecha,p.Direccion as dir,Observaciones FROM atienden as a INNER JOIN pacientes as p on a.IdPaciente=p.IdPaciente INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN enfermedades as e ON e.id=p.IdPaciente WHERE 	a.IdPaciente=p.IdPaciente AND v.IdVoluntario=a.IdVoluntario   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ORDER BY Fecha ";
     $result= mysqli_query($conn,$sqllocal);
       if(mysqli_num_rows($result)>0){
     echo '<div  style="width:75% ;  margin: 0 auto"><table id="local" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Reporte Local  </h2><br><tr><th>Voluntario
@@ -217,7 +217,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     //
-      $sqlse ="SELECT p.Religion,count(idAtienden) as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.Religion";
+      $sqlse ="SELECT p.Religion,count(idAtienden) as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.Religion ";
     $result2= mysqli_query($conn,$sqlse);
       if(mysqli_num_rows($result2)>0){
     echo '<div  style="width:75% ;  margin: 0 auto"><table id="religion" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Religión</h2><br><tr><th> Religión
@@ -269,7 +269,7 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .=$month2;
     $date2 .="-31";
 //dispensario consulta
-   $sqldis ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=3";
+   $sqldis ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=3 ORDER BY Fecha";
     $result= mysqli_query($conn,$sqldis);
       if(mysqli_num_rows($result)>0){
     echo '<div style=" margin: 0 auto"> <div style="width:75% ;  margin: 0 auto"> <table id="dispensario" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Dispensario</h2><br><tr><th>Nombre
@@ -295,7 +295,7 @@ $month2 = date('m', strtotime($Fecha2));
     }
    //asistencia consulta
     
-   $sqlasi ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=2";
+   $sqlasi ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=2 ORDER BY Fecha asc";
     $result2= mysqli_query($conn,$sqlasi);
       if(mysqli_num_rows($result2)>0){
     echo '<table id="asistencias" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Asistencias</h2><br><tr><th>Nombre
@@ -320,7 +320,7 @@ $month2 = date('m', strtotime($Fecha2));
    
     //porteria consulta
     
-   $sqlpor ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=4";
+   $sqlpor ="SELECT idAtienden,v.Nombre as Nombrev,Fecha, ts.NombreServicio,Observaciones,p.Nombre,d.NombreDepartamento  FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN departamento as d ON a.IdDepartamento=d.IdDepartamento INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND p.IdPaciente=a.IdPaciente AND a.IdDepartamento=4 ORDER BY Fecha asc";
     $result3= mysqli_query($conn,$sqlpor);
       if(mysqli_num_rows($result3)>0){
     echo '<table id="porteria" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Listado de todas los servicios en Porteria</h2><br><tr><th>Nombre

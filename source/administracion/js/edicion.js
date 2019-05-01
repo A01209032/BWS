@@ -40,10 +40,31 @@ $(document).ready(function(){
                 ajaxResponse.innerHTML = data;
                 ajaxResponse.style.visibility = "visible";
 
+                let tituloListaVoluntarios='Lista de voluntarios';
                 $('#tablaVoluntarios').DataTable( {
+
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
                     dom: 'Bfrtip',
-                    buttons: [
-                        'csv', 'excel', 'pdf', 'print'
+                    buttons: [ {
+		                extend: 'csv',
+		                title: tituloListaVoluntarios
+		            }, {
+		                extend: 'pdf',
+		                title: tituloListaVoluntarios
+		            }, {
+		                extend: 'excel',
+		                title: tituloListaVoluntarios
+		            },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: tituloListaVoluntarios
+                      }
                     ]
                 } );
                 loader.className += " hidden"; // class "loader hidden"
@@ -51,6 +72,8 @@ $(document).ready(function(){
 
             });
   }
+
+
 
   //agregar
   $('#agregarVol').on("submit", function(event){
@@ -118,7 +141,7 @@ $(document).ready(function(){
     }
 
     //eliminar
-    
+
       $(document).on('click', '.delete_data', function(){
         if (eliminar()){
           let employee_id = $(this).attr("id");
