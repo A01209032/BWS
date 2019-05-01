@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("../views/_header_carpetas.html");
+  include("../views/_header.html");
 
   require_once ("modelo/util.php");
 
