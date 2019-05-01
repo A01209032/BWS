@@ -148,10 +148,11 @@ window.addEventListener("load", function() {
       url: "listar_pacientes.php",
       method: 'GET',
       data: {pattern: 'all'},
-      type: 'json',
+      type: 'text',
       success: function(data) {
         console.log("Pacientes:" + data);
         data = JSON.parse(data);
+        data = data.arr;
         if (data[0] == "Error") {
           alert("There was a critical error on the server!");
           return;
@@ -179,6 +180,7 @@ window.addEventListener("load", function() {
     success: function(data) {
       console.log("Asistentes:" + data);
       data = JSON.parse(data);
+      data = data.arr;
       if (data[0] == "Error") {
         alert("There was a critical error on the server!");
         return;

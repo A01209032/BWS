@@ -45,11 +45,12 @@ if (isset($_GET['pattern'])) {
 		if ($i != count($enfermedades)-1) $resStr .= "#";
 	}
 
-	echo json_encode($enfermedades);
+	echo json_encode(array("arr"=>$enfermedades));
 	//echo $resStr;
 
 } else {
-	echo json_encode(array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion"));
+	$errarr = array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion");
+	echo json_encode(array("arr" => $errarr));
 	// echo "Error#Argumentos No Validos o Suficientes Enviados a la Peticion";
 
 }
