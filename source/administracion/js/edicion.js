@@ -157,10 +157,7 @@ $(document).ready(function(){
         }
       });
 
-
-
     /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
-
       $(document).on('click', '.edit_data', function(){
 
         let employee_id = $(this).attr("id");
