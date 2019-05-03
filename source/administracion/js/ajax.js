@@ -17,6 +17,32 @@ function sendRequest(){
               var ajaxResponse = document.getElementById('ajaxResponse');
               ajaxResponse.innerHTML = data;
               ajaxResponse.style.visibility = "visible";
+               let titulo='Consulta por mes';
+            $('#consultas').DataTable( {
+              "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                        print: "Imprimir"
+                    },
+                    "responsive": true,
+                    
+                    dom: 'Bfrtip',
+                    buttons: [ {
+                    extend: 'csv',
+                    title: titulo
+                }, {
+                    extend: 'pdf',
+                    title: titulo
+                }, {
+                    extend: 'excel',
+                    title: titulo
+                },
+                      {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        title: titulo
+                      }
+                    ]
+                } );
           });
    } else {
        

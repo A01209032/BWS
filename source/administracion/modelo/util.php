@@ -59,8 +59,8 @@ $month = date('m', strtotime($Fecha));
     $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden WHERE IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."' AND Fecha <=  '".$date2."'  ";*/
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
-    echo '<table  cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
-    </th><th>Nombre</th><th>Departamento</th><th>Fecha</th></tr></thead><tbody>';
+    echo '<table  id="consultas" class="display nowrap" cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
+    </th><th>Nombre</th><th>Voluntario</th><th>Departamento</th><th>Fecha</th><th>Modificar</th><th>Eliminar</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
         $temp=$row["idAtienden"];
