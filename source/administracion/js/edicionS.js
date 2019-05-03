@@ -15,7 +15,8 @@ $(document).ready(function(){
 
                 data:{employee_id:employee_id},  
                  
-                success:function(data){    
+                success:function(data){
+                    console.log(data);
                      $('#depa2').val(data.IdDepartamento);  
                      parseInt($('#employee_id').val(data.idAtienden),10);  
                    //$('#userInput2').val(data.IdVoluntario);  
@@ -24,8 +25,8 @@ $(document).ready(function(){
                 $('#Observaciones2').val(data.Observaciones);  
                      $('#cuota2').val(data.CuotaRecup);
 
-                     $('#paciente').val(data.IdPaciente);  
-                     $('#asistente').val(data.IdVoluntario);  
+                     $('#paciente').val(data.NombrePaciente);  
+                     $('#asistente').val(data.NombreVoluntario);  
                      pacienteActual.id = data.IdPaciente;
                      voluntarioActual.id = data.IdVoluntario
 
