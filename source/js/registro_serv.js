@@ -51,11 +51,12 @@ window.addEventListener("load", function() {
         console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
-          alert(data[0]);
-          alert(data[1]);
+           $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else if(data[0]=="Success: Al ingresar datos"){
-          alert('Se registro exitosamente el paciente');
+          $('#alertModal').show();
+          $('#alertModalData').html('Se registro exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
           $('#apellido').val('');
@@ -121,7 +122,7 @@ window.addEventListener("load", function() {
           $('#paciente').val('');
           pacienteActual.id = -1;
           $('#asistente').val('');
-          voluntarioActual.id = -1;
+          voluntarioActual.id = -1; 
           $('#tipo').val('');
           $('#observaciones').val('');
           $('#CuotaRecup').val(0);
@@ -153,7 +154,8 @@ window.addEventListener("load", function() {
         data = JSON.parse(data);
         data = data.arr;
         if (data[0] == "Error") {
-          alert("There was a critical error on the server!");
+          $('#alertModal').show();
+          $('#alertModalData').html("There was a critical error on the server!");
           return;
         }
         //console.log(data);
@@ -181,7 +183,8 @@ window.addEventListener("load", function() {
       data = JSON.parse(data);
       data = data.arr;
       if (data[0] == "Error") {
-        alert("There was a critical error on the server!");
+        $('#alertModal').show();
+        $('#alertModalData').html('There was a critical error on the server!');
         return;
       }
       //console.log(data);
@@ -216,7 +219,8 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           alert(data[0]);
         }
         else{
-          alert("Se agrego exitosamente");
+          $('#alertModal').show();
+          $('#alertModalData').html("Se agrego exitosamente");
           $('#nombreServicio').val('');
           $('#errorNS').html('');
           $('#crearServicio').modal('hide');
@@ -246,8 +250,8 @@ $('#registrarNuevoServicio').on('click', function(ev) {
       success: function(data) {
         data = JSON.parse(data);
         if(data[0]=="Error"){
-          alert(data[0]);
-          alert(data[1]);
+          $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else{
           $('#submit').hide();
@@ -298,11 +302,12 @@ $('#registrarNuevoServicio').on('click', function(ev) {
       success: function(data) {
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
-          alert(data[0]);
-          alert(data[1]);
+          $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else if(data[0]=="Success: Al ingresar datos"){
-          alert('Se actualizo exitosamente el paciente');
+          $('#alertModal').show();
+          $('#alertModalData').html('Se actualizo exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
           $('#apellido').val('');
