@@ -18,16 +18,18 @@ $(document).ready(function(){
                 success:function(data){    
                      $('#depa2').val(data.IdDepartamento);  
                      parseInt($('#employee_id').val(data.idAtienden),10);  
-                    $('#userInput').val(data.IdPaciente);  
-                    $('#userInput2').val(data.IdVoluntario);  
-                    $('#paciente2').val(data.IdPaciente);  
-                     $('#asistente2').val(data.IdVoluntario); 
-                    
                    //$('#userInput2').val(data.IdVoluntario);  
                      $('#date2').val(data.Fecha);  
                      $('#servicio2').val(data.IdServicio);  
                 $('#Observaciones2').val(data.Observaciones);  
-                     $('#cuota2').val(data.CuotaRecup);  
+                     $('#cuota2').val(data.CuotaRecup);
+
+                     $('#paciente').val(data.IdPaciente);  
+                     $('#asistente').val(data.IdVoluntario);  
+                     pacienteActual.id = data.IdPaciente;
+                     voluntarioActual.id = data.IdVoluntario
+
+
                      $('#insert').val("Actualizar"); 
                      $('#modificarServicio').modal('show');  
                 },  
@@ -35,19 +37,24 @@ $(document).ready(function(){
            });  
           var paciente2 = $(this).attr("paciente2");
           
-          $.ajax({  
 
-                url:"modelo/fetchvol.php",  
-                method:"POST",  
+          //TODO: var pacienteActual   = { id: -1 };, var voluntarioActual = { id: -1 };
+          // Input Field
+          // $.ajax({  
 
-                data:{employee_id:employee_id},  
+          //       url:"modelo/fetchvol.php",  
+          //       method:"POST",  
+
+          //       data:{employee_id:employee_id},  
                  
-                success:function(data){ 
-                    $('#userInput').val(data.IdPaciente);  
-                    $('#userInput2').val(data.IdVoluntario);  
-                },  
-                dataType:"json" 
-           }); 
+          //       success:function(data){ 
+          //           pacienteActual.id = data.IdPaciente;
+          //           voluntarioActual.id = data.IdVoluntario
+          //           $('#userInput').val(data.IdPaciente);  
+          //           $('#userInput2').val(data.IdVoluntario);  
+          //       },  
+          //       dataType:"json" 
+          //  }); 
            
       });  
 

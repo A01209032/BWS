@@ -40,7 +40,7 @@
                               <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
                             </div>
                             <div class="column">
-                                <form action="controlador/editar_servicio.php" method="POST" autocomplete="off">
+                                <form action="controlador/editar_servicio.php" method="POST" autocomplete="off" id="modificar-registros">
                                 <label for="dep" style="border-left:  "> Departamento  </label>    
                                 <select class="form-control form-control-sm" name="depa2" id="depa2">
                                 <?php 
@@ -54,15 +54,21 @@
                                 <br>
                                
                                      <label >Buscar paciente </label>
-                                      <input type="text" id="userInput" onkeypress="return soloLetras(event)" onkeyup="sendRequest3();"required>
-                              <div style="text-align: center" id="ajaxResponse3"> </div>
+                                      <div class="autocomplete">
+                                      <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" autocomplete="off">
+                                    </div>
+                                      <!-- <input type="text" id="userInput" onkeypress="return soloLetras(event)" onkeyup="sendRequest3();"required>
+                              <div style="text-align: center" id="ajaxResponse3"> </div> -->
                               <br>
                                     <input type="hidden" name="paciente2" id="paciente2" />
                                 <br>
                                      <label >Buscar voluntario </label>
-                                      <input type="text" id="userInput2" onkeypress="return soloLetras(event)"onkeyup="sendRequest4();"required>
-                                       <input type="hidden" name="asistente2" id="asistente2" />
-                              <div style="text-align: center" id="ajaxResponse4"> </div>
+                                     <div class="autocomplete">
+                                      <input type="text" id="asistente" name="asistente" placeholder="">
+                                    </div>
+                                      <!-- <input type="text" id="userInput2" onkeypress="return soloLetras(event)"onkeyup="sendRequest4();"required>
+ -->                                  <input type="hidden" name="asistente2" id="asistente2" />
+                              <!-- <div style="text-align: center" id="ajaxResponse4"> </div> -->
                                
                                 <div class="form-group"> <!-- Date input -->
                                 <label class="control-label"  for="date2">Selecciona dia y mes:</label>
@@ -106,10 +112,6 @@
         </div>
       </div>
       </section>
-
-       
-
-
                   </ul>
                   
 
@@ -118,7 +120,78 @@
               
       </div>
    
+<script src=../registros/autocomplete.js></script>
+<script>
+  var pacientes = {arr: []};
+  var pacienteActual   = { id: -1 };
+  var voluntarios = {arr: []};
+  var voluntarioActual = { id: -1 };
+
+  // Cargar Pacientes
+  $(document).ready(function() {
+    $.ajax({
+      url: "../registros/listar_pacientes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'text',
+      success: function(data) {
+        console.log("Pacientes:" + data);
+        data = JSON.parse(data);
+        data = data.arr;
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        //console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          //console.log(data[i])
+          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años - "+data[i]['nivel']) , id: data[i]['id']});
+        }
+        pacientes.arr = nombres;
+        autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
+      }
+    });
 
 
+    // Cargar Lista de Voluntarios/Asistentes
+    $.ajax({
+      url: "../registros/listar_asistentes.php",
+      method: 'GET',
+      data: {pattern: 'all'},
+      type: 'json',
+      success: function(data) {
+        console.log("Asistentes:" + data);
+        data = JSON.parse(data);
+        data = data.arr;
+        if (data[0] == "Error") {
+          alert("There was a critical error on the server!");
+          return;
+        }
+        //console.log(data);
+        var nombres = [];
+        for (var i=0; i < data.length; i++) {
+          //console.log(data[i])
+          nombres.push({val: data[i]['fname'], id: data[i]['id']});
+        }
+        voluntarios.arr = nombres;
+        autocomplete(document.getElementById('asistente'), voluntarios, voluntarioActual);
+      }
+    });
+
+
+    // Submit Form Con el Id Correcto
+    $('#modificar-registros').on('submit', function(ev) {
+      
+      $('#paciente2').val(''+pacienteActual.id);
+      $('#asistente2').val(''+voluntarioActual.id);
+
+      console.log("Submission Made!");
+    })
+  });
+
+
+
+</script>
 <script type="text/javascript" src="js/edicionS.js" ></script>
 <script type="text/javascript" src="js/ajax.js"> </script>
