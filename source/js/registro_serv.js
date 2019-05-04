@@ -80,6 +80,7 @@ window.addEventListener("load", function() {
           $('#enfermedadErr').html(data[4]);
           $('#sexoErr').html(data[5]);
           $('#religionErr').html(data[6]);
+          document.documentElement.scrollTop = 0;
           
         }
       },
@@ -132,6 +133,7 @@ window.addEventListener("load", function() {
           $('#asistenteErr').html(data[1]);
           $('#fechaErr').html(data[2]);
           $('#tipoErr').html(data[3]);
+          document.documentElement.scrollTop = 0;
           
         }
       },
