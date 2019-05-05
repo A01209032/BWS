@@ -10,6 +10,7 @@
 
   //título
   include("partials/_cuentas.html");
+  include("../common/views/alertModal.html");
 
 ?>
 <script type="text/javascript" src="js/cuentas.js"> </script>

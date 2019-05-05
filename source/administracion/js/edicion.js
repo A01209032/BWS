@@ -91,10 +91,11 @@ $(document).ready(function(){
                 tipo: $('#tipo').val()
               },
               success: function(data) {
-                alert(data);
-
+                //alert(data);
+                  $('#alertModal').show();
+                  $('#alertModalData').html(data);
+                
                 requestVoluntarios();
-
                 $('#registrarVoluntario').modal('hide');
               }
 
@@ -119,7 +120,10 @@ $(document).ready(function(){
                 employee_id: $('#employee_id').val()
               },
               success: function(data) {
-                alert(data);
+                //alert(data);
+                $('#alertModal').show();
+                $('#alertModalData').html(data);
+                
                 $('#modificarVoluntario').modal('hide');
                 requestVoluntarios();
               }
@@ -127,7 +131,7 @@ $(document).ready(function(){
             });
         return false;
   });
-
+/*
     function eliminar() {
       var retVal = confirm("¿Esta seguro que desea eliminar el voluntario?");
       if( retVal == true ) {
@@ -138,26 +142,44 @@ $(document).ready(function(){
         //document.write ("User does not want to continue!");
         return false;
       }
-    }
+    }*/
 
     //eliminar
+    var employee_id;
 
-      $(document).on('click', '.delete_data', function(){
-        if (eliminar()){
-          let employee_id = $(this).attr("id");
-          $.ajax({
-            url:"controlador/eliminar_voluntario.php",
-            method:"POST",
-            data: {employee_id: employee_id},
-            success:function(data){
-              alert(data);
-              requestVoluntarios();
-            }
-          });
-        }
+
+      $('#confirmarBorrar').on("click", function(event){
+        $.ajax({
+              url:"controlador/eliminar_voluntario.php",
+              method:"POST",
+              data: {employee_id: employee_id},
+              success:function(data){
+                //alert(data);
+                $('#confirmModalBorrarVoluntario').hide();
+
+                $('#alertModal').show();
+                $('#alertModalData').html(data);
+                
+                requestVoluntarios();
+              }
+            });
+        
+      });
+
+      $('#cancelarBorrar').on("click", function(event){
+        employee_id="";
+        $('#confirmModalBorrarVoluntario').hide();
       });
 
 
+      $(document).on('click', '.delete_data', function(){
+        //mostrar el de eliminar
+        $('#confirmModalBorrarVoluntario').show();
+        $('#confirmModalBorrarVoluntarioData').html("¿Estas seguro que desea eliminar el voluntario?");
+
+          employee_id = $(this).attr("id");
+
+      });
 
     /*AJAX para modificar voluntarios: Carga los datos del seleccionado con modelo/fetch.php*/
 

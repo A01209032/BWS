@@ -39,7 +39,7 @@
 
     }else{
         //Error al cargar las datos
-        echo 'alert("¡Error! Porfavor inserte los datos';
+        echo '¡Error! Porfavor inserte los datos';
         //header( "refresh:.1; url=../cuentas.php" );
         var_dump($_POST);
     }
