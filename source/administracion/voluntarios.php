@@ -5,6 +5,11 @@
   require_once ("modelo/util.php");
 
   include("partials/_voluntarios.html");
+
+  include("../common/views/alertModal.html");
+  include("partials/_confirmacion_borrar_voluntario.html");
+
+  //include("../common/views/confirmModal.html");
 ?>
 
 <script type="text/javascript" src="js/edicion.js"></script>
