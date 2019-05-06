@@ -220,7 +220,7 @@ $month2 = date('m', strtotime($Fecha2));
  $sqls ="SELECT p.NivelEconomico,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.NivelEconomico";
     $result5= mysqli_query($conn,$sqls);
       if(mysqli_num_rows($result5)>0){
-    echo '<table id="socioeconomico" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Nivel Socioeconomico</h2><br><tr><th>Estado Socioeconomico
+    echo '<div style="width:50%; margin: 0 auto"><table id="socioeconomico" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Nivel Socioeconomico</h2><br><tr><th>Estado Socioeconomico
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result5)){
@@ -238,7 +238,7 @@ $month2 = date('m', strtotime($Fecha2));
     $result6= mysqli_query($conn,$sqlasistencias);
       if(mysqli_num_rows($result6)>0){
           
-    echo '<div style="width:50%; margin: 0 auto"> <table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
+    echo '<table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
     </th><th>Total</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result6)){

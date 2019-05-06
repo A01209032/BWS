@@ -62,7 +62,49 @@ const loader = document.querySelector(".loader");
    }
    
 }
-   
+   function confirmacion(mensaje, handler){
+    
+    //Se agrega el modal de confirmación de cambio de contraseña
+    $(`<div class="modal" id="confirmModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title"></h4></h4>
+                <button type="button" class="close"  onclick="$('#confirmModal').hide();">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" >
+              <h2 id="confirmModalData"></h2>
+              <div style="text-align: right;">
+                <input type="button" name="confirmar" value="Confirmar" id="confirmar" class="clsButton btn btn-primary btn-yes">           
+                <input type="button"  name="cancelar" value="Cancelar" id="cancelar" class="clsButton btn btn-danger btn-no">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`).appendTo('body');
+
+
+    //Se muestra el modal
+    $('#confirmModalData').html(mensaje);
+    $('#confirmModal').show();
+
+    //Pass true to a callback function
+    $(".btn-yes").click(function () {
+      handler(true);
+      $("#confirmModal").hide();
+      $("#confirmModal").remove();
+    });
+    
+    //Pass false to callback function
+    $(".btn-no").click(function () {
+      handler(false);
+     $("#confirmModal").hide();
+     $("#confirmModal").remove();
+    });
+
+  }
  function eliminar() {
       var retVal = confirm("¿Esta seguro que desea eliminar el servicio?");
       if( retVal == true ) {
@@ -75,8 +117,28 @@ const loader = document.querySelector(".loader");
       }
     }
 
+    $(document).on('click', '.delete_data', function(){
+        let employee_id = $(this).attr("id");
+     confirmacion("Estas seguro de eliminar el registro?",function (res){
+                 if(res){
+        
+           // alert(employee_id);
+          $.ajax({
+            url:"controlador/eliminar_servicio.php",
+            method:"POST",
+            data: {employee_id: employee_id},
+            success:function(data){
+              $('#alertModal').show();
+              $('#alertModalData').html(data);
+                fechas();
+            }
+          });
+    }
+         });
+                 
+                  return false;});
     //eliminar
-
+   /*
       $(document).on('click', '.delete_data', function(){
         if (eliminar()){
           let employee_id = $(this).attr("id");
@@ -91,7 +153,7 @@ const loader = document.querySelector(".loader");
             }
           });
         }
-      });
+      });*/
     });
 
 var date;
