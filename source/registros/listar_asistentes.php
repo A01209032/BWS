@@ -34,7 +34,7 @@ if (isset($_GET['pattern'])) {
 	// $asistentesPattern = mysqli_escape_string($asistentesPattern);
 
 	$asistentes = listarVoluntariosCon($asistentesPattern);
-
+	
 	$resStr = "";
 	for ($i=0; $i < count($asistentes); $i++) {
 		$pId = $asistentes[$i]['id'];

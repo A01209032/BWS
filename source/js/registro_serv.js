@@ -71,6 +71,7 @@ window.addEventListener("load", function() {
 
           cargarPacientes();
           cargarEnfermedades();
+          document.documentElement.scrollTop = 0;
         }
         else{
           $('#nombreErr').html(data[0]);
@@ -124,9 +125,9 @@ window.addEventListener("load", function() {
           pacienteActual.id = -1;
           $('#asistente').val('');
           voluntarioActual.id = -1; 
-          $('#tipo').val('');
           $('#observaciones').val('');
           $('#CuotaRecup').val(0);
+          document.documentElement.scrollTop = 0;
         }
         else{
           $('#pacienteErr').html(data[0]);
