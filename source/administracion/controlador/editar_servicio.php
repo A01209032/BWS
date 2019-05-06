@@ -19,7 +19,7 @@
         if(update_Servicio($id,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup)){
           //Se cargaron los datos
           echo '<script language="javascript">';
-            echo 'alert("Se edito el servicio correctamente!"); window.location="../consultas.php";';
+            echo 'alert("Se edito el servicio correctamente!");';
             echo '</script>';
 //var_dump($_POST);
          /*   echo '<script language="javascript">';
@@ -32,7 +32,7 @@
           //Error al cargar las datos
             
            echo '<script language="javascript">';
-            echo 'alert("No se edito el servicio"); window.location="../consultas.php";';
+            echo 'alert("No se edito el servicio");';
             echo '</script>';
             //var_dump($_POST);
  //echo 'window.location.href="../administracion/consultas.php"';
