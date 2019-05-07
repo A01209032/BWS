@@ -57,7 +57,7 @@ if (isset($_GET['pattern'])) {
 		if ($i != count($pacientes)-1) $resStr .= "#";
 	}
 	
-	echo json_encode(array("arr"=>utf8ize($pacientes)));
+	echo json_encode(array("arr"=>utf8ize($pacientes)),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	//echo json_last_error_msg(); // Print out the error if any
 	//die(); // halt the script
 	//echo $resStr;
