@@ -10,16 +10,13 @@ require 'vendor/autoload.php';
 
 require_once("models/departamento.php");
 
+
+$contrasena=rand(0,4).','.rand(0,4).','.rand(0,4).','.rand(0,4);
+
 //Se obtienen los usuarios y contraseñas
-$result=findAllDepartments2();   
-$text='';
-if(mysqli_num_rows($result)>0){
-	$text=$text.'<b>Contraseñas actuales:</b><br>';
-	while($row=mysqli_fetch_assoc($result)){
-      	$text=$text.$row["NombreDepartamento"].': '.$row["contrasena"].'<br>';
-    }
-}
-mysqli_free_result($result); //Se libera la variable de memoria
+$result=modifyContraseniaById(1,$contrasena);   
+$text='Contraseña nueva para administrador: '.$contrasena;
+
 
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);

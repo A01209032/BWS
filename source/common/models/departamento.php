@@ -50,12 +50,17 @@ function findAllDepartments() {
     return $departamentos;
 }
 
-function findAllDepartments2() {
-	$conn = connectDB();
-	$sql = "SELECT NombreDepartamento,contrasena FROM departamento";
-	$res = mysqli_query($conn, $sql);
+
+
+  //Modifica una contraseña
+  function modifyContraseniaById($id,$nuevaContrasena){
+   $conn = connectDB();
+    $sql="UPDATE departamento SET IdDepartamento='$id', contrasena='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
+    $result = mysqli_query($conn, $sql);
+    $id = $conn->real_escape_string($id);
+    $nuevaContrasena = $conn->real_escape_string($nuevaContrasena);
     closeDb($conn);
-    return $res;
-}
+    return $result;
+  }
 
 ?>
