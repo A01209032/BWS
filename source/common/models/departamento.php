@@ -49,4 +49,13 @@ function findAllDepartments() {
     closeDb($conn);
     return $departamentos;
 }
+
+function findAllDepartments2() {
+	$conn = connectDB();
+	$sql = "SELECT NombreDepartamento,contrasena FROM departamento";
+	$res = mysqli_query($conn, $sql);
+    closeDb($conn);
+    return $res;
+}
+
 ?>
