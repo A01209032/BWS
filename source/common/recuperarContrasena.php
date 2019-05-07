@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 require_once("models/departamento.php");
 
 //Se obtienen los usuarios y contraseñas
-$result=findAllDepartments();   
+$result=findAllDepartments2();   
 $text='';
 if(mysqli_num_rows($result)>0){
 	$text=$text.'<b>Contraseñas actuales:</b><br>';
@@ -39,7 +39,7 @@ try {
     //Recipients
     $mail->SetFrom('test@gmail.com');
     $mail->addAddress('apap71@gmail.com');     // Add a recipient
-    $mail->addAddress('rodriguezduranros@yahoo.com.mx');               // Name is optional
+    $mail->addAddress('spatricia69medelesromero@gmail.com');               // Name is optional
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -47,6 +47,7 @@ try {
     $mail->Body    = $text;
     $mail->AltBody = $text;
 
+    $mail->CharSet = 'UTF-8';
     $mail->send();
     echo 'Se envió un correo con las contraseñas al administrador. Favor de comunicarse con ella/él';
 } catch (Exception $e) {

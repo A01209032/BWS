@@ -9,7 +9,9 @@ $('#recuperarContrasena').on("submit", function(event){
           data: {
           },
           success: function(data) {
-            alert(data);
+            //alert(data);
+            $('#alertModal').show();
+            $('#alertModalData').html(data);
           }
     });
     
