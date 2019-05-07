@@ -29,10 +29,23 @@ function findAllDepartments() {
 
 	$conn = connectDB();
 
-	$sql = "SELECT NombreDepartamento,contrasena FROM departamento";
+	$sql = "SELECT * FROM departamento";
 
 	$res = mysqli_query($conn, $sql);
+
+	$departamentos = array();
+	if (mysqli_num_rows($res) > 0) {
+		while ($row = mysqli_fetch_assoc($res) != NULL) {
+			$dep = array('Nombre' => $row['NombreDepartamento'], 
+						 'Id'=> $row['IdDepartamento'], 
+						 'Contrasenia' => $row['contrasena']);
+			
+			array_push($departamentos, $dep);
+		}
+	}
+
+
     closeDb($conn);
-    return $res;
+    return $departamentos;
 }
 ?>
