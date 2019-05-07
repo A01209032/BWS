@@ -8,7 +8,6 @@ function renderView($err) {
 	$error = $err;
 	include("views/_header_login.html");
 	include("views/login_view.php");
-	include("views/forgotPassword_view.php");
 	include("../common/views/alertModal.html");
 }
 
