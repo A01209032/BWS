@@ -22,7 +22,7 @@ if (isset($_POST['user'])) {
 		exit;
 	}
 
-	if ($user['pass'] != $_POST['pass']) {
+	if ( !password_verify($_POST['pass'], $user['pass'])) {
 		$error = "¡La contraseña no es correcta!";
 		renderView($error);
 		exit;
