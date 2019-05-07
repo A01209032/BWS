@@ -12,8 +12,7 @@
                 <img src="../'.$row["imagen"].'" class="card-img-top cortarImagen">
                 <div class="card-body">
                   <h5 class="card-title">'.$row["NombreDepartamento"].'</h5>
-                  <p class="card-text"><b>Contraseña actual:</b></p>'.$row["contrasena"].'<br><br>
-                <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
+                  <p class="card-text"><b>Ingrese nueva contraseña:</b></p>
                   <form method="POST" class="ajax">
                     <input type="text" class="form-control" id="contrasenaNueva" name="contrasenaNueva"placeholder="Ejemplo: 0,4,1,2">
                     <input type="hidden" value="'.$row["IdDepartamento"].'" name="id" id="id">
