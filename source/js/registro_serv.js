@@ -19,6 +19,10 @@ window.addEventListener("load", function() {
     $('#submitM').hide();
     $('#RP').show();
     $('#MP').hide();
+    $('#pacienteErr').html('');
+    $('#asistenteErr').html('');
+    $('#fechaErr').html('');
+    $('#tipoErr').html('');
 
   });
 
@@ -165,7 +169,7 @@ window.addEventListener("load", function() {
         var nombres = [];
         for (var i=0; i < data.length; i++) {
           //console.log(data[i])
-          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años - "+data[i]['nivel']) , id: data[i]['id']});
+          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" a単os - "+data[i]['nivel']) , id: data[i]['id']});
         }
         pacientes.arr = nombres;
         autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
@@ -273,6 +277,10 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           $('#enfermedad').val(data[0]);
           enfermedadActual.id=data[9];
           $('#noSelect').html('');
+          $('#pacienteErr').html('');
+          $('#asistenteErr').html('');
+          $('#fechaErr').html('');
+          $('#tipoErr').html('');
 
           cargarPacientes();
         }
