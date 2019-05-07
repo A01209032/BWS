@@ -8,7 +8,7 @@ function renderView($err) {
 	$error = $err;
 	include("views/_header_login.html");
 	include("views/login_view.php");
-	include("views/forgotPassword_view.php");
+	include("../common/views/alertModal.html");
 }
 
 if (isset($_POST['user'])) {
@@ -22,7 +22,7 @@ if (isset($_POST['user'])) {
 		exit;
 	}
 
-	if ($user['pass'] != $_POST['pass']) {
+	if ( !password_verify($_POST['pass'], $user['pass'])) {
 		$error = "¡La contraseña no es correcta!";
 		renderView($error);
 		exit;

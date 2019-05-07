@@ -10,16 +10,14 @@ require 'vendor/autoload.php';
 
 require_once("models/departamento.php");
 
+
+$contrasena=rand(0,4).','.rand(0,4).','.rand(0,4).','.rand(0,4);
+$text='Contraseña nueva para administrador: '.$contrasena;
+$contrasena=password_hash($contrasena,PASSWORD_DEFAULT);
 //Se obtienen los usuarios y contraseñas
-$result=findAllDepartments();   
-$text='';
-if(mysqli_num_rows($result)>0){
-	$text=$text.'<b>Contraseñas actuales:</b><br>';
-	while($row=mysqli_fetch_assoc($result)){
-      	$text=$text.$row["NombreDepartamento"].': '.$row["contrasena"].'<br>';
-    }
-}
-mysqli_free_result($result); //Se libera la variable de memoria
+$result=modifyContraseniaById(1,$contrasena);   
+
+
 
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -39,7 +37,7 @@ try {
     //Recipients
     $mail->SetFrom('test@gmail.com');
     $mail->addAddress('apap71@gmail.com');     // Add a recipient
-    $mail->addAddress('rodriguezduranros@yahoo.com.mx');               // Name is optional
+    $mail->addAddress('spatricia69medelesromero@gmail.com');               // Name is optional
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -47,6 +45,7 @@ try {
     $mail->Body    = $text;
     $mail->AltBody = $text;
 
+    $mail->CharSet = 'UTF-8';
     $mail->send();
     echo 'Se envió un correo con las contraseñas al administrador. Favor de comunicarse con ella/él';
 } catch (Exception $e) {

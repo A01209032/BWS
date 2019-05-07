@@ -628,7 +628,7 @@ function getdepas(){
   //Obtiene todos los departamentos
   function getDepartamentosImagen(){
     $conn=conectDb();
-    $sql="SELECT IdDepartamento, NombreDepartamento, contrasena, IdRol, imagen FROM departamento";
+    $sql="SELECT IdDepartamento, NombreDepartamento, IdRol, imagen FROM departamento";
     $result = mysqli_query($conn, $sql);
     closeDb($conn);
     return $result;
@@ -636,7 +636,9 @@ function getdepas(){
 
   //Modifica una contraseña
   function modifyContraseniaById($id,$nuevaContrasena){
+    $nuevaContrasena=password_hash($nuevaContrasena,PASSWORD_DEFAULT);
     $conn=conectDb();
+
     $sql="UPDATE departamento SET IdDepartamento='$id', contrasena='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
     $result = mysqli_query($conn, $sql);
     $id = $conn->real_escape_string($id);

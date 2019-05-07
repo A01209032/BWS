@@ -5,7 +5,7 @@
 # Ricardo Antonio Vázquez Rodríguez  - A01209245
 # Juan José Olivera Loyola - A01702832
 # Francisco Castillo Hernandez - A01208970
-# Samuel Iván Ramírez Centeno - A01209032
+# Samuel Iván Ramírez Navarro - A01209032
 #
 # Información de la organización:
 # Dirección: Prolongación Tecnológico Norte 150 Norte, La Piedad, 76150 Santiago de Querétaro, Qro.
