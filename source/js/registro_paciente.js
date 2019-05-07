@@ -10,6 +10,7 @@ var enfermedadActual = { id: -1 };
             console.log("Enfermedad Resp: ");
             console.log(data);
             data = JSON.parse(data);
+            data = data.arr;
             if (data[0] == "Error") {
               alert("There was a critical error in the database!");
               return;

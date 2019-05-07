@@ -3,22 +3,18 @@
     require_once("../modelo/util.php");
     
 
-    $id=$_POST['id'];
+     $id=$_POST['employee_id'];
 
     /*CONTROLADOR*/
    //Funcion para eliminar
-    if (isset($_POST["id"])) {
+    if (isset($_POST['employee_id'])) {
         
-        if(delete_by_ID($id)){
-         echo '<script language="javascript">';
-            echo 'alert("Se elimino el servicio correctamente"); window.location="../consultas.php";';
-            echo '</script>';
+        if(delete_by_ID($id))
+            echo 'Se elimino el servicio correctamente';
             
     }else{
-         echo '<script language="javascript">';
-            echo 'alert("No se pudo eliminar el ervicio"); window.location="../consultas.php";';
-            echo '</script>';
-    }
+         echo 'No se pudo eliminar';
+    
         
        
     }

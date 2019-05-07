@@ -23,6 +23,16 @@
 
 include('models/enfermedad.php');
 
+function utf8ize( $mixed ) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } elseif (is_string($mixed)) {
+        return mb_convert_encoding($mixed, "UTF-8", "UTF-8");
+    }
+    return $mixed;
+}
 
 if (isset($_GET['pattern'])) {
 	$enfermedadesPattern = $_GET['pattern'];
@@ -45,11 +55,12 @@ if (isset($_GET['pattern'])) {
 		if ($i != count($enfermedades)-1) $resStr .= "#";
 	}
 
-	echo json_encode($enfermedades);
+	echo json_encode(array("arr"=>utf8ize($enfermedades)));
 	//echo $resStr;
 
 } else {
-	echo json_encode(array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion"));
+	$errarr = array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion");
+	echo json_encode(array("arr" => $errarr));
 	// echo "Error#Argumentos No Validos o Suficientes Enviados a la Peticion";
 
 }

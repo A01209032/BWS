@@ -15,7 +15,7 @@
               <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" id="form_pacientes" autocomplete="off">
                   
                   <label for="nombre">Nombre Completo<span id="error"><?php echo $nombreErr;?><span id="nombreErr"></span></span></label>
-                <input type="text" id="nombre" name="nombre" placeholder="">
+                <input type="text" id="nombre" name="nombre" placeholder="" maxlength="100">
 
 
                 <label for="enfermedad">Enfermedad <span id="error"><?php echo $enfermedadErr;?><span id="enfermedadErr"></span></span></label>
@@ -25,13 +25,13 @@
                 
 
                 <label for="direccion">Direccion</label>
-                <input type="text" id="direccion" name="direccion" placeholder="">
+                <input type="text" id="direccion" name="direccion" placeholder="" maxlength="50">
 
               <label for="telefono">Telefono</label> <br>
-              <input class="form-control" type="number" id="telefono" name="telefono" placeholder="">
+              <input class="form-control" type="number" id="telefono" name="telefono" placeholder="" maxlength="50">
                 <br>
               <label for="celular">Celular</label><br>
-              <input class="form-control" type="number" id="celular" name="celular" placeholder="">
+              <input class="form-control" type="number" id="celular" name="celular" placeholder="" maxlength="50">
                   <br>
                 <label for="fecha_nacimiento">Fecha de Nacimiento <span id="error"><?php echo $fechaNacimientoErr;?><span id="fechaNacimientoErr"></span></span></label>
                   <br>
@@ -49,6 +49,7 @@
                 <select id="religion" name="religion">
                   <option selected value="Catolico">Catolico</option>
                   <option value="Protestante">Protestante</option>
+                  <option value="Otros">Otros</option>
                 </select>
                 <label for="nivel">Nivel Economico <span id="error"><?php echo $nivelErr;?><span id="nivelErr"></span></span></label>
                 <select id="nivel" name="nivel">

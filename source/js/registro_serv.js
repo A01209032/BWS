@@ -51,11 +51,12 @@ window.addEventListener("load", function() {
         console.log(data);
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
-          alert(data[0]);
-          alert(data[1]);
+           $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else if(data[0]=="Success: Al ingresar datos"){
-          alert('Se registro exitosamente el paciente');
+          $('#alertModal').show();
+          $('#alertModalData').html('Se registro exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
           $('#apellido').val('');
@@ -70,6 +71,7 @@ window.addEventListener("load", function() {
 
           cargarPacientes();
           cargarEnfermedades();
+          document.documentElement.scrollTop = 0;
         }
         else{
           $('#nombreErr').html(data[0]);
@@ -79,6 +81,7 @@ window.addEventListener("load", function() {
           $('#enfermedadErr').html(data[4]);
           $('#sexoErr').html(data[5]);
           $('#religionErr').html(data[6]);
+          document.documentElement.scrollTop = 0;
           
         }
       },
@@ -121,17 +124,17 @@ window.addEventListener("load", function() {
           $('#paciente').val('');
           pacienteActual.id = -1;
           $('#asistente').val('');
-          voluntarioActual.id = -1;
-          $('#fecha').val('');
-          $('#tipo').val('');
+          voluntarioActual.id = -1; 
           $('#observaciones').val('');
           $('#CuotaRecup').val(0);
+          document.documentElement.scrollTop = 0;
         }
         else{
           $('#pacienteErr').html(data[0]);
           $('#asistenteErr').html(data[1]);
           $('#fechaErr').html(data[2]);
           $('#tipoErr').html(data[3]);
+          document.documentElement.scrollTop = 0;
           
         }
       },
@@ -148,12 +151,14 @@ window.addEventListener("load", function() {
       url: "listar_pacientes.php",
       method: 'GET',
       data: {pattern: 'all'},
-      type: 'json',
+      type: 'text',
       success: function(data) {
         console.log("Pacientes:" + data);
         data = JSON.parse(data);
+        data = data.arr;
         if (data[0] == "Error") {
-          alert("There was a critical error on the server!");
+          $('#alertModal').show();
+          $('#alertModalData').html("There was a critical error on the server!");
           return;
         }
         //console.log(data);
@@ -179,8 +184,10 @@ window.addEventListener("load", function() {
     success: function(data) {
       console.log("Asistentes:" + data);
       data = JSON.parse(data);
+      data = data.arr;
       if (data[0] == "Error") {
-        alert("There was a critical error on the server!");
+        $('#alertModal').show();
+        $('#alertModalData').html('There was a critical error on the server!');
         return;
       }
       //console.log(data);
@@ -215,7 +222,8 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           alert(data[0]);
         }
         else{
-          alert("Se agrego exitosamente");
+          $('#alertModal').show();
+          $('#alertModalData').html("Se agrego exitosamente");
           $('#nombreServicio').val('');
           $('#errorNS').html('');
           $('#crearServicio').modal('hide');
@@ -245,8 +253,8 @@ $('#registrarNuevoServicio').on('click', function(ev) {
       success: function(data) {
         data = JSON.parse(data);
         if(data[0]=="Error"){
-          alert(data[0]);
-          alert(data[1]);
+          $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else{
           $('#submit').hide();
@@ -297,11 +305,12 @@ $('#registrarNuevoServicio').on('click', function(ev) {
       success: function(data) {
         data = JSON.parse(data);
         if(data[0]=="Error: En insercion de base de datos!"){
-          alert(data[0]);
-          alert(data[1]);
+          $('#alertModal').show();
+          $('#alertModalData').html(data[0].data[1]);
         }
         else if(data[0]=="Success: Al ingresar datos"){
-          alert('Se actualizo exitosamente el paciente');
+          $('#alertModal').show();
+          $('#alertModalData').html('Se actualizo exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
           $('#apellido').val('');

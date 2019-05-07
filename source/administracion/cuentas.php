@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("../views/_header_carpetas.html");
+  include("../views/_header.html");
 
   require_once ("modelo/util.php");
 
@@ -10,6 +10,7 @@
 
   //título
   include("partials/_cuentas.html");
+  include("../common/views/alertModal.html");
 
 ?>
 <script type="text/javascript" src="js/cuentas.js"> </script>

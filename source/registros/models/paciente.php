@@ -16,34 +16,39 @@
 require_once('util.php');
 
 function listarPacientesCon($pattern) {
-
 	$pacientes = array();
-
 	$conn = conectDB();
-
+	$counter=0;
 	// For Table Pacientes con Nombre y Apellido
-	$sqlQuery = "SELECT IdPaciente, Nombre, FechadeNacimiento, NivelEconomico FROM pacientes 
-				 	   ORDER BY nombre";
-
-
+	$sqlQuery = "SELECT IdPaciente, Nombre, FechadeNacimiento,
+						NivelEconomico,
+						FLOOR(DATEDIFF(CURRENT_DATE,FechadeNacimiento)/365) as 'Edad'
+				 FROM pacientes 
+				 ORDER BY nombre";
 
 	$res = mysqli_query($conn, $sqlQuery);
-
+	
 	if (mysqli_num_rows($res) > 0) {
 		while ($row = mysqli_fetch_assoc($res)) {
 			$id    = $row['IdPaciente'];
 			$fname = $row['Nombre'];
 			$nivel = $row['NivelEconomico'];
-			$edad  = calcularEdad($row['FechadeNacimiento']);
-
+			$edad  = $row['Edad'];
+			//$edad  = calcularEdad($row['FechadeNacimiento']);
+			//echo json_encode(array($id,$fname,$nivel,$edad));
 			array_push($pacientes, array("id"=>$id, "fname"=>$fname, "edad"=>$edad, "nivel"=>$nivel));
+			//$pacientes[$counter]=array("id"=>$id, "fname"=>$fname, "edad"=>$edad, "nivel"=>$nivel);
+			//$pacientes[$counter]=array($id,$fname,$edad,$nivel);
+			//echo json_encode(array($pacientes[$counter],$counter));
+			$counter++;
+			//echo json_encode(array(count($pacientes)));
 		}
+		//echo json_encode(array($pacientes));
 	}
-
-
-
+	
+	
 	closeDB($conn);
-
+	//echo json_encode(array(1,count($pacientes)));
 	return $pacientes;
 }
 

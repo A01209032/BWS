@@ -11,16 +11,16 @@
         $IdVoluntario=htmlspecialchars($_POST["asistente2"]);
         $Fecha=htmlspecialchars($_POST["date2"]);
         $IdServicio=htmlspecialchars($_POST["servicio2"]);
-        $Observaciones=htmlspecialchars($_POST["Observaciones2"]);
+         $Observaciones=htmlspecialchars($_POST["Observaciones2"]);
         $CuotaRecup=htmlspecialchars($_POST["cuota2"]);
         $id=htmlspecialchars($_POST["employee_id"]);
         
       
         if(update_Servicio($id,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup)){
           //Se cargaron los datos
-          echo '<script language="javascript">';
-            echo 'alert("Se edito el servicio correctamente!"); window.location="../consultas.php";';
-            echo '</script>';
+         // echo '<script language="javascript">';
+            echo 'Se edito el servicio correctamente!';
+            //echo '</script>';
 //var_dump($_POST);
          /*   echo '<script language="javascript">';
  //echo 'window.location.href="../administracion/consultas.php"';
@@ -31,19 +31,18 @@
         else{
           //Error al cargar las datos
             
-           echo '<script language="javascript">';
-            echo 'alert("No se edito el servicio"); window.location="../consultas.php";';
-            echo '</script>';
-            //var_dump($_POST);
- //echo 'window.location.href="../administracion/consultas.php"';
+           //echo '<script language="javascript">';
+            echo 'No se edito el servicio';
+            //echo '</script>';
+            //var_dump($_POST); 
+ //ech'window.location.href="../administracion/consultas.php"';
             /*echo 'javascript:history.back()';
                 echo '</script>';*/
             //var_dump($_POST);
     }
 } else{
     //include("../views/_footer.html");
-echo "no hay nada";
-var_dump($_POST);}
+echo "Error";}
     
   
 ?>

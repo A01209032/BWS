@@ -3,23 +3,28 @@ session_start();
 require_once('utils/server.php');
 require_once('models/departamento.php');
 
+function renderView($err) {
+	$departamentos = findAllDepartments();
+	$error = $err;
+	include("views/_header_login.html");
+	include("views/login_view.php");
+	include("../common/views/alertModal.html");
+}
+
 if (isset($_POST['user'])) {
 
 	$user = findDepartmentByName($_POST['user']);
 
 	if (!$user) {
 		$error = "¡No se seleccionó ningún departamento!";
-		include("views/_header_login.html");
-		include("views/login_view.php");
+		renderView($error);
 
 		exit;
 	}
 
-	if ($user['pass'] != $_POST['pass']) {
+	if ( !password_verify($_POST['pass'], $user['pass'])) {
 		$error = "¡La contraseña no es correcta!";
-		include("views/_header_login.html");
-		include("views/login_view.php");
-		include("views/forgotPassword_view.php");
+		renderView($error);
 		exit;
 	}
 
@@ -32,9 +37,7 @@ if (isset($_POST['user'])) {
 	}
 
 } else {
-	include("views/_header_login.html");
-	include("views/login_view.php");
-	include("views/forgotPassword_view.php");
+	renderView(NULL);
 }
 
 ?>

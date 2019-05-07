@@ -23,6 +23,16 @@
 
 include('models/paciente.php');
 
+function utf8ize( $mixed ) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } elseif (is_string($mixed)) {
+        return mb_convert_encoding($mixed, "UTF-8", "UTF-8");
+    }
+    return $mixed;
+}
 
 if (isset($_GET['pattern'])) {
 	$pacientePattern = $_GET['pattern'];
@@ -34,7 +44,9 @@ if (isset($_GET['pattern'])) {
 	// $pacientePattern = mysqli_escape_string($pacientePattern);
 
 	$pacientes = listarPacientesCon($pacientePattern);
+	//echo json_encode($pacientes);
 	//echo $pacientes;
+	//echo json_encode(array(1,count($pacientes)));
 	$resStr = "";
 	for ($i=0; $i < count($pacientes); $i++) {
 		$pId = $pacientes[$i]['id'];
@@ -44,11 +56,15 @@ if (isset($_GET['pattern'])) {
 		
 		if ($i != count($pacientes)-1) $resStr .= "#";
 	}
-	echo json_encode($pacientes);
+	
+	echo json_encode(array("arr"=>utf8ize($pacientes)),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	//echo json_last_error_msg(); // Print out the error if any
+	//die(); // halt the script
 	//echo $resStr;
 
 } else {
-	echo json_encode(array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion"));
+	$errarr = array("Error", "Argumentos No Validos o Suficientes Enviados a la Peticion");
+	echo json_encode(array("arr" => $errarr));
 	// echo "Error#Argumentos No Validos o Suficientes Enviados a la Peticion";
 
 }

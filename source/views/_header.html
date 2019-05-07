@@ -11,8 +11,8 @@
   <title><?php echo $_SESSION['departamento']; ?></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!Bootstrap core CSS -->
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
@@ -20,15 +20,24 @@
 
 <!-- Bootstrap Date-Picker Plugin -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    
+  <!-- Paginación e imrpimir las tablas -->
+  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  <link href="../css/styleTony.css" rel="stylesheet" type="text/css">
+ <link href="../css/loading.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+ <!-- CSS's para imprimir las tablas (botones de reportes)-->
+
+ <link rel="stylesheet" href="../css/columns.css">
+
 </head>
 
 <body>
 
    <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg  static-top divEnmarcado header">
+  <nav class="navbar navbar-expand-lg navbar-light bg static-top divEnmarcado header">
     <div class="container " id="login-container">
       <a class="navbar-brand" href="#" > <img src="../Images/logo_oficial_enfermera.png" style="width:30%"></a>
       <div class="text-center">
@@ -42,11 +51,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item">
-            <a class="nav-link" href="../common/logout.php">Cerrar sesión</a>
-          </li>
+         <?php if(isset($_SESSION['departamento'])&&$_SESSION['departamento']=='Administrador'): ?>
+         <li class="nav-item active ">
+          <a class="nav-link center " href="admin.php">Pagina principal
+            <span class="sr-only">(current)</span>
+          </a>
+         </li>
+         <?php endif; ?>
+         
+         <?php if(isset($_SESSION['departamento'])): ?>
+         <li class="nav-item">
+           <a class="nav-link" href="../common/logout.php">Cerrar sesión</a>
+         </li>
+         <?php endif; ?>
 
         </ul>
       </div>
     </div>
   </nav>
+
