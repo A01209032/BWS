@@ -12,10 +12,11 @@ require_once("models/departamento.php");
 
 
 $contrasena=rand(0,4).','.rand(0,4).','.rand(0,4).','.rand(0,4);
-//$contrasena=password_hash($contrasena,PASSWORD_DEFAULT);
+$text='Contraseña nueva para administrador: '.$contrasena;
+$contrasena=password_hash($contrasena,PASSWORD_DEFAULT);
 //Se obtienen los usuarios y contraseñas
 $result=modifyContraseniaById(1,$contrasena);   
-$text='Contraseña nueva para administrador: '.$contrasena;
+
 
 
 // Instantiation and passing `true` enables exceptions
