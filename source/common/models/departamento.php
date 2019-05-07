@@ -35,10 +35,11 @@ function findAllDepartments() {
 
 	$departamentos = array();
 	if (mysqli_num_rows($res) > 0) {
-		while ($row = mysqli_fetch_assoc($res) != NULL) {
+		while ($row = mysqli_fetch_assoc($res)) {
 			$dep = array('Nombre' => $row['NombreDepartamento'], 
 						 'Id'=> $row['IdDepartamento'], 
-						 'Contrasenia' => $row['contrasena']);
+						 'Contrasenia' => $row['contrasena'],
+						 'Imagen' => $row['imagen']);
 			
 			array_push($departamentos, $dep);
 		}

@@ -3,9 +3,9 @@ session_start();
 require_once('utils/server.php');
 require_once('models/departamento.php');
 
-function renderView() {
+function renderView($err) {
 	$departamentos = findAllDepartments();
-	print_r($departamentos);
+	$error = $err;
 	include("views/_header_login.html");
 	include("views/login_view.php");
 	include("views/forgotPassword_view.php");
@@ -17,14 +17,14 @@ if (isset($_POST['user'])) {
 
 	if (!$user) {
 		$error = "¡No se seleccionó ningún departamento!";
-		renderView();
+		renderView($error);
 
 		exit;
 	}
 
 	if ($user['pass'] != $_POST['pass']) {
 		$error = "¡La contraseña no es correcta!";
-		renderView();
+		renderView($error);
 		exit;
 	}
 
@@ -37,7 +37,7 @@ if (isset($_POST['user'])) {
 	}
 
 } else {
-	renderView();
+	renderView(NULL);
 }
 
 ?>
