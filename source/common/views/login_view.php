@@ -6,6 +6,20 @@
 
       <div class="container overlap-section">
         <div class="row">
+          <?php for($i = 0; $i < count($departamentos); $i++): ?>
+
+          <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" 
+              id="cuenta-<?= ($i+1) ?>">
+            <a href="#" class="unit-1 text-center" 
+               data-depid='<?= $departamentos[$i]['Id'] ?>'>
+              <img src="../<?= $departamentos[$i]['Imagen'] ?>" alt="Image" class="img-fluid">
+              <div class="unit-1-text">
+                <h3 class="unit-1-heading"><?= $departamentos[$i]['Nombre'] ?></h3>
+              </div>
+            </a>
+          </div>
+
+          <!-- 
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-0" id="cuenta-1">
             <a href="#" class="unit-1 text-center">
               <img src="../Images/sanjurjo.jpg" alt="Image" class="img-fluid">
@@ -37,7 +51,8 @@
                 <h3 class="unit-1-heading">Portería</h3>
               </div>
             </a>
-          </div>
+          </div> -->
+        <?php endfor; ?>
         </div>
       </div>
     </div>

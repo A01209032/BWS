@@ -1,42 +1,19 @@
 <?php
 
-function conectDb(){
-  /*$servername="localhost";
-  $username= "root";
-  $password= "";
-  $dbname="servicio_social";*/
-    
-  $servername="remotemysql.com";
-  $username= "thdR7Lb9W9";
-  $password= "e52rzReZ8d";
-  $dbname="thdR7Lb9W9";
-
-  $con = mysqli_connect($servername,$username,$password,$dbname);
-
-  if(!$con){
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
-  return $con;
-}
-
-function closeDb($mysql){
-  mysqli_close($mysql);
-}
+require_once('../../common/utils/database.php');
 
 function getservicios(){
-    $con= conectDb();
+    $con= connectDB();
     $sql ="SELECT idAtienden,IdDepartamento,IdPaciente,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden";
     $result = mysqli_query($con,$sql);
-    closeDb($con);
+    closeDB($con);
 
     return $result;
 }
 
-//
 
 function getServicioByDepartamentoyFecha($Depa,$Fecha){
-  $conn=conectDb();
+  $conn=connectDB();
 
 $year = date('Y', strtotime($Fecha));
 
@@ -60,8 +37,8 @@ $month = date('m', strtotime($Fecha));
     $sql ="SELECT idAtienden,IdVoluntario,Fecha, IdServicio,Observaciones,CuotaRecup FROM atienden WHERE IdDepartamento = '".$Depa."' AND Fecha >=  '".$date."' AND Fecha <=  '".$date2."'  ";*/
     $result= mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
-    echo '<table  id="consultas" class="display nowrap" cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
-    </th><th>Nombre</th><th>Voluntario</th><th>Departamento</th><th>Fecha</th><th>Observaciones</th><th>Modificar</th><th>Eliminar</th></tr></thead><tbody>';
+    echo '<table  cellpadding="5px"cellspacing="5px"align="center"><thead><h2 style="text-align: center">Listado de todas los servicios</h2><br><br><tr><th>ID
+    </th><th>Nombre</th><th>Departamento</th><th>Fecha</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
         $temp=$row["idAtienden"];
@@ -72,11 +49,10 @@ $month = date('m', strtotime($Fecha));
       echo ' <td>' .$row["Nv"]. '</td> ';
      echo ' <td>' .$row["NombreDepartamento"]. '</td> ';
       echo ' <td>' .$row["Fecha"]. '</td>';
-      echo ' <td>' .$row["Observaciones"]. '</td>';
         
-        echo '<td>'.'<input type="button" name="edit" value="Modificar" id="'.$temp.'" class="btn btn-primary text-center edit_data"> '.'</td>';
+        echo '<td>'.'<input type="button" name="edit" value="Modificar" id="'.$temp.'" class="btn btn-primary text-center edit_data"> </form>'.'</td>';
         //echo $row["NombreServicio"];
-        echo  '<td>'.'<input type="button" class="btn btn-danger text-center delete_data "   value="Eliminar" " name="Eliminar" id="'.$temp.'"  >  </button> <input type="hidden" name="id" id="id" value='.$temp.' >'.'</td> ';
+        echo  '<td>'.'<form method="POST" action="controlador/eliminar_servicio.php" onsubmit="return eliminarServicio('.$temp.');" ><button type="submit"  class="btn btn-danger "   value="Eliminar" " name="Eliminar" id="Eliminar"  > Eliminar </button> <input type="hidden" name="id" id="id" value='.$temp.' ></form>'.'</td> ';
       echo '</tr>';
     }
    echo '</tbody></table>';
@@ -88,16 +64,16 @@ $month = date('m', strtotime($Fecha));
     
     
     mysqli_free_result($result);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 }
 function jap($Fecha,$Fecha2){
 
-  $conn=conectDb();
+  $conn=connectDB();
   $year = date('Y', strtotime($Fecha));
   $month = date('m', strtotime($Fecha));
 
-    $conn=conectDb();
+    $conn=connectDB();
 
 $year = date('Y', strtotime($Fecha));
 
@@ -163,17 +139,17 @@ $month2 = date('m', strtotime($Fecha2));
     
     mysqli_free_result($result);
     mysqli_free_result($result2);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 }
 //local
 function local($Fecha,$Fecha2){
 
-  $conn=conectDb();
+  $conn=connectDB();
   $year = date('Y', strtotime($Fecha));
   $month = date('m', strtotime($Fecha));
 
-    $conn=conectDb();
+    $conn=connectDB();
 
 $year = date('Y', strtotime($Fecha));
 
@@ -193,15 +169,15 @@ $month2 = date('m', strtotime($Fecha2));
     $date2 .=$month2;
     $date2 .="-31";
     
-     $sqllocal ="SELECT v.Nombre as nombrev,p.Nombre as nombrep,e.nombre as enfermedad,fecha,p.Direccion as dir,Observaciones FROM atienden as a INNER JOIN pacientes as p on a.IdPaciente=p.IdPaciente INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN enfermedades as e ON e.id=p.IdPaciente WHERE 	a.IdPaciente=p.IdPaciente AND v.IdVoluntario=a.IdVoluntario   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' AND IdDepartamento=2  ORDER BY Fecha ";
+     $sqllocal ="SELECT v.Nombre as nombrev,p.Nombre as nombrep,e.nombre as enfermedad,fecha,p.Direccion as dir,Observaciones FROM atienden as a INNER JOIN pacientes as p on a.IdPaciente=p.IdPaciente INNER JOIN voluntarios as v ON a.IdVoluntario=v.IdVoluntario INNER JOIN enfermedades as e ON e.id=p.IdPaciente WHERE 	a.IdPaciente=p.IdPaciente AND v.IdVoluntario=a.IdVoluntario   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'  ORDER BY Fecha ";
     $result= mysqli_query($conn,$sqllocal);
       if(mysqli_num_rows($result)>0){
     echo '<div  style="width:75% ;  margin: 0 auto"><table id="local" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Reporte Local  </h2><br><tr><th>Voluntario
     </th><th>Paciente
     </th><th>Enfermedad
     </th><th>Fecha
-    </th><th>Observaciones
-    </th><th>Direccion</th></tr></thead><tbody>';
+    </th><th>Direccion
+    </th><th>Observaciones</th></tr></thead><tbody>';
     //Imprimir cada fila
     while($row=mysqli_fetch_assoc($result)){
       echo '<tr>';
@@ -209,24 +185,8 @@ $month2 = date('m', strtotime($Fecha2));
       echo '<td>'.$row["nombrep"].'</td>';
       echo '<td>'.$row["enfermedad"].'</td>';
       echo '<td>'.$row["fecha"].'</td>';
+      echo '<td>'.$row["dir"].'</td>';
       echo '<td>'.$row["Observaciones"].'</td>';
-         echo '<td>'.$row["dir"].'</td>';
-
-      echo '</tr>';
-    }
-                      echo '</tbody></table> <br><br>'; 
-
-  }
- $sqls ="SELECT p.NivelEconomico,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.NivelEconomico";
-    $result5= mysqli_query($conn,$sqls);
-      if(mysqli_num_rows($result5)>0){
-    echo '<div style="width:50%; margin: 0 auto"><table id="socioeconomico" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Nivel Socioeconomico</h2><br><tr><th>Estado Socioeconomico
-    </th><th>Total</th></tr></thead><tbody>';
-    //Imprimir cada fila
-    while($row=mysqli_fetch_assoc($result5)){
-      echo '<tr>';
-      echo '<td>'.$row["NivelEconomico"].'</td>';
-      echo '<td>'.$row["Total"].'</td>';
 
       echo '</tr>';
     }
@@ -234,23 +194,6 @@ $month2 = date('m', strtotime($Fecha2));
 
   }
 
-    $sqlasistencias ="SELECT ts.NombreServicio,count(idAtienden)as 'Total' FROM atienden as a INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE ts.IdServicio=a.IdServicio AND a.IdDepartamento=2 AND     Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY ts.NombreServicio";
-    $result6= mysqli_query($conn,$sqlasistencias);
-      if(mysqli_num_rows($result6)>0){
-          
-    echo '<table id="asistenciasnum" class="display nowrap" style="width:100%" align="center"><thead><h2 style="text-align: center">Asistencias</h2><br><tr><th>Servicios
-    </th><th>Total</th></tr></thead><tbody>';
-    //Imprimir cada fila
-    while($row=mysqli_fetch_assoc($result6)){
-      echo '<tr>';
-      echo '<td>'.$row["NombreServicio"].'</td>';
-      echo '<td>'.$row["Total"].'</td>';
-
-      echo '</tr>';
-    }
-                      echo '</tbody></table> <br><br>'; 
-
-  }
     //
       $sqlse ="SELECT p.Religion,count(idAtienden) as 'Total' FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente WHERE a.IdPaciente=p.IdPaciente   AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."'   GROUP BY p.Religion ";
     $result2= mysqli_query($conn,$sqlse);
@@ -275,16 +218,14 @@ $month2 = date('m', strtotime($Fecha2));
     
     mysqli_free_result($result);
     mysqli_free_result($result2);
-    mysqli_free_result($result5);
-    mysqli_free_result($result6);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 }
 //
 
 function getServicioByFecha($Fecha,$Fecha2){
 
-  $conn=conectDb();
+  $conn=connectDB();
   $year = date('Y', strtotime($Fecha));
   $month = date('m', strtotime($Fecha));
 
@@ -504,14 +445,14 @@ $month2 = date('m', strtotime($Fecha2));
     mysqli_free_result($res5);
     mysqli_free_result($res6);
     mysqli_free_result($res7);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 }
 function insertnew($departamento,$paciente,$asistente,$fecha,$tipo,$observaciones,$cuota){
-    $con= conectDb();
+    $con= connectDB();
     $sql ="INSERT INTO `atienden`(`IdDepartamento`, `IdPaciente`, `IdVoluntario`, `Fecha`, `IdServicio`, `Observaciones`, `CuotaRecup`) values($departamento,$paciente,$asistente,'$fecha',$tipo,'$observaciones',$cuota)";
     $result = mysqli_query($con,$sql);
-    closeDb($con);
+    closeDB($con);
     return $result;
 
     /*($IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup){
@@ -542,17 +483,16 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
 }
 
 function delete_by_ID($ID){
-    $conn=conectDb();
-    $ID = $conn->real_escape_string($ID);
+    $conn=connectDB();
     $sql="DELETE FROM atienden WHERE idAtienden = '".$ID."' ";
-       
+       $ID = $conn->real_escape_string($ID);
 
     $result= mysqli_query($conn,$sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 }
 function update_Servicio($idAtienden,$IdDepartamento,$IdPaciente,$IdVoluntario,$Fecha,$IdServicio,$Observaciones,$CuotaRecup){
-   $conn=conectDb();
+   $conn=connectDB();
     
     $idAtienden = $conn->real_escape_string($idAtienden);
 $IdDepartamento = $conn->real_escape_string($IdDepartamento);
@@ -568,23 +508,23 @@ $IdDepartamento = $conn->real_escape_string($IdDepartamento);
 
     
      $result = mysqli_query($conn,$sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
 
 }
 function getdepas(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT * FROM departamento";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
   function getTiposdeServicio(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT * FROM tipodeservicio";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
@@ -594,26 +534,26 @@ function getdepas(){
 
   //Obtiene todos los voluntarios activos
   function getVoluntarios(){
-  	$conn=conectDb();
+  	$conn=connectDB();
   	$sql="SELECT IdVoluntario, Nombre, FechaDeNacimiento, Sexo, c.NombreCargo, t.NombreTipo FROM voluntarios AS v, tipo AS t, cargo AS c WHERE v.Activo=1 AND v.idCargo=c.idCargo AND v.idTipo=t.idTipoVoluntario";
   	$result = mysqli_query($conn, $sql);
-  	closeDb($conn);
+  	closeDB($conn);
   	return $result;
   }
 
   function getCargos(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT * FROM cargo";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
   function getTipos(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT * FROM tipo";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 /*
@@ -628,44 +568,44 @@ function getdepas(){
 
   //Obtiene todos los departamentos
   function getDepartamentosImagen(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT IdDepartamento, NombreDepartamento, contrasena, IdRol, imagen FROM departamento";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
   //Modifica una contraseña
   function modifyContraseniaById($id,$nuevaContrasena){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="UPDATE departamento SET IdDepartamento='$id', contrasena='$nuevaContrasena' WHERE IdDepartamento = '".$id."' ";
     $result = mysqli_query($conn, $sql);
     $id = $conn->real_escape_string($id);
     $nuevaContrasena = $conn->real_escape_string($nuevaContrasena);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
   //Obtiene la contraaseña del departamento
   function getContraseniaById($id){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT contrasena FROM departamento WHERE IdDepartamento = '".$id."' ";
     $result = mysqli_query($conn, $sql);
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
 
   function getEdadVoluntario(){
-    $conn=conectDb();
+    $conn=connectDB();
     $sql="SELECT GETDATE() - FechaDeNacimiento as 'Edad' FROM voluntarios";
     $result = mysqli_query($conn, $sql);
-   closeDb($conn);
+   closeDB($conn);
     return $result;
   }
 
   function insertVoluntario($nombre,$fechaNacimiento,$genero,$cargo,$tipo) {
-    $bd = conectDb();
+    $bd = connectDB();
 
     // insert command specification
     $query='INSERT INTO voluntarios (Nombre,FechaDeNacimiento,Sexo,idCargo,idTipo,Activo) VALUES (?,?,?,?,?,?)';
@@ -689,7 +629,7 @@ function getdepas(){
       die("Execution failed: (" . $statement->errno . ") " . $statement->error);
     }
 
-    closeDb($bd);
+    closeDB($bd);
   }
 
   function deleteVoluntarioById($id){
@@ -700,18 +640,18 @@ function getdepas(){
     $result= mysqli_query($conn,$sql);
     closeDb($conn);
     return $result;*/
-    $conn=conectDb();
+    $conn=connectDB();
     $sql ="UPDATE voluntarios SET Activo='0' WHERE IdVoluntario= '".$id."' ";
     $result = mysqli_query($conn,$sql);
 
     $id = $conn->real_escape_string($id);
 
-    closeDb($conn);
+    closeDB($conn);
     return $result;
   }
 
   function updateVoluntarioById($id,$nombre,$fechaNacimiento,$genero,$cargo,$tipo){
-    $conn=conectDb();
+    $conn=connectDB();
 
     $id = $conn->real_escape_string($id);
     $nombre = $conn->real_escape_string($nombre);
@@ -723,7 +663,7 @@ function getdepas(){
     $sql ="UPDATE voluntarios SET Nombre='$nombre', FechaDeNacimiento='$fechaNacimiento', Sexo='$genero', idCargo='$cargo', idTipo='$tipo' WHERE IdVoluntario= '".$id."' ";
       $result = mysqli_query($conn,$sql);
 
-      closeDb($conn);
+      closeDB($conn);
       return $result;
 
   }

@@ -20,8 +20,7 @@ function closeDB($conn){
 }
 
 function test_input($conn, $pstr) {
-  return $pstr;
-  // return mysqli_escape_string($conn, $pstr);
+  return mysqli_escape_string($conn, $pstr);
 }
 
  ?>

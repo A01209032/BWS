@@ -15,7 +15,7 @@
 
 
 /********************************
- * For Effect Account Selection */
+ * For Effect cuenta Selection */
 
  /* *********************************
   * Prevent <a href="#"> behaviour
@@ -27,7 +27,10 @@
  }
 
 
-let account = -1;
+/* *********************************
+  * Asignar cuenta y mostrar efecto
+ */
+let cuenta = -1;
 
 function getCuentaEl(cuentaNum) {
 	return document.getElementById('cuenta-'+cuentaNum);
@@ -43,7 +46,7 @@ document.querySelector('#cuenta-1 a').addEventListener('click', function() {
 		getCuentaEl(3).classList.add('deactivate');
 		getCuentaEl(4).classList.add('deactivate');
 
-		account = 1;
+		cuenta = 1;
 		activateRosario();
 	});
 
@@ -53,7 +56,7 @@ document.querySelector('#cuenta-2 a').addEventListener('click', function() {
 		getCuentaEl(4).classList.add('deactivate');
 		getCuentaEl(1).classList.add('deactivate');
 
-		account = 2;
+		cuenta = 2;
 		activateRosario();
 	});
 
@@ -63,7 +66,7 @@ document.querySelector('#cuenta-3 a').addEventListener('click', function() {
 		getCuentaEl(1).classList.add('deactivate');
 		getCuentaEl(2).classList.add('deactivate');
 
-		account = 3;
+		cuenta = 3;
 		activateRosario();
 	});
 
@@ -73,30 +76,13 @@ document.querySelector('#cuenta-4 a').addEventListener('click', function() {
 		getCuentaEl(2).classList.add('deactivate');
 		getCuentaEl(3).classList.add('deactivate');
 
-		account = 4;
+		cuenta = 4;
 		activateRosario();
 	});
 
 function activateRosario() {
 	document.getElementById('rosario').classList.add('active');
 }
-
-
-
-// document.getElementById('enter-btn').addEventListener('click', function() {
-// 	var currUrl = window.location.href;
-// 	var urlParts = currUrl.split('/');
-// 	var file = urlParts[urlParts.length-1];
-
-// 	var newUrl = currUrl.substring(0, currUrl.length-file.length);
-
-// 	if (account == 1) {
-// 		newUrl += "admin.html";
-// 	} else {
-// 		newUrl += "registro_servicio.html";
-// 	}
-// 	window.location.href = newUrl;
-// });
 
 
 /********************
@@ -223,7 +209,7 @@ var sequence = [];
 
 function onNodeClick(e) {
 
-	if (account == -1 )
+	if (cuenta == -1 )
 		return;
 
 	var nEl = e.target;
@@ -240,54 +226,18 @@ function onNodeClick(e) {
 }
 
 
+/******************************
+ * Manejo de Incio de Sesion */
+
+
 document.getElementById('enter-btn').addEventListener('click', function() {
-	var user = account + '';
+	var user = cuenta + '';
 	var pass = '';
 	for (var i=0; i < sequence.length; i++) {
 		pass += sequence[i];
 		if (i != sequence.length-1)
 			pass += ','
 	}
-
-	//alert('User: ' + user + ', Pass: ' + pass);
-
-	// $.ajax({
-	// 	url: '/login.php',
-	// 	method: 'POST',
-	// 	data: {
-	// 		user: user,
-	// 		password: pass
-	// 	}
-	// })
-	// .done(function(res) {
-	// 	console.log(res);
-	// });
-
-	// if (account == 1 && pass != '0,4,1,4') {
-	// 	location.reload();
-	// 	return;
-	// }
-	// if (account == 2 && pass != '0,3,2,0,0') {
-	// 	location.reload();
-	// 	return;
-	// }
-	// if (account == 3 && pass != '3,2,1,0,4') {
-	// 	location.reload();
-	// 	return;
-	// }
-
-	// if (account == 1 && pass != 'ajk34=d') {
-	// 	location.reload();
-	// 	return;
-	// }
-	// if (account == 2 && pass != 'sas3-da') {
-	// 	location.reload();
-	// 	return;
-	// }
-	// if (account == 3 && pass != 'd0f3fav') {
-	// 	location.reload();
-	// 	return;
-	// }
 
 	var currUrl = window.location.href;
 	var urlParts = currUrl.split('/');
@@ -302,26 +252,18 @@ document.getElementById('enter-btn').addEventListener('click', function() {
 	var userIn = document.getElementById('user');
 	var passIn = document.getElementById('pass');
 
-	if (account == 1)
-		userIn.value = "Administrador";
-	else if (account == 2)
-		userIn.value = "Dispensario";
-	else if (account == 3)
-		userIn.value = "Asistencias";
-	else if (account == 4)
-		userIn.value = "Porteria";
-	else
-		userIn.value = "Unknown";
+	var cuentaSel = "#cuenta-" + cuenta + ' h3';
+	var cuentaEl = document.querySelector(cuentaSel);
+
+	if (cuentaEl) {
+		var cuentaName = cuentaEl.innerHTML;
+		userIn.value = cuentaName;
+	} else {
+		userIn.value = "Desconocido";
+	}
+	
 
 	passIn.value = pass;
 
 	form.submit();
-	/*
-	if (account == 1) {
-		newUrl += "admin.php";
-	} else {
-		newUrl += "registro.php";
-	}
-	window.location.href = newUrl;
-	*/
 });
