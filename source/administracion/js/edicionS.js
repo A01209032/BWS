@@ -3,7 +3,36 @@ $(document).ready(function(){
            $('#insert').val("Insert");  
            $('#insert_form')[0].reset();  
       });  
+/*$('#modificar-registros').on("submit", function(event){
 
+    event.preventDefault();
+
+        $.ajax({
+              url: 'controlador/editar_servicio.php',
+              method: 'POST',
+              data: {
+                depa2: $('#depa2').val(),
+                paciente2: $('#paciente2').val(),
+                asistente2: $('#asistente2').val(),
+                date2: $('#date2').val(),
+                servicio2: $('#servicio2').val(),
+                Observaciones2: $('#Observaciones2').val(),
+                cuota2: $('#cuota2').val(),
+                   employee_id: $('#employee_id').val()
+              },
+              success: function(data) {
+                alert(data);
+                 $('#modificar-registros').modal('hide');
+                /*$('#alertModal').show();
+                $('#alertModalData').html(data);
+                *//*
+    
+               
+              }
+
+            });
+        return false;
+  });*/
       $(document).on('click', '.edit_data', function(){ 
              
            var employee_id = $(this).attr("id");  

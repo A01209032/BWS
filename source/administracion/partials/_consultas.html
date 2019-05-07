@@ -1,197 +1,236 @@
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
 
 
-          <!-- Page Content -->
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-
-                
-                <ul class="list-unstyled">
+            <ul class="list-unstyled">
 
 
 
-               <br>
+                <br>
 
-      <section>
+                <section>
 
-       <div class="container">
+                    <div class="container">
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="modificarServicio" role="dialog">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
+                        <!-- Modal -->
+                        <div class="modal fade" id="modificarServicio" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
 
-                <h4 class="modal-title">Modificar servicio</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                  <!-- Page Content -->
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-lg-12 text-center">
-                                <h1 class="mt-5">Modificar servicio</h1>
+                                        <h4 class="modal-title">Modificar servicio</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Page Content -->
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12 text-center">
+                                                    <h1 class="mt-5">Modificar servicio</h1>
 
-                                <ul class="list-unstyled">
+                                                    <ul class="list-unstyled">
 
-                                    <div class="row">
-                            <div class="column">
-                              <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
-                            </div>
-                            <div class="column">
-                                <form action="controlador/editar_servicio.php" method="POST" autocomplete="off" id="modificar-registros">
-                                <label for="dep" style="border-left:  "> Departamento  </label>    
-                                <select class="form-control form-control-sm" name="depa2" id="depa2">
-                                <?php 
+                                                        <div class="row">
+                                                            <div class="column">
+                                                                <img src="../Images/jesus_tocando_puerta.jpg" style="width:100%">
+                                                            </div>
+                                                            <div class="column">
+                                                                <form autocomplete="off" id="modificar-registros">
+                                                                    <label for="dep" style="border-left:  "> Departamento </label>
+                                                                    <select class="form-control form-control-sm" name="depa2" id="depa2">
+                                                                        <?php 
                                     $depas=getdepas();
                                   ?>
-                                  <?php while($row = mysqli_fetch_array($depas)):;?>
-                                  <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
-                                  <?php endwhile;?>
-                                </select>
-                                    
-                                <br>
-                               
-                                     <label >Buscar paciente </label>
-                                      <div class="autocomplete">
-                                      <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" autocomplete="off">
-                                    </div>
-                                      <!-- <input type="text" id="userInput" onkeypress="return soloLetras(event)" onkeyup="sendRequest3();"required>
+                                                                        <?php while($row = mysqli_fetch_array($depas)):;?>
+                                                                        <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+                                                                        <?php endwhile;?>
+                                                                    </select>
+
+                                                                    <br>
+
+                                                                    <label>Buscar paciente </label>
+                                                                    <div class="autocomplete">
+                                                                        <input class="form-control" type="text" id="paciente" name="paciente" placeholder="" autocomplete="off">
+                                                                    </div>
+                                                                    <!-- <input type="text" id="userInput" onkeypress="return soloLetras(event)" onkeyup="sendRequest3();"required>
                               <div style="text-align: center" id="ajaxResponse3"> </div> -->
-                              <br>
-                                    <input type="hidden" name="paciente2" id="paciente2" />
-                                <br>
-                                     <label >Buscar voluntario </label>
-                                     <div class="autocomplete">
-                                      <input type="text" id="asistente" name="asistente" placeholder="">
-                                    </div>
-                                      <!-- <input type="text" id="userInput2" onkeypress="return soloLetras(event)"onkeyup="sendRequest4();"required>
- -->                                  <input type="hidden" name="asistente2" id="asistente2" />
-                              <!-- <div style="text-align: center" id="ajaxResponse4"> </div> -->
-                               
-                                <div class="form-group"> <!-- Date input -->
-                                <label class="control-label"  for="date2">Selecciona dia y mes:</label>
-                                    <input type="date" value="YYYY-MM-DD" name="date2" id="date2" required/>
-                                </div>
-                                  <label>Servicio</label>
-                                  <br>
-                                    <select class="form-control form-control-sm" id="servicio2" name="servicio2" required>
-                                 <?php 
+                                                                    <br>
+                                                                    <input type="hidden" name="paciente2" id="paciente2" />
+                                                                    <br>
+                                                                    <label>Buscar voluntario </label>
+                                                                    <div class="autocomplete">
+                                                                        <input type="text" id="asistente" name="asistente" placeholder="">
+                                                                    </div>
+                                                                    <!-- <input type="text" id="userInput2" onkeypress="return soloLetras(event)"onkeyup="sendRequest4();"required>
+ --> <input type="hidden" name="asistente2" id="asistente2" />
+                                                                    <!-- <div style="text-align: center" id="ajaxResponse4"> </div> -->
+
+                                                                    <div class="form-group">
+                                                                        <!-- Date input -->
+                                                                        <label class="control-label" for="date2">Selecciona dia y mes:</label>
+                                                                        <input type="date" value="YYYY-MM-DD" name="date2" id="date2" required />
+                                                                    </div>
+                                                                    <label>Servicio</label>
+                                                                    <br>
+                                                                    <select class="form-control form-control-sm" id="servicio2" name="servicio2" required>
+                                                                        <?php 
                                     $tipos=getTiposdeServicio();
                                   ?>
-                                  <?php while($row = mysqli_fetch_array($tipos)):;?>
-                                  <option value="<?php echo $row[0];?>"><?php echo $row[2];?></option>
-                                  <?php endwhile;?>
-                                    </select>
-                                    
-                                 <br> <label>Observaciones</label>
-                                  <br>
-                                <input type="text" id="Observaciones2" name="Observaciones2" />
-                                <br>
-                                  <label>Cuota de Recuperacion</label>
-                                  <br>
-                                <input type="number" id="cuota2" name="cuota2"  value="0" required>
-                                <br>
-                                     <input type="hidden" name="employee_id" id="employee_id" />
-                                  <input type="submit" id="insert" name="insert" value="Insert" class="btn btn-success" />
-                              </form>
+                                                                        <?php while($row = mysqli_fetch_array($tipos)):;?>
+                                                                        <option value="<?php echo $row[0];?>"><?php echo $row[2];?></option>
+                                                                        <?php endwhile;?>
+                                                                    </select>
+
+                                                                    <br> <label>Observaciones</label>
+                                                                    <br>
+                                                                    <input type="text" id="Observaciones2" name="Observaciones2" />
+                                                                    <br>
+                                                                    <label>Cuota de Recuperacion</label>
+                                                                    <br>
+                                                                    <input type="number" id="cuota2" name="cuota2" value="0" required>
+                                                                    <br><br>
+                                                                    <input type="hidden" name="employee_id" id="employee_id" />
+                                                                    <input type="submit" id="insert" name="insert" value="Insert" class="btn btn-success" />
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-
-                        </ul>
-                      </div>
+                        </div>
                     </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              </div>
-            </div>
-          </div>
+                </section>
+            </ul>
+
+
         </div>
-      </div>
-      </section>
-                  </ul>
-                  
+    </div>
 
-                </div>
-              </div>
-              
-      </div>
-   
-<script src=../registros/autocomplete.js></script>
-<script>
-  var pacientes = {arr: []};
-  var pacienteActual   = { id: -1 };
-  var voluntarios = {arr: []};
-  var voluntarioActual = { id: -1 };
-
-  // Cargar Pacientes
-  $(document).ready(function() {
-    $.ajax({
-      url: "../registros/listar_pacientes.php",
-      method: 'GET',
-      data: {pattern: 'all'},
-      type: 'text',
-      success: function(data) {
-        console.log("Pacientes:" + data);
-        data = JSON.parse(data);
-        data = data.arr;
-        if (data[0] == "Error") {
-          alert("There was a critical error on the server!");
-          return;
-        }
-        //console.log(data);
-        var nombres = [];
-        for (var i=0; i < data.length; i++) {
-          //console.log(data[i])
-          nombres.push({val: (data[i]['fname']+" - "+data[i]['edad']+" años - "+data[i]['nivel']) , id: data[i]['id']});
-        }
-        pacientes.arr = nombres;
-        autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
-      }
-    });
+</div>
+<!-- The Modal -->
+<div class="modal" id="alertModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
 
-    // Cargar Lista de Voluntarios/Asistentes
-    $.ajax({
-      url: "../registros/listar_asistentes.php",
-      method: 'GET',
-      data: {pattern: 'all'},
-      type: 'json',
-      success: function(data) {
-        console.log("Asistentes:" + data);
-        data = JSON.parse(data);
-        data = data.arr;
-        if (data[0] == "Error") {
-          alert("There was a critical error on the server!");
-          return;
-        }
-        //console.log(data);
-        var nombres = [];
-        for (var i=0; i < data.length; i++) {
-          //console.log(data[i])
-          nombres.push({val: data[i]['fname'], id: data[i]['id']});
-        }
-        voluntarios.arr = nombres;
-        autocomplete(document.getElementById('asistente'), voluntarios, voluntarioActual);
-      }
-    });
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                </h4>
+                <button type="button" class="close" onclick="$('#alertModal').hide();">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h2 id="alertModalData"></h2>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="$('#alertModal').hide();">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src=../registros/autocomplete.js> </script> <script>
+        var pacientes = {
+            arr: []
+        };
+        var pacienteActual = {
+            id: -1
+        };
+        var voluntarios = {
+            arr: []
+        };
+        var voluntarioActual = {
+            id: -1
+        };
+
+        // Cargar Pacientes
+        $(document).ready(function() {
+            $.ajax({
+                url: "../registros/listar_pacientes.php",
+                method: 'GET',
+                data: {
+                    pattern: 'all'
+                },
+                type: 'text',
+                success: function(data) {
+                    console.log("Pacientes:" + data);
+                    data = JSON.parse(data);
+                    data = data.arr;
+                    if (data[0] == "Error") {
+                        alert("There was a critical error on the server!");
+                        return;
+                    }
+                    //console.log(data);
+                    var nombres = [];
+                    for (var i = 0; i < data.length; i++) {
+                        //console.log(data[i])
+                        nombres.push({
+                            val: (data[i]['fname'] + " - " + data[i]['edad'] + " años - " + data[i]['nivel']),
+                            id: data[i]['id']
+                        });
+                    }
+                    pacientes.arr = nombres;
+                    autocomplete(document.getElementById('paciente'), pacientes, pacienteActual);
+                }
+            });
 
 
-    // Submit Form Con el Id Correcto
-    $('#modificar-registros').on('submit', function(ev) {
-      
-      $('#paciente2').val(''+pacienteActual.id);
-      $('#asistente2').val(''+voluntarioActual.id);
+            // Cargar Lista de Voluntarios/Asistentes
+            $.ajax({
+                url: "../registros/listar_asistentes.php",
+                method: 'GET',
+                data: {
+                    pattern: 'all'
+                },
+                type: 'json',
+                success: function(data) {
+                    console.log("Asistentes:" + data);
+                    data = JSON.parse(data);
+                    data = data.arr;
+                    if (data[0] == "Error") {
+                        alert("There was a critical error on the server!");
+                        return;
+                    }
+                    //console.log(data);
+                    var nombres = [];
+                    for (var i = 0; i < data.length; i++) {
+                        //console.log(data[i])
+                        nombres.push({
+                            val: data[i]['fname'],
+                            id: data[i]['id']
+                        });
+                    }
+                    voluntarios.arr = nombres;
+                    autocomplete(document.getElementById('asistente'), voluntarios, voluntarioActual);
+                }
+            });
 
-      console.log("Submission Made!");
-    })
-  });
 
+            // Submit Form Con el Id Correcto
+            $('#modificar-registros').on('submit', function(ev) {
 
+                $('#paciente2').val('' + pacienteActual.id);
+                $('#asistente2').val('' + voluntarioActual.id);
 
-</script>
-<script type="text/javascript" src="js/edicionS.js" ></script>
-<script type="text/javascript" src="js/ajax.js"> </script>
+                console.log("Submission Made!");
+            })
+        });
+
+    </script>
+    <script type="text/javascript" src="js/edicionS.js"></script>
+    <script type="text/javascript" src="js/ajax.js"> </script>
