@@ -18,7 +18,7 @@ $(document).ready(function(){
                 success:function(data){
                     console.log(data);
                      $('#depa2').val(data.IdDepartamento);  
-                     parseInt($('#employee_id').val(data.idAtienden),10);  
+                     $('#employee_id').val(data.IdAtienden);  
                    //$('#userInput2').val(data.IdVoluntario);  
                      $('#date2').val(data.Fecha);  
                      $('#servicio2').val(data.IdServicio);  
