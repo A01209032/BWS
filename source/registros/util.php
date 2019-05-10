@@ -2,10 +2,10 @@
 <?php 
 
 function conectDb(){
-  $servername="remotemysql.com";
-  $username= "thdR7Lb9W9";
-  $password= "e52rzReZ8d";
-  $dbname="thdR7Lb9W9";
+  $servername="mysql1006.mochahost.com";
+  $username= "a1209032_pagina";
+  $password= "^\$5T4D%c^ifrHE^R6qWp0n&oo&BhST%3dZ0\$f*8#hXOpRfFyTIUtgJ^fiafnd33SocmpHj^l^Zy30KCr5y51JB6lCvAHTC3l5c&";
+  $dbname="a1209032_main";
         
   $con = mysqli_connect($servername,$username,$password,$dbname);
         
@@ -13,7 +13,7 @@ function conectDb(){
     die("Connection failed: " . mysqli_connect_error());
   }
   
- mysqli_set_charset($con,"utf8");
+  mysqli_set_charset($con,"utf8");
   
   return $con;  
 }
