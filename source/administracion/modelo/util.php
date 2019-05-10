@@ -4,17 +4,24 @@ function conectDb(){
   $username= "root";
   $password= "";
   $dbname="servicio_social";*/
-    
-  $servername="remotemysql.com";
-  $username= "thdR7Lb9W9";
-  $password= "e52rzReZ8d";
-  $dbname="thdR7Lb9W9";
+  
+  // $servername="remotemysql.com";
+  // $username= "thdR7Lb9W9";
+  // $password= "e52rzReZ8d";
+  // $dbname="thdR7Lb9W9";
+
+  $servername="mysql1006.mochahost.com";
+  $username= "a1209032_pagina";
+  $password= "^\$5T4D%c^ifrHE^R6qWp0n&oo&BhST%3dZ0\$f*8#hXOpRfFyTIUtgJ^fiafnd33SocmpHj^l^Zy30KCr5y51JB6lCvAHTC3l5c&";
+  $dbname="a1209032_main";
 
   $con = mysqli_connect($servername,$username,$password,$dbname);
 
   if(!$con){
     die("Connection failed: " . mysqli_connect_error());
   }
+
+  mysqli_set_charset($con,"utf8");
 
   return $con;
 }
@@ -134,7 +141,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
     
     $aux ="SELECT p.Nombre as Nombre,p.Sexo as sexo,FLOOR(DATEDIFF(CURRENT_DATE,p.FechadeNacimiento)/365) as 'Edad',a.CuotaRecup as cp,ts.NombreServicio as ns FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE a.IdPaciente=p.IdPaciente AND ts.IdServicio=a.IdServicio    AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
@@ -269,7 +276,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
     
     mysqli_free_result($result);
@@ -327,7 +334,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
    //asistencia consulta
     

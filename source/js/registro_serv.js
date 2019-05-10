@@ -19,10 +19,20 @@ window.addEventListener("load", function() {
     $('#submitM').hide();
     $('#RP').show();
     $('#MP').hide();
+
     $('#pacienteErr').html('');
     $('#asistenteErr').html('');
     $('#fechaErr').html('');
     $('#tipoErr').html('');
+
+    $('#nombreErr').html(' ');
+          $('#nivelErr').html(' ');
+          $('#apellidoErr').html(' ');
+          $('#fechaNacimientoErr').html(' ');
+          $('#enfermedadErr').html(' ');
+          $('#sexoErr').html(' ');
+          $('#religionErr').html(' ');
+
 
   });
 
@@ -60,7 +70,7 @@ window.addEventListener("load", function() {
         }
         else if(data[0]=="Success: Al ingresar datos"){
           $('#alertModal').show();
-          $('#alertModalData').html('Se registro exitosamente el paciente');
+          $('#alertModalData').html('Se ha registrado exitosamente el paciente');
           $('#nombre').val('');
           $('#fecha_nacimiento').val('');
           $('#apellido').val('');
@@ -162,7 +172,7 @@ window.addEventListener("load", function() {
         data = data.arr;
         if (data[0] == "Error") {
           $('#alertModal').show();
-          $('#alertModalData').html("There was a critical error on the server!");
+          $('#alertModalData').html("¡Error crítico en el servidor, contacte al desarrollador!");
           return;
         }
         //console.log(data);
@@ -191,7 +201,7 @@ window.addEventListener("load", function() {
       data = data.arr;
       if (data[0] == "Error") {
         $('#alertModal').show();
-        $('#alertModalData').html('There was a critical error on the server!');
+        $('#alertModalData').html('¡Error crítico en el servidor, contacte al desarrollador!');
         return;
       }
       //console.log(data);
@@ -227,7 +237,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
         }
         else{
           $('#alertModal').show();
-          $('#alertModalData').html("Se agrego exitosamente");
+          $('#alertModalData').html("Ha sido registrado exitosamente");
           $('#nombreServicio').val('');
           $('#errorNS').html('');
           $('#crearServicio').modal('hide');
@@ -245,7 +255,7 @@ $('#registrarNuevoServicio').on('click', function(ev) {
     ev.preventDefault();
 
   if(pacienteActual.id==-1){
-        $('#noSelect').html('No selecciono ningun paciente');
+        $('#noSelect').html('No se ha seleccionado ningún paciente');
       }
   else{
     $.ajax({
@@ -281,6 +291,14 @@ $('#registrarNuevoServicio').on('click', function(ev) {
           $('#asistenteErr').html('');
           $('#fechaErr').html('');
           $('#tipoErr').html('');
+           $('#nombreErr').html('');
+          $('#nivelErr').html('');
+          $('#apellidoErr').html('');
+          $('#fechaNacimientoErr').html('');
+          $('#enfermedadErr').html('');
+          $('#sexoErr').html('');
+          $('#religionErr').html('');
+          $('#noSelect').html(' ');
 
           cargarPacientes();
         }

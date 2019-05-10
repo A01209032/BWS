@@ -66,7 +66,8 @@
           <img id="ros-cruz" src="../Images/ros_cruz.png" width=48 height=64>
         </div>
         <div id="txt-pass">
-          <form action="<?= frombase('common/login.php') ?>" method="POST" id="h-form">
+          <!-- <form action="<?= frombase('common/login.php') ?>" method="POST" id="h-form"> -->
+          <form action="/source/common/login.php" method="POST" id="h-form">
             <label for="pass">Password</label>
             <input type="password" name="pass" id="pass">
             <input type="text"     name="user" id="user">
