@@ -136,7 +136,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
     
     $aux ="SELECT p.Nombre as Nombre,p.Sexo as sexo,FLOOR(DATEDIFF(CURRENT_DATE,p.FechadeNacimiento)/365) as 'Edad',a.CuotaRecup as cp,ts.NombreServicio as ns FROM atienden as a INNER JOIN pacientes as p ON a.IdPaciente=p.IdPaciente INNER JOIN tipodeservicio as ts ON a.IdServicio=ts.IdServicio WHERE a.IdPaciente=p.IdPaciente AND ts.IdServicio=a.IdServicio    AND  Fecha >=  '".$date."'  AND Fecha <=  '".$date2."' ";
@@ -271,7 +271,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
     
     mysqli_free_result($result);
@@ -329,7 +329,7 @@ $month2 = date('m', strtotime($Fecha2));
   }
 
     else{
-        echo "No hay registros en esa fecha o es una fecha invalida";
+        echo "No hay registros en esa fecha o es una fecha inválida";
     }
    //asistencia consulta
     
