@@ -31,9 +31,11 @@ if (isset($_POST['user'])) {
 	$_SESSION['departamento'] = $user['name'];
 
 	if (strtoupper($user['name']) == 'ADMINISTRADOR') {
-		header("Location: ".frombase("administracion/admin.php"));
+		header("Location: /source/administracion/admin.php");
+		#header("Location: ".frombase("administracion/admin.php"));
 	} else {
-		header("Location: ".frombase("registros/registro.php"));
+		header("Location: /source/registros/registro.php");
+		#header("Location: ".frombase("registros/registro.php"));
 	}
 
 } else {

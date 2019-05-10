@@ -8,13 +8,16 @@
 
   if (isset($_SESSION['departamento'])) {
   	if ($_SESSION['departamento'] == 'administrador') {
-  		header('Location: '.frombase('administracion/admin.php'));
+  		header('Location: /source/administracion/admin.php');
+      //header('Location: '.frombase('administracion/admin.php'));
   	} else {
-  		header('Location: '.frombase('registros/registro.php'));
+  		header('Location: /source/registros/registro.php');
+      //header('Location: '.frombase('registros/registro.php'));
   	}
   }
   else {
-  	header('Location: '.frombase('common/login.php'));
+  	header('Location: /source/common/login.php');
+    //header('Location: '.frombase('common/login.php'));
   }
   /*include("common/views/_header_login.html");
   include("common/views/login_view.php");*/
